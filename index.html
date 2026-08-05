@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samiti Management App</title>
+    <!-- Tailwind CSS CDN for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Mobile Screen Container Styling */
+        body {
+            background-color: #f1f5f9;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+        .app-container {
+            max-width: 450px;
+            margin: 0 auto;
+            min-height: 100vh;
+            background: #ffffff;
+            position: relative;
+            padding-bottom: 70px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+
+    <!-- Top Header -->
+    <header class="bg-indigo-600 text-white p-4 sticky top-0 z-10 shadow-md flex justify-between items-center">
+        <div>
+            <h1 class="font-bold text-lg">श्री राम पूजा समिति</h1>
+            <p class="text-xs text-indigo-200">आयोजन एवं प्रबंध सेवा</p>
+        </div>
+        <button onclick="alert('Notification System')" class="text-white text-lg"><i class="fa-regular fa-bell"></i></button>
+    </header>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="p-4">
+
+        <!-- ================= TAB 1: HOME & CHANDA ================= -->
+        <section id="tab-home" class="tab-content">
+            <!-- Financial Summary Cards -->
+            <div class="grid grid-cols-2 gap-3 mb-4">
+                <div class="bg-emerald-50 p-3 rounded-xl border border-emerald-100">
+                    <p class="text-xs text-emerald-600 font-semibold">कुल चंदा कलेक्शन</p>
+                    <p class="text-xl font-bold text-emerald-700 mt-1">₹ 1,25,000</p>
+                </div>
+                <div class="bg-rose-50 p-3 rounded-xl border border-rose-100">
+                    <p class="text-xs text-rose-600 font-semibold">कुल खर्च (Expense)</p>
+                    <p class="text-xl font-bold text-rose-700 mt-1">₹ 45,000</p>
+                </div>
+            </div>
+            <div class="bg-indigo-50 p-3 rounded-xl border border-indigo-100 mb-6 flex justify-between items-center">
+                <span class="text-sm font-semibold text-indigo-800">शेष राशि (Balance):</span>
+                <span class="text-lg font-bold text-indigo-900">₹ 80,000</span>
+            </div>
+
+            <!-- Chanda Collection List -->
+            <div class="flex justify-between items-center mb-3">
+                <h2 class="font-bold text-gray-800 text-md">चंदा दाता सूची (Donators)</h2>
+                <span class="text-xs text-indigo-600 font-semibold">सब देखें</span>
+            </div>
+
+            <div class="space-y-2">
+                <div class="p-3 bg-gray-50 rounded-lg flex justify-between items-center border border-gray-100">
+                    <div>
+                        <p class="font-semibold text-gray-800 text-sm">रमेश कुमार सिंह</p>
+                        <p class="text-xs text-gray-500">रसीद नं: #1024 • 02 Aug</p>
+                    </div>
+                    <span class="text-emerald-600 font-bold text-sm">+ ₹ 5,000</span>
+                </div>
+                <div class="p-3 bg-gray-50 rounded-lg flex justify-between items-center border border-gray-100">
+                    <div>
+                        <p class="font-semibold text-gray-800 text-sm">सुनील प्रसाद</p>
+                        <p class="text-xs text-gray-500">रसीद नं: #1025 • 03 Aug</p>
+                    </div>
+                    <span class="text-emerald-600 font-bold text-sm">+ ₹ 2,100</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TAB 2: VOLUNTEERS ================= -->
+        <section id="tab-volunteers" class="tab-content hidden">
+            <h2 class="font-bold text-gray-800 text-md mb-3">समिति स्वयंसेवक (Volunteers)</h2>
+            
+            <div class="space-y-3">
+                <!-- Volunteer Item 1 -->
+                <div onclick="openVolunteerModal('अमित शर्मा', 'सुरक्षा एवं व्यवस्था', '+91 9876543210', 'वार्ड नं. 04', 'कलश यात्रा सुरक्षा')" class="p-3 bg-white border border-gray-200 rounded-xl flex items-center gap-3 cursor-pointer hover:bg-indigo-50 transition">
+                    <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center font-bold text-lg">AS</div>
+                    <div class="flex-1">
+                        <h3 class="font-bold text-gray-800 text-sm">अमित शर्मा</h3>
+                        <p class="text-xs text-gray-500">रोल: सुरक्षा एवं व्यवस्था</p>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-gray-400 text-xs"></i>
+                </div>
+
+                <!-- Volunteer Item 2 -->
+                <div onclick="openVolunteerModal('विकास वर्मा', 'स्टेज एवं साउंड', '+91 9123456789', 'वार्ड नं. 02', 'साउंड सिस्टम एवं लाइट देखरेख')" class="p-3 bg-white border border-gray-200 rounded-xl flex items-center gap-3 cursor-pointer hover:bg-indigo-50 transition">
+                    <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center font-bold text-lg">VV</div>
+                    <div class="flex-1">
+                        <h3 class="font-bold text-gray-800 text-sm">विकास वर्मा</h3>
+                        <p class="text-xs text-gray-500">रोल: स्टेज एवं साउंड</p>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-gray-400 text-xs"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TAB 3: EVENTS ================= -->
+        <section id="tab-events" class="tab-content hidden">
+            <h2 class="font-bold text-gray-800 text-md mb-3">कार्यक्रम सूची (Event Schedule)</h2>
+            
+            <div class="space-y-3">
+                <!-- Event Item 1 -->
+                <div onclick="openEventModal('भव्य कलश यात्रा', '10 अगस्त 2026 | सुबह 07:00 बजे', 'शिव मंदिर प्रांगण', 'रोहित कुमार (9800000000)', 'नगर भ्रमण करते हुए नदी तट से जल उठाकर मंदिर प्रांगण तक प्रस्थान।')" class="p-3 border border-indigo-100 bg-indigo-50/50 rounded-xl cursor-pointer">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-indigo-600 text-white text-[10px] px-2 py-0.5 rounded font-medium">Upcoming</span>
+                        <span class="text-xs text-gray-500">10 Aug 2026</span>
+                    </div>
+                    <h3 class="font-bold text-gray-800 mt-2 text-md">भव्य कलश यात्रा</h3>
+                    <p class="text-xs text-gray-600 mt-1"><i class="fa-regular fa-clock"></i> सुबह 07:00 बजे से</p>
+                    <p class="text-xs text-indigo-600 font-semibold mt-2">विवरण देखें <i class="fa-solid fa-arrow-right text-[10px]"></i></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TAB 4: KALASH YATRA ================= -->
+        <section id="tab-kalash" class="tab-content hidden">
+            <div class="flex justify-between items-center mb-3">
+                <h2 class="font-bold text-gray-800 text-md">कलश यात्रा सहभागी</h2>
+                <span class="text-xs bg-indigo-100 text-indigo-700 px-2 py-1 rounded-full font-bold">कुल: 150</span>
+            </div>
+
+            <div class="space-y-2">
+                <div class="p-3 bg-white border border-gray-200 rounded-lg flex justify-between items-center">
+                    <div>
+                        <p class="font-bold text-gray-800 text-sm">1. पूजा देवी</p>
+                        <p class="text-xs text-gray-500">पति: राजेश सिंह • कूंटी</p>
+                    </div>
+                    <span class="text-xs bg-emerald-100 text-emerald-700 px-2 py-1 rounded font-semibold">टोकन जारी</span>
+                </div>
+                <div class="p-3 bg-white border border-gray-200 rounded-lg flex justify-between items-center">
+                    <div>
+                        <p class="font-bold text-gray-800 text-sm">2. अनीता देवी</p>
+                        <p class="text-xs text-gray-500">पति: मनोज कुमार • कूंटी</p>
+                    </div>
+                    <span class="text-xs bg-emerald-100 text-emerald-700 px-2 py-1 rounded font-semibold">टोकन जारी</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ================= BOTTOM NAVIGATION BAR ================= -->
+    <nav class="fixed bottom-0 left-0 right-0 max-w-[450px] mx-auto bg-white border-t border-gray-200 flex justify-around py-2 z-20">
+        <button onclick="switchTab('home')" id="nav-home" class="nav-btn text-indigo-600 flex flex-col items-center text-xs font-semibold">
+            <i class="fa-solid fa-house text-lg mb-1"></i> गृह
+        </button>
+        <button onclick="switchTab('volunteers')" id="nav-volunteers" class="nav-btn text-gray-400 flex flex-col items-center text-xs font-semibold">
+            <i class="fa-solid fa-users text-lg mb-1"></i> Volunteer
+        </button>
+        <button onclick="switchTab('events')" id="nav-events" class="nav-btn text-gray-400 flex flex-col items-center text-xs font-semibold">
+            <i class="fa-solid fa-calendar-days text-lg mb-1"></i> Events
+        </button>
+        <button onclick="switchTab('kalash')" id="nav-kalash" class="nav-btn text-gray-400 flex flex-col items-center text-xs font-semibold">
+            <i class="fa-solid fa-hands-praying text-lg mb-1"></i> कलश यात्रा
+        </button>
+    </nav>
+
+    <!-- ================= MODAL FOR DETAILS ================= -->
+    <div id="detail-modal" class="fixed inset-0 bg-black/50 z-30 hidden flex items-end justify-center">
+        <div class="bg-white w-full max-w-[450px] rounded-t-2xl p-5 animation-slide-up">
+            <div class="flex justify-between items-center border-b pb-3 mb-3">
+                <h3 id="modal-title" class="font-bold text-lg text-gray-800">Detail View</h3>
+                <button onclick="closeModal()" class="text-gray-400 text-xl">&times;</button>
+            </div>
+            <div id="modal-body" class="space-y-2 text-sm text-gray-600">
+                <!-- Dynamic Content insertion -->
+            </div>
+            <button onclick="closeModal()" class="w-full mt-5 bg-indigo-600 text-white py-2 rounded-lg font-semibold">बंद करें</button>
+        </div>
+    </div>
+
+</div>
+
+<!-- JAVASCRIPT FOR INTERACTIVITY -->
+<script>
+    // Tab Switching Logic
+    function switchTab(tabName) {
+        document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+        document.querySelectorAll('.nav-btn').forEach(el => {
+            el.classList.remove('text-indigo-600');
+            el.classList.add('text-gray-400');
+        });
+
+        document.getElementById(`tab-${tabName}`).classList.remove('hidden');
+        document.getElementById(`nav-${tabName}`).classList.add('text-indigo-600');
+        document.getElementById(`nav-${tabName}`).classList.remove('text-gray-400');
+    }
+
+    // Modal Logic for Volunteer Detail View
+    function openVolunteerModal(name, role, phone, address, duty) {
+        document.getElementById('modal-title').innerText = "Volunteer Profile";
+        document.getElementById('modal-body').innerHTML = `
+            <p><strong>नाम:</strong> ${name}</p>
+            <p><strong>रोल:</strong> ${role}</p>
+            <p><strong>संपर्क:</strong> ${phone}</p>
+            <p><strong>पता:</strong> ${address}</p>
+            <p><strong>आवंटित कार्य:</strong> ${duty}</p>
+        `;
+        document.getElementById('detail-modal').classList.remove('hidden');
+    }
+
+    // Modal Logic for Event Detail View
+    function openEventModal(title, time, venue, coordinator, details) {
+        document.getElementById('modal-title').innerText = title;
+        document.getElementById('modal-body').innerHTML = `
+            <p><strong>समय:</strong> ${time}</p>
+            <p><strong>स्थान:</strong> ${venue}</p>
+            <p><strong>प्रबंधक:</strong> ${coordinator}</p>
+            <hr class="my-2"/>
+            <p><strong>विवरण:</strong> ${details}</p>
+        `;
+        document.getElementById('detail-modal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+        document.getElementById('detail-modal').classList.add('hidden');
+    }
+</script>
+
+</body>
+</html>
