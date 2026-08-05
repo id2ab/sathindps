@@ -28,14 +28,13 @@
 
 <div class="app-container">
 
-    <!-- BACKGROUND AUDIO ELEMENT -->
-    <audio id="bg-music" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
-    </audio>
+    <!-- HIDDEN YOUTUBE PLAYER CONTAINER -->
+    <div id="youtube-player" style="display: none; position: absolute; width: 0; height: 0; opacity: 0; pointer-events: none;"></div>
 
     <!-- TOP HEADER -->
     <header class="bg-indigo-600 text-white p-3 sticky top-0 z-10 shadow-md flex justify-between items-center">
         <div class="flex items-center gap-3">
+            <!-- Title Logo -->
             <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjR0FCZKvhLDu4sYjQFN8rjDhEs7I2TxSTDNhmLWvE9nYRSkPgf6oWkA7fZubN9DvQSos-8HdKYYyFFH5x1ICL4kZgNCGsVNyaQG_IM8LwEQsVPbmNBGSP6iE1HIcGPdJE2B1v4HMpfM_B0/s150/LOGO+SNDPS.png" alt="Sathi NDPS Logo" class="h-10 w-10 object-contain rounded-full bg-white p-0.5">
             <div>
                 <h1 class="font-bold text-lg leading-tight">Sathi NDPS</h1>
@@ -43,11 +42,14 @@
             </div>
         </div>
         
-        <div class="flex items-center gap-3">
-            <button onclick="toggleAudio()" title="Sound On/Off" class="text-white text-lg bg-indigo-700 w-8 h-8 rounded-full flex items-center justify-center border border-indigo-400">
-                <i id="audio-icon" class="fa-solid fa-volume-xmark text-sm"></i>
+        <!-- Action Buttons: Audio Mute/Unmute & Notification (Same Button Style) -->
+        <div class="flex items-center gap-2">
+            <button onclick="toggleAudio()" id="audio-btn" title="Sound On/Off" class="text-white text-lg w-9 h-9 flex items-center justify-center cursor-pointer hover:bg-indigo-700/50 rounded-full transition">
+                <i id="audio-icon" class="fa-solid fa-volume-xmark"></i>
             </button>
-            <button onclick="alert('Notification System')" class="text-white text-lg pr-1"><i class="fa-regular fa-bell"></i></button>
+            <button onclick="alert('Notification System')" title="Notifications" class="text-white text-lg w-9 h-9 flex items-center justify-center cursor-pointer hover:bg-indigo-700/50 rounded-full transition">
+                <i class="fa-regular fa-bell"></i>
+            </button>
         </div>
     </header>
 
@@ -56,6 +58,8 @@
 
         <!-- ================= TAB 1: HOME & CHANDA ================= -->
         <section id="tab-home" class="tab-content">
+            
+            <!-- Quick Action Buttons: Estimated Expense & Donate Now -->
             <div class="grid grid-cols-2 gap-2 mb-4">
                 <button onclick="openEstimatedExpenseModal()" class="bg-amber-500 hover:bg-amber-600 text-white p-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2 shadow-sm transition">
                     <i class="fa-solid fa-calculator text-sm"></i> अनुमानित खर्च
@@ -65,6 +69,7 @@
                 </button>
             </div>
 
+            <!-- Financial Summary Cards -->
             <div class="grid grid-cols-2 gap-3 mb-3">
                 <div class="bg-emerald-50 p-3 rounded-xl border border-emerald-100">
                     <p class="text-xs text-emerald-600 font-semibold">कुल चंदा कलेक्शन</p>
@@ -81,6 +86,7 @@
                 <span class="text-lg font-bold text-indigo-900">₹ 80,000</span>
             </div>
 
+            <!-- Chanda Collection List -->
             <div class="flex justify-between items-center mb-3">
                 <h2 class="font-bold text-gray-800 text-md">चंदा दाता सूची (Donators)</h2>
                 <span class="text-xs text-indigo-600 font-semibold cursor-pointer">सब देखें</span>
@@ -119,12 +125,12 @@
             </div>
         </section>
 
-        <!-- ================= TAB 3: EVENTS (FIXED EVENT 1) ================= -->
+        <!-- ================= TAB 3: EVENTS ================= -->
         <section id="tab-events" class="tab-content hidden">
             <h2 class="font-bold text-gray-800 text-md mb-3">कार्यक्रम सूची (Event Schedule)</h2>
             <div class="space-y-3">
 
-                <!-- Event 1 (Fixed Double Quote Conflict) -->
+                <!-- Event 1 -->
                 <div onclick="openEventModal('भव्य कलश यात्रा एवं कलश स्थापना', 'प्रतिपदा (up to 9:31 pm)', '11 अक्टूबर 2026 | सुबह 07:00 बजे', 'साथी नवदुर्गा पूजा समिति प्रांगण नरसंडा चौक (पुल से उत्तर)', 'अनिकेत कुमार, राजन कुमार, मुकेश कुमार', 'नरसंडा से सरमसपुर, मधुबन, कलवारी भ्रमण करते हुए कलवारी बांध नदी तट से जल उठाकर पूजा पंडाल प्रांगण तक प्रस्थान।')" class="p-3 border border-indigo-100 bg-indigo-50/50 rounded-xl cursor-pointer hover:bg-indigo-100/50 transition">
                     <div class="flex justify-between items-start">
                         <span class="bg-indigo-600 text-white text-[10px] px-2 py-0.5 rounded font-medium">प्रतिपदा</span>
@@ -244,39 +250,64 @@
 
 </div>
 
-<!-- JAVASCRIPT LOGIC -->
+<!-- YOUTUBE IFRAME API & AUDIO LOGIC -->
 <script>
-    const bgMusic = document.getElementById('bg-music');
+    let player;
+    let isPlaying = false;
     const audioIcon = document.getElementById('audio-icon');
 
-    if (bgMusic) {
-        bgMusic.volume = 0.15;
+    // Load YouTube Iframe API Dynamically
+    const tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    const firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    function onYouTubeIframeAPIReady() {
+        player = new YT.Player('youtube-player', {
+            videoId: 'BR8Ie1bUZik', // Peaceful Sitar Music Video ID
+            playerVars: {
+                'autoplay': 0,
+                'controls': 0,
+                'loop': 1,
+                'playlist': 'BR8Ie1bUZik'
+            },
+            events: {
+                'onReady': onPlayerReady
+            }
+        });
     }
 
+    function onPlayerReady(event) {
+        player.setVolume(20); // Soft background volume (20%)
+    }
+
+    // Auto-play on first tap anywhere (Browser Autoplay Compliance)
     function startAudioOnFirstInteraction() {
-        if (bgMusic && bgMusic.paused) {
-            bgMusic.play().then(() => {
-                if (audioIcon) {
-                    audioIcon.classList.remove('fa-volume-xmark');
-                    audioIcon.classList.add('fa-volume-high');
-                }
-            }).catch(err => {
-                console.log("Autoplay waiting for user gesture.");
-            });
+        if (player && typeof player.playVideo === 'function' && !isPlaying) {
+            player.playVideo();
+            isPlaying = true;
+            if (audioIcon) {
+                audioIcon.classList.remove('fa-volume-xmark');
+                audioIcon.classList.add('fa-volume-high');
+            }
         }
         document.removeEventListener('click', startAudioOnFirstInteraction);
     }
     document.addEventListener('click', startAudioOnFirstInteraction);
 
+    // Audio Mute/Unmute Toggle Function
     function toggleAudio() {
-        if (bgMusic.paused) {
-            bgMusic.play();
-            audioIcon.classList.remove('fa-volume-xmark');
-            audioIcon.classList.add('fa-volume-high');
-        } else {
-            bgMusic.pause();
+        if (!player) return;
+        if (isPlaying) {
+            player.pauseVideo();
+            isPlaying = false;
             audioIcon.classList.remove('fa-volume-high');
             audioIcon.classList.add('fa-volume-xmark');
+        } else {
+            player.playVideo();
+            isPlaying = true;
+            audioIcon.classList.remove('fa-volume-xmark');
+            audioIcon.classList.add('fa-volume-high');
         }
     }
 
