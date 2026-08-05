@@ -28,7 +28,7 @@
 
 <div class="app-container">
 
-    <!-- BACKGROUND AUDIO ELEMENT (Soft Instrument / Mantra) -->
+    <!-- BACKGROUND AUDIO ELEMENT -->
     <audio id="bg-music" loop>
         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
     </audio>
@@ -36,7 +36,6 @@
     <!-- TOP HEADER -->
     <header class="bg-indigo-600 text-white p-3 sticky top-0 z-10 shadow-md flex justify-between items-center">
         <div class="flex items-center gap-3">
-            <!-- Title Logo -->
             <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjR0FCZKvhLDu4sYjQFN8rjDhEs7I2TxSTDNhmLWvE9nYRSkPgf6oWkA7fZubN9DvQSos-8HdKYYyFFH5x1ICL4kZgNCGsVNyaQG_IM8LwEQsVPbmNBGSP6iE1HIcGPdJE2B1v4HMpfM_B0/s150/LOGO+SNDPS.png" alt="Sathi NDPS Logo" class="h-10 w-10 object-contain rounded-full bg-white p-0.5">
             <div>
                 <h1 class="font-bold text-lg leading-tight">Sathi NDPS</h1>
@@ -44,7 +43,6 @@
             </div>
         </div>
         
-        <!-- Action Buttons: Audio Mute/Unmute & Notification -->
         <div class="flex items-center gap-3">
             <button onclick="toggleAudio()" title="Sound On/Off" class="text-white text-lg bg-indigo-700 w-8 h-8 rounded-full flex items-center justify-center border border-indigo-400">
                 <i id="audio-icon" class="fa-solid fa-volume-xmark text-sm"></i>
@@ -58,20 +56,15 @@
 
         <!-- ================= TAB 1: HOME & CHANDA ================= -->
         <section id="tab-home" class="tab-content">
-            
-            <!-- Quick Action Buttons: Estimated Expense & Donate Now -->
             <div class="grid grid-cols-2 gap-2 mb-4">
-                <!-- Estimated Expense Button -->
                 <button onclick="openEstimatedExpenseModal()" class="bg-amber-500 hover:bg-amber-600 text-white p-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2 shadow-sm transition">
                     <i class="fa-solid fa-calculator text-sm"></i> अनुमानित खर्च
                 </button>
-                <!-- Donate Now Button -->
                 <button onclick="openDonateModal()" class="bg-emerald-600 hover:bg-emerald-700 text-white p-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2 shadow-sm transition">
                     <i class="fa-solid fa-qrcode text-sm"></i> सहयोग करें (Donate)
                 </button>
             </div>
 
-            <!-- Financial Summary Cards -->
             <div class="grid grid-cols-2 gap-3 mb-3">
                 <div class="bg-emerald-50 p-3 rounded-xl border border-emerald-100">
                     <p class="text-xs text-emerald-600 font-semibold">कुल चंदा कलेक्शन</p>
@@ -88,7 +81,6 @@
                 <span class="text-lg font-bold text-indigo-900">₹ 80,000</span>
             </div>
 
-            <!-- Chanda Collection List -->
             <div class="flex justify-between items-center mb-3">
                 <h2 class="font-bold text-gray-800 text-md">चंदा दाता सूची (Donators)</h2>
                 <span class="text-xs text-indigo-600 font-semibold cursor-pointer">सब देखें</span>
@@ -101,13 +93,6 @@
                         <p class="text-xs text-gray-500">रसीद नं: #1024 • 02 Aug</p>
                     </div>
                     <span class="text-emerald-600 font-bold text-sm">+ ₹ 5,000</span>
-                </div>
-                <div class="p-3 bg-gray-50 rounded-lg flex justify-between items-center border border-gray-100">
-                    <div>
-                        <p class="font-semibold text-gray-800 text-sm">अशोक कुमार </p>
-                        <p class="text-xs text-gray-500">रसीद नं: #1027 • 02 Aug</p>
-                    </div>
-                    <span class="text-emerald-600 font-bold text-sm">+ ₹ 6,000</span>
                 </div>
                 <div class="p-3 bg-gray-50 rounded-lg flex justify-between items-center border border-gray-100">
                     <div>
@@ -134,18 +119,77 @@
             </div>
         </section>
 
-        <!-- ================= TAB 3: EVENTS ================= -->
+        <!-- ================= TAB 3: EVENTS (FIXED EVENT 1) ================= -->
         <section id="tab-events" class="tab-content hidden">
             <h2 class="font-bold text-gray-800 text-md mb-3">कार्यक्रम सूची (Event Schedule)</h2>
             <div class="space-y-3">
-                <div onclick="openEventModal('भव्य कलश यात्रा', '10 अगस्त 2026 | सुबह 07:00 बजे', 'शिव मंदिर प्रांगण', 'रोहित कुमार', 'नगर भ्रमण करते हुए नदी तट से जल उठाकर मंदिर प्रांगण तक प्रस्थान।')" class="p-3 border border-indigo-100 bg-indigo-50/50 rounded-xl cursor-pointer">
+
+                <!-- Event 1 (Fixed Double Quote Conflict) -->
+                <div onclick="openEventModal('भव्य कलश यात्रा एवं कलश स्थापना', 'प्रतिपदा (up to 9:31 pm)', '11 अक्टूबर 2026 | सुबह 07:00 बजे', 'साथी नवदुर्गा पूजा समिति प्रांगण नरसंडा चौक (पुल से उत्तर)', 'अनिकेत कुमार, राजन कुमार, मुकेश कुमार', 'नरसंडा से सरमसपुर, मधुबन, कलवारी भ्रमण करते हुए कलवारी बांध नदी तट से जल उठाकर पूजा पंडाल प्रांगण तक प्रस्थान।')" class="p-3 border border-indigo-100 bg-indigo-50/50 rounded-xl cursor-pointer hover:bg-indigo-100/50 transition">
                     <div class="flex justify-between items-start">
-                        <span class="bg-indigo-600 text-white text-[10px] px-2 py-0.5 rounded font-medium">Upcoming</span>
-                        <span class="text-xs text-gray-500">10 Aug 2026</span>
+                        <span class="bg-indigo-600 text-white text-[10px] px-2 py-0.5 rounded font-medium">प्रतिपदा</span>
+                        <span class="text-xs text-gray-500 font-semibold">11 Oct 2026</span>
                     </div>
-                    <h3 class="font-bold text-gray-800 mt-2 text-md">भव्य कलश यात्रा</h3>
-                    <p class="text-xs text-gray-600 mt-1"><i class="fa-regular fa-clock"></i> सुबह 07:00 बजे से</p>
+                    <h3 class="font-bold text-gray-800 mt-2 text-md">1. भव्य कलश यात्रा एवं कलश स्थापना</h3>
+                    <p class="text-xs text-gray-600 mt-1"><i class="fa-regular fa-clock text-indigo-600"></i> सुबह 07:00 बजे से</p>
+                    <p class="text-[11px] text-gray-500 mt-0.5"><i class="fa-solid fa-location-dot text-rose-500"></i> नरसंडा चौक</p>
                 </div>
+
+                <!-- Event 2 -->
+                <div onclick="openEventModal('दीपों प्रज्वलन', 'पंचमी & षष्ठी (up to 9:14 pm)', '15 अक्टूबर 2026 | शाम 06:00 बजे', 'साथी नवदुर्गा पूजा समिति प्रांगण नरसंडा चौक (पुल से उत्तर)', 'दीसंबर कुमार, राजन कुमार, धर्मेंद्र कुमार चौधरी', 'पूजा पंडाल प्रांगण में सभी कलश यात्री एवं श्रद्धालुओं द्वारा दीप प्रज्वलन कर भगवती की आराधना कार्यक्रम।')" class="p-3 border border-indigo-100 bg-indigo-50/50 rounded-xl cursor-pointer hover:bg-indigo-100/50 transition">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-indigo-600 text-white text-[10px] px-2 py-0.5 rounded font-medium">पंचमी & षष्ठी</span>
+                        <span class="text-xs text-gray-500 font-semibold">15 Oct 2026</span>
+                    </div>
+                    <h3 class="font-bold text-gray-800 mt-2 text-md">2. दीपों प्रज्वलन</h3>
+                    <p class="text-xs text-gray-600 mt-1"><i class="fa-regular fa-clock text-indigo-600"></i> शाम 06:00 बजे से</p>
+                    <p class="text-[11px] text-gray-500 mt-0.5"><i class="fa-solid fa-location-dot text-rose-500"></i> नरसंडा चौक</p>
+                </div>
+
+                <!-- Event 3 -->
+                <div onclick="openEventModal('विल्वा निमंत्रण (बेल पूजन)', 'षष्ठी & सप्तमी (up to 10:05 pm)', '16 अक्टूबर 2026 | शाम 06:30 बजे', 'साथी नवदुर्गा पूजा समिति प्रांगण नरसंडा चौक (पुल से उत्तर)', 'दीसंबर कुमार, राजन कुमार, धर्मेंद्र कुमार चौधरी', 'पंडित जी एवं यजमान द्वारा बेल पूजन एवं आमंत्रण।')" class="p-3 border border-indigo-100 bg-indigo-50/50 rounded-xl cursor-pointer hover:bg-indigo-100/50 transition">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-indigo-600 text-white text-[10px] px-2 py-0.5 rounded font-medium">षष्ठी & सप्तमी</span>
+                        <span class="text-xs text-gray-500 font-semibold">16 Oct 2026</span>
+                    </div>
+                    <h3 class="font-bold text-gray-800 mt-2 text-md">3. विल्वा निमंत्रण (बेल पूजन)</h3>
+                    <p class="text-xs text-gray-600 mt-1"><i class="fa-regular fa-clock text-indigo-600"></i> शाम 06:30 बजे से</p>
+                    <p class="text-[11px] text-gray-500 mt-0.5"><i class="fa-solid fa-location-dot text-rose-500"></i> नरसंडा चौक</p>
+                </div>
+
+                <!-- Event 4 -->
+                <div onclick="openEventModal('प्राण प्रतिष्ठा', 'सप्तमी (up to 11:02 pm)', '18 अक्टूबर 2026 | सुबह 09:47 बजे', 'साथी नवदुर्गा पूजा समिति प्रांगण नरसंडा चौक (पुल से उत्तर)', 'अनिकेत कुमार, धर्मेंद्र कुमार चौधरी, निसु', 'प्राण प्रतिष्ठा और बोधन: कलश स्थापना के बाद मंत्रों से देवी की मूर्ति में प्राण प्रतिष्ठित किए जाते हैं।')" class="p-3 border border-indigo-100 bg-indigo-50/50 rounded-xl cursor-pointer hover:bg-indigo-100/50 transition">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-indigo-600 text-white text-[10px] px-2 py-0.5 rounded font-medium">सप्तमी</span>
+                        <span class="text-xs text-gray-500 font-semibold">18 Oct 2026</span>
+                    </div>
+                    <h3 class="font-bold text-gray-800 mt-2 text-md">4. प्राण प्रतिष्ठा</h3>
+                    <p class="text-xs text-gray-600 mt-1"><i class="fa-regular fa-clock text-indigo-600"></i> सुबह 09:47 बजे से</p>
+                    <p class="text-[11px] text-gray-500 mt-0.5"><i class="fa-solid fa-location-dot text-rose-500"></i> नरसंडा चौक</p>
+                </div>
+
+                <!-- Event 5 -->
+                <div onclick="openEventModal('महाष्टमी प्रसाद दानम', 'अष्टमी (up to 11:05 pm)', '19 अक्टूबर 2026 | सोमवार सुबह 10:52 बजे', 'साथी नवदुर्गा पूजा समिति प्रांगण नरसंडा चौक (पुल से उत्तर)', 'मुकेश कुमार, धर्मेंद्र कुमार चौधरी, निशांत कुमार एवं अन्य', 'सूजी एवं काले चने का हलवा माता को भोग लगाने के बाद वितरण।')" class="p-3 border border-indigo-100 bg-indigo-50/50 rounded-xl cursor-pointer hover:bg-indigo-100/50 transition">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-indigo-600 text-white text-[10px] px-2 py-0.5 rounded font-medium">अष्टमी</span>
+                        <span class="text-xs text-gray-500 font-semibold">19 Oct 2026</span>
+                    </div>
+                    <h3 class="font-bold text-gray-800 mt-2 text-md">5. महाष्टमी प्रसाद दानम</h3>
+                    <p class="text-xs text-gray-600 mt-1"><i class="fa-regular fa-clock text-indigo-600"></i> सोमवार सुबह 10:52 बजे से</p>
+                    <p class="text-[11px] text-gray-500 mt-0.5"><i class="fa-solid fa-location-dot text-rose-500"></i> नरसंडा चौक</p>
+                </div>
+
+                <!-- Event 6 -->
+                <div onclick="openEventModal('महानवमी कन्या पूजन', 'अष्टमी / नवमी (up to 11:05 pm)', '20 अक्टूबर 2026 | मंगलवार सुबह 12:50 बजे', 'साथी नवदुर्गा पूजा समिति प्रांगण नरसंडा चौक (पुल से उत्तर)', 'आनंद राज, धर्मेंद्र कुमार चौधरी, अनिकेत, निशांत एवं अन्य', 'मां दुर्गा के नौ रूपों की शक्ति का प्रतीक मानकर 2 वर्ष से 10 वर्ष तक की कन्याओं का पूजन और उन्हें सात्विक भोजन (हलवा, पूरी और काले चने) के बाद अन्य लोगों में प्रसाद वितरण।')" class="p-3 border border-indigo-100 bg-indigo-50/50 rounded-xl cursor-pointer hover:bg-indigo-100/50 transition">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-indigo-600 text-white text-[10px] px-2 py-0.5 rounded font-medium">नवमी</span>
+                        <span class="text-xs text-gray-500 font-semibold">20 Oct 2026</span>
+                    </div>
+                    <h3 class="font-bold text-gray-800 mt-2 text-md">6. महानवमी कन्या पूजन</h3>
+                    <p class="text-xs text-gray-600 mt-1"><i class="fa-regular fa-clock text-indigo-600"></i> मंगलवार सुबह 12:50 बजे से</p>
+                    <p class="text-[11px] text-gray-500 mt-0.5"><i class="fa-solid fa-location-dot text-rose-500"></i> नरसंडा चौक</p>
+                </div>
+
             </div>
         </section>
 
@@ -171,7 +215,7 @@
     <!-- ================= BOTTOM NAVIGATION BAR ================= -->
     <nav class="fixed bottom-0 left-0 right-0 max-w-[450px] mx-auto bg-white border-t border-gray-200 flex justify-around py-2 z-20">
         <button onclick="switchTab('home')" id="nav-home" class="nav-btn text-indigo-600 flex flex-col items-center text-xs font-semibold">
-            <i class="fa-solid fa-house text-lg mb-1"></i> Home
+            <i class="fa-solid fa-house text-lg mb-1"></i> गृह
         </button>
         <button onclick="switchTab('volunteers')" id="nav-volunteers" class="nav-btn text-gray-400 flex flex-col items-center text-xs font-semibold">
             <i class="fa-solid fa-users text-lg mb-1"></i> Volunteer
@@ -180,7 +224,7 @@
             <i class="fa-solid fa-calendar-days text-lg mb-1"></i> Events
         </button>
         <button onclick="switchTab('kalash')" id="nav-kalash" class="nav-btn text-gray-400 flex flex-col items-center text-xs font-semibold">
-            <i class="fa-solid fa-hands-praying text-lg mb-1"></i> KalashYatra
+            <i class="fa-solid fa-hands-praying text-lg mb-1"></i> कलश यात्रा
         </button>
     </nav>
 
@@ -202,16 +246,13 @@
 
 <!-- JAVASCRIPT LOGIC -->
 <script>
-    // Audio Elements & Controls
     const bgMusic = document.getElementById('bg-music');
     const audioIcon = document.getElementById('audio-icon');
 
-    // Set Audio Volume to Very Low/Soft (15% Volume)
     if (bgMusic) {
         bgMusic.volume = 0.15;
     }
 
-    // Auto-Start Audio on First User Interaction (Browser Policy Compliance)
     function startAudioOnFirstInteraction() {
         if (bgMusic && bgMusic.paused) {
             bgMusic.play().then(() => {
@@ -227,7 +268,6 @@
     }
     document.addEventListener('click', startAudioOnFirstInteraction);
 
-    // Audio Mute/Unmute Toggle Button Logic
     function toggleAudio() {
         if (bgMusic.paused) {
             bgMusic.play();
@@ -253,17 +293,15 @@
         document.getElementById(`nav-${tabName}`).classList.remove('text-gray-400');
     }
 
-    // Modal: Donate Now (QR Code)
+    // Modal: Donate Now
     function openDonateModal() {
         document.getElementById('modal-title').innerText = "सहयोग करें (Donate Now)";
         document.getElementById('modal-body').innerHTML = `
             <div class="text-center">
                 <p class="text-xs text-gray-500 mb-3">QR Code को स्कैन करके किसी भी UPI App (GPay, PhonePe, Paytm) से सहयोग राशि भेजें</p>
-                
                 <div class="bg-white p-3 border-2 border-indigo-100 rounded-2xl inline-block shadow-inner mb-3">
                     <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=upi://pay?pa=sathindps@upi&pn=Sathi%20NDPS" alt="UPI QR Code" class="w-44 h-44 mx-auto">
                 </div>
-
                 <div class="bg-gray-50 p-3 rounded-xl border text-left text-xs space-y-1">
                     <p><strong>UPI ID:</strong> <span class="text-indigo-600 font-bold select-all">sathindps@upi</span></p>
                     <p><strong>खाता नाम:</strong> Sathi NDPS Samiti</p>
@@ -324,15 +362,19 @@
         document.getElementById('detail-modal').classList.remove('hidden');
     }
 
-    // Modal: Event Detail
-    function openEventModal(title, time, venue, coordinator, details) {
+    // Modal: Event Detail View
+    function openEventModal(title, tithi, time, venue, manager, details) {
         document.getElementById('modal-title').innerText = title;
         document.getElementById('modal-body').innerHTML = `
-            <p><strong>समय:</strong> ${time}</p>
-            <p><strong>स्थान:</strong> ${venue}</p>
-            <p><strong>प्रबंधक:</strong> ${coordinator}</p>
-            <hr class="my-2"/>
-            <p><strong>विवरण:</strong> ${details}</p>
+            <div class="space-y-2">
+                <p><strong>तिथि / शुभ मुहूर्त:</strong> <span class="text-indigo-600 font-semibold">${tithi}</span></p>
+                <p><strong>समय:</strong> ${time}</p>
+                <p><strong>स्थान:</strong> ${venue}</p>
+                <p><strong>प्रबंधक:</strong> ${manager}</p>
+                <hr class="my-2 border-gray-200"/>
+                <p><strong>कार्यक्रम विवरण:</strong></p>
+                <p class="text-xs text-gray-700 leading-relaxed bg-gray-50 p-2.5 rounded-lg border">${details}</p>
+            </div>
         `;
         document.getElementById('detail-modal').classList.remove('hidden');
     }
