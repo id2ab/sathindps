@@ -223,7 +223,7 @@
 <!-- JAVASCRIPT LOGIC -->
 <script>
     // 🔴 यहाँ अपना Google Apps Script Web App URL डालें
-    const GOOGLE_SHEET_API_URL = "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
+    const GOOGLE_SHEET_API_URL = "https://script.google.com/macros/s/AKfycbx_n4x0ju6IwQxxUKXWUZR36Hhq2A83EpCGV6xdkRur5JJG11gFCxCWv2-LttVN9PH8AA/exec";
 
     let globalSummary = {
         totalChanda: 0,
@@ -286,7 +286,7 @@
         if (refreshIcon) refreshIcon.classList.add('fa-spin');
 
         try {
-            const response = await fetch(https://script.google.com/macros/s/AKfycbx_n4x0ju6IwQxxUKXWUZR36Hhq2A83EpCGV6xdkRur5JJG11gFCxCWv2-LttVN9PH8AA/exec);
+            const response = await fetch(GOOGLE_SHEET_API_URL);
             const data = await response.json();
 
             // 1. Sync Summary Data
