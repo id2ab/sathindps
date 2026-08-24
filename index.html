@@ -47,7 +47,9 @@
             <button onclick="toggleAudio()" title="Sound On/Off" class="text-white text-lg bg-indigo-700 w-8 h-8 rounded-full flex items-center justify-center border border-indigo-400">
                 <i id="audio-icon" class="fa-solid fa-volume-xmark text-sm"></i>
             </button>
-            <button onclick="alert('Notification System')" class="text-white text-lg pr-1"><i class="fa-regular fa-bell"></i></button>
+            <button onclick="fetchSheetData()" title="रिफ्रेश डेटा" class="text-white text-lg pr-1">
+                <i id="refresh-icon" class="fa-solid fa-rotate-right"></i>
+            </button>
         </div>
     </header>
 
@@ -68,17 +70,17 @@
             <div class="grid grid-cols-2 gap-3 mb-3">
                 <div class="bg-emerald-50 p-3 rounded-xl border border-emerald-100">
                     <p class="text-xs text-emerald-600 font-semibold">कुल चंदा कलेक्शन</p>
-                    <p class="text-xl font-bold text-emerald-700 mt-1">₹ 1,25,000</p>
+                    <p id="total-chanda" class="text-xl font-bold text-emerald-700 mt-1">₹ 0</p>
                 </div>
                 <div class="bg-rose-50 p-3 rounded-xl border border-rose-100">
                     <p class="text-xs text-rose-600 font-semibold">कुल वास्तविक खर्च</p>
-                    <p class="text-xl font-bold text-rose-700 mt-1">₹ 45,000</p>
+                    <p id="total-expense" class="text-xl font-bold text-rose-700 mt-1">₹ 0</p>
                 </div>
             </div>
             
             <div class="bg-indigo-50 p-3 rounded-xl border border-indigo-100 mb-6 flex justify-between items-center">
                 <span class="text-sm font-semibold text-indigo-800">शेष राशि (Balance):</span>
-                <span class="text-lg font-bold text-indigo-900">₹ 80,000</span>
+                <span id="total-balance" class="text-lg font-bold text-indigo-900">₹ 0</span>
             </div>
 
             <div class="flex justify-between items-center mb-3">
@@ -86,36 +88,16 @@
                 <span class="text-xs text-indigo-600 font-semibold cursor-pointer">सब देखें</span>
             </div>
 
-            <div class="space-y-2">
-                <div class="p-3 bg-gray-50 rounded-lg flex justify-between items-center border border-gray-100">
-                    <div>
-                        <p class="font-semibold text-gray-800 text-sm">रमेश कुमार सिंह</p>
-                        <p class="text-xs text-gray-500">रसीद नं: #1024 • 02 Aug</p>
-                    </div>
-                    <span class="text-emerald-600 font-bold text-sm">+ ₹ 5,000</span>
-                </div>
-                <div class="p-3 bg-gray-50 rounded-lg flex justify-between items-center border border-gray-100">
-                    <div>
-                        <p class="font-semibold text-gray-800 text-sm">सुनील प्रसाद</p>
-                        <p class="text-xs text-gray-500">रसीद नं: #1025 • 03 Aug</p>
-                    </div>
-                    <span class="text-emerald-600 font-bold text-sm">+ ₹ 2,100</span>
-                </div>
+            <div id="donators-list" class="space-y-2">
+                <p class="text-xs text-gray-400 text-center py-2">डेटा लोड हो रहा है...</p>
             </div>
         </section>
 
         <!-- ================= TAB 2: VOLUNTEERS ================= -->
         <section id="tab-volunteers" class="tab-content hidden">
             <h2 class="font-bold text-gray-800 text-md mb-3">समिति स्वयंसेवक (Volunteers)</h2>
-            <div class="space-y-3">
-                <div onclick="openVolunteerModal('अमित शर्मा', 'सुरक्षा एवं व्यवस्था', '+91 9876543210', 'वार्ड नं. 04', 'कलश यात्रा सुरक्षा')" class="p-3 bg-white border border-gray-200 rounded-xl flex items-center gap-3 cursor-pointer hover:bg-indigo-50 transition">
-                    <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center font-bold text-lg">AS</div>
-                    <div class="flex-1">
-                        <h3 class="font-bold text-gray-800 text-sm">अमित शर्मा</h3>
-                        <p class="text-xs text-gray-500">रोल: सुरक्षा एवं व्यवस्था</p>
-                    </div>
-                    <i class="fa-solid fa-chevron-right text-gray-400 text-xs"></i>
-                </div>
+            <div id="volunteers-list" class="space-y-3">
+                <p class="text-xs text-gray-400 text-center py-2">डेटा लोड हो रहा है...</p>
             </div>
         </section>
 
@@ -124,7 +106,7 @@
             <h2 class="font-bold text-gray-800 text-md mb-3">कार्यक्रम सूची (Event Schedule)</h2>
             <div class="space-y-3">
 
-                <!-- Event 1 (Fixed Double Quote Conflict) -->
+                <!-- Event 1 -->
                 <div onclick="openEventModal('भव्य कलश यात्रा एवं कलश स्थापना', 'प्रतिपदा (up to 9:31 pm)', '11 अक्टूबर 2026 | सुबह 07:00 बजे', 'साथी नवदुर्गा पूजा समिति प्रांगण नरसंडा चौक (पुल से उत्तर)', 'अनिकेत कुमार, राजन कुमार, मुकेश कुमार', 'नरसंडा से सरमसपुर, मधुबन, कलवारी भ्रमण करते हुए कलवारी बांध नदी तट से जल उठाकर पूजा पंडाल प्रांगण तक प्रस्थान।')" class="p-3 border border-indigo-100 bg-indigo-50/50 rounded-xl cursor-pointer hover:bg-indigo-100/50 transition">
                     <div class="flex justify-between items-start">
                         <span class="bg-indigo-600 text-white text-[10px] px-2 py-0.5 rounded font-medium">प्रतिपदा</span>
@@ -197,16 +179,10 @@
         <section id="tab-kalash" class="tab-content hidden">
             <div class="flex justify-between items-center mb-3">
                 <h2 class="font-bold text-gray-800 text-md">कलश यात्रा सहभागी</h2>
-                <span class="text-xs bg-indigo-100 text-indigo-700 px-2 py-1 rounded-full font-bold">कुल: 150</span>
+                <span id="kalash-total" class="text-xs bg-indigo-100 text-indigo-700 px-2 py-1 rounded-full font-bold">कुल: 0</span>
             </div>
-            <div class="space-y-2">
-                <div class="p-3 bg-white border border-gray-200 rounded-lg flex justify-between items-center">
-                    <div>
-                        <p class="font-bold text-gray-800 text-sm">1. पूजा देवी</p>
-                        <p class="text-xs text-gray-500">पति: राजेश सिंह</p>
-                    </div>
-                    <span class="text-xs bg-emerald-100 text-emerald-700 px-2 py-1 rounded font-semibold">टोकन जारी</span>
-                </div>
+            <div id="kalash-list" class="space-y-2">
+                <p class="text-xs text-gray-400 text-center py-2">डेटा लोड हो रहा है...</p>
             </div>
         </section>
 
@@ -246,6 +222,17 @@
 
 <!-- JAVASCRIPT LOGIC -->
 <script>
+    // 🔴 यहाँ अपना Google Apps Script Web App URL डालें
+    const GOOGLE_SHEET_API_URL = "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
+
+    let globalSummary = {
+        totalChanda: 0,
+        totalExpense: 0,
+        balance: 0,
+        totalEstimated: 0,
+        estimatedList: []
+    };
+
     const bgMusic = document.getElementById('bg-music');
     const audioIcon = document.getElementById('audio-icon');
 
@@ -293,6 +280,103 @@
         document.getElementById(`nav-${tabName}`).classList.remove('text-gray-400');
     }
 
+    // Fetch and Sync Google Sheet Data
+    async function fetchSheetData() {
+        const refreshIcon = document.getElementById('refresh-icon');
+        if (refreshIcon) refreshIcon.classList.add('fa-spin');
+
+        try {
+            const response = await fetch(https://script.google.com/macros/s/AKfycbx_n4x0ju6IwQxxUKXWUZR36Hhq2A83EpCGV6xdkRur5JJG11gFCxCWv2-LttVN9PH8AA/exec);
+            const data = await response.json();
+
+            // 1. Sync Summary Data
+            if (data.summary) {
+                globalSummary = data.summary;
+                document.getElementById('total-chanda').innerText = `₹ ${Number(data.summary.totalChanda || 0).toLocaleString('en-IN')}`;
+                document.getElementById('total-expense').innerText = `₹ ${Number(data.summary.totalExpense || 0).toLocaleString('en-IN')}`;
+                document.getElementById('total-balance').innerText = `₹ ${Number(data.summary.balance || 0).toLocaleString('en-IN')}`;
+            }
+
+            // 2. Sync Donators List
+            const donatorsContainer = document.getElementById('donators-list');
+            if (data.donators && data.donators.length > 0) {
+                donatorsContainer.innerHTML = '';
+                data.donators.forEach(d => {
+                    const name = d["चंदा दाता का नाम"] || d["नाम"] || "गुमनाम";
+                    const receipt = d["रसीद नं:"] || d["रसीद नं"] || "-";
+                    const date = d["दिनांक"] ? String(d["दिनांक"]).split("T")[0] : "-";
+                    const amount = Number(d["चंदा राशि"] || d["Amount"] || 0).toLocaleString('en-IN');
+
+                    donatorsContainer.innerHTML += `
+                        <div class="p-3 bg-gray-50 rounded-lg flex justify-between items-center border border-gray-100">
+                            <div>
+                                <p class="font-semibold text-gray-800 text-sm">${name}</p>
+                                <p class="text-xs text-gray-500">रसीद नं: #${receipt} • ${date}</p>
+                            </div>
+                            <span class="text-emerald-600 font-bold text-sm">+ ₹ ${amount}</span>
+                        </div>
+                    `;
+                });
+            } else {
+                donatorsContainer.innerHTML = `<p class="text-xs text-gray-400 text-center py-2">कोई डेटा उपलब्ध नहीं है।</p>`;
+            }
+
+            // 3. Sync Volunteers List
+            const volunteersContainer = document.getElementById('volunteers-list');
+            if (data.volunteers && data.volunteers.length > 0) {
+                volunteersContainer.innerHTML = '';
+                data.volunteers.forEach(v => {
+                    const name = (v["नाम"] || "").trim();
+                    if (!name) return;
+                    const role = (v["रोल"] || "सदस्य").trim();
+                    const phone = (v["संपर्क"] || "").trim();
+                    const address = (v["पता"] || "").trim();
+                    const duty = (v["आवंटित कार्य"] || "-").trim();
+
+                    const initials = name.split(" ").map(n => n[0]).join("").substring(0, 2).toUpperCase() || "SV";
+
+                    volunteersContainer.innerHTML += `
+                        <div onclick="openVolunteerModal('${name.replace(/'/g, "\\'")}', '${role.replace(/'/g, "\\'")}', '${phone.replace(/'/g, "\\'")}', '${address.replace(/'/g, "\\'")}', '${duty.replace(/'/g, "\\'")}')" class="p-3 bg-white border border-gray-200 rounded-xl flex items-center gap-3 cursor-pointer hover:bg-indigo-50 transition">
+                            <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center font-bold text-lg">${initials}</div>
+                            <div class="flex-1">
+                                <h3 class="font-bold text-gray-800 text-sm">${name}</h3>
+                                <p class="text-xs text-gray-500">रोल: ${role}</p>
+                            </div>
+                            <i class="fa-solid fa-chevron-right text-gray-400 text-xs"></i>
+                        </div>
+                    `;
+                });
+            }
+
+            // 4. Sync Kalash Yatra Participants
+            const kalashContainer = document.getElementById('kalash-list');
+            if (data.kalash && data.kalash.length > 0) {
+                kalashContainer.innerHTML = '';
+                document.getElementById('kalash-total').innerText = `कुल: ${data.kalash.length}`;
+                data.kalash.forEach((k, idx) => {
+                    const name = (k["नाम"] || "").trim();
+                    const parent = (k["पिता का नाम"] || k["पति का नाम"] || "").trim();
+                    const status = (k["टोकन जारी स्टेट्स"] || "टोकन जारी").trim();
+
+                    kalashContainer.innerHTML += `
+                        <div class="p-3 bg-white border border-gray-200 rounded-lg flex justify-between items-center">
+                            <div>
+                                <p class="font-bold text-gray-800 text-sm">${idx + 1}. ${name}</p>
+                                <p class="text-xs text-gray-500">${parent ? 'पिता/पति: ' + parent : ''}</p>
+                            </div>
+                            <span class="text-xs bg-emerald-100 text-emerald-700 px-2 py-1 rounded font-semibold">${status}</span>
+                        </div>
+                    `;
+                });
+            }
+
+        } catch (err) {
+            console.error("Error loading Sheet data:", err);
+        } finally {
+            if (refreshIcon) refreshIcon.classList.remove('fa-spin');
+        }
+    }
+
     // Modal: Donate Now
     function openDonateModal() {
         document.getElementById('modal-title').innerText = "सहयोग करें (Donate Now)";
@@ -313,36 +397,30 @@
         document.getElementById('detail-modal').classList.remove('hidden');
     }
 
-    // Modal: Estimated Expense
+    // Modal: Estimated Expense (Dynamic from Dashboard Tab)
     function openEstimatedExpenseModal() {
         document.getElementById('modal-title').innerText = "अनुमानित खर्च (Estimated Expense)";
+        
+        let listHtml = '';
+        if (globalSummary.estimatedList && globalSummary.estimatedList.length > 0) {
+            globalSummary.estimatedList.forEach((item, i) => {
+                listHtml += `
+                    <div class="flex justify-between border-b pb-1">
+                        <span>${i + 1}. ${item.category}:</span>
+                        <span class="font-bold">₹ ${Number(item.amount).toLocaleString('en-IN')}</span>
+                    </div>
+                `;
+            });
+        }
+
         document.getElementById('modal-body').innerHTML = `
             <div class="space-y-3">
                 <div class="p-3 bg-amber-50 rounded-xl border border-amber-200">
                     <p class="text-xs text-amber-700 font-semibold">कुल अनुमानित बजट</p>
-                    <p class="text-xl font-bold text-amber-800">₹ 2,00,000</p>
+                    <p class="text-xl font-bold text-amber-800">₹ ${Number(globalSummary.totalEstimated || 0).toLocaleString('en-IN')}</p>
                 </div>
                 <div class="space-y-2 text-xs">
-                    <div class="flex justify-between border-b pb-1">
-                        <span>1. टेंट एवं मण्डप व्यवस्था:</span>
-                        <span class="font-bold">₹ 60,000</span>
-                    </div>
-                    <div class="flex justify-between border-b pb-1">
-                        <span>2. साउंड एवं लाइट:</span>
-                        <span class="font-bold">₹ 35,000</span>
-                    </div>
-                    <div class="flex justify-between border-b pb-1">
-                        <span>3. महाप्रसाद एवं भंडारा:</span>
-                        <span class="font-bold">₹ 75,000</span>
-                    </div>
-                    <div class="flex justify-between border-b pb-1">
-                        <span>4. कलश एवं सामग्री:</span>
-                        <span class="font-bold">₹ 20,000</span>
-                    </div>
-                    <div class="flex justify-between border-b pb-1">
-                        <span>5. अन्य विविध खर्च:</span>
-                        <span class="font-bold">₹ 10,000</span>
-                    </div>
+                    ${listHtml}
                 </div>
             </div>
         `;
@@ -355,9 +433,9 @@
         document.getElementById('modal-body').innerHTML = `
             <p><strong>नाम:</strong> ${name}</p>
             <p><strong>रोल:</strong> ${role}</p>
-            <p><strong>संपर्क:</strong> ${phone}</p>
-            <p><strong>पता:</strong> ${address}</p>
-            <p><strong>आवंटित कार्य:</strong> ${duty}</p>
+            <p><strong>संपर्क:</strong> ${phone || 'उपलब्ध नहीं'}</p>
+            <p><strong>पता:</strong> ${address || 'उपलब्ध नहीं'}</p>
+            <p><strong>आवंटित कार्य:</strong> ${duty || 'निर्धारित नहीं'}</p>
         `;
         document.getElementById('detail-modal').classList.remove('hidden');
     }
@@ -382,6 +460,13 @@
     function closeModal() {
         document.getElementById('detail-modal').classList.add('hidden');
     }
+
+    // Initial Load
+    window.addEventListener('DOMContentLoaded', () => {
+        if (GOOGLE_SHEET_API_URL !== "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE") {
+            fetchSheetData();
+        }
+    });
 </script>
 
 </body>
