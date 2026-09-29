@@ -553,19 +553,43 @@
 
     // Modal: Donate QR
     function openDonateModal() {
-        document.getElementById('modal-title').innerText = "सहयोग करें (Donate Now)";
+        const upiLink = "upi://pay?pa=sathindps09@ybl&pn=Sathi%20NDPS&cu=INR";
+
+        document.getElementById('modal-title').innerText = "सहयोग राशि दान करें";
         document.getElementById('modal-body').innerHTML = `
             <div class="text-center">
-                <p class="text-xs text-gray-500 mb-3">QR Code को स्कैन करके किसी भी UPI App (GPay, PhonePe, Paytm) से सहयोग राशि भेजें</p>
-                <div class="bg-white p-3 border-2 border-indigo-100 rounded-2xl inline-block shadow-inner mb-3">
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=upi://pay?pa=sathindps09@ybl&pn=Sathi%20NDPS" alt="UPI QR Code" class="w-44 h-44 mx-auto">
+                <p class="text-[11px] text-slate-500 mb-2">QR Code पर टैप करें या स्कैन करके भुगतान करें</p>
+                
+                <!-- QR CODE (TAP TO OPEN UPI APPS) -->
+                <a href="${upiLink}" class="inline-block relative group" title="टैप करके UPI ऐप खोलें">
+                    <div class="bg-white p-3 border-2 border-indigo-200 rounded-2xl inline-block shadow-sm transition active:scale-95 hover:border-indigo-500">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=170x170&data=${encodeURIComponent(upiLink)}" alt="UPI QR" class="w-40 h-40 mx-auto">
+                        <span class="absolute bottom-2 left-0 right-0 mx-auto text-[10px] bg-indigo-600 text-white font-medium px-2 py-0.5 rounded-full w-max shadow">
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[9px] mr-1"></i>टैप करके Pay करें
+                        </span>
+                    </div>
+                </a>
+
+                <!-- DIRECT APP BUTTONS -->
+                <div class="mt-3 grid grid-cols-2 gap-2">
+                    <a href="${upiLink}" class="flex items-center justify-center gap-1.5 bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white py-2 px-3 rounded-xl text-xs font-semibold shadow-sm transition">
+                        <i class="fa-solid fa-mobile-screen-button"></i> किसी भी UPI से Pay करें
+                    </a>
+                    <button onclick="navigator.clipboard.writeText('sathindps09@ybl'); alert('UPI ID कॉपी हो गई!');" class="flex items-center justify-center gap-1.5 bg-slate-100 hover:bg-slate-200 active:scale-95 text-slate-700 py-2 px-3 rounded-xl text-xs font-semibold border border-slate-200 transition">
+                        <i class="fa-regular fa-copy"></i> UPI ID कॉपी करें
+                    </button>
                 </div>
-                <div class="bg-gray-50 p-3 rounded-xl border text-left text-xs space-y-1">
+
+                <!-- ACCOUNT DETAILS -->
+                <div class="bg-slate-50 p-3 rounded-2xl border border-slate-100 text-left text-xs space-y-1 mt-3">
                     <p><strong>UPI ID:</strong> <span class="text-indigo-600 font-bold select-all">sathindps09@ybl</span></p>
-                    <p><strong>खाता नाम:</strong> SATHI NDPS </p>
+                    <p><strong>नाम:</strong> SATHI NDPS</p>
                     <p><strong>बैंक:</strong> State Bank of India</p>
                 </div>
-                <p class="text-[11px] text-emerald-600 mt-2 font-medium"><i class="fa-solid fa-shield-halved"></i> 100% सुरक्षित भुगतान</p>
+                
+                <p class="text-[10px] text-slate-400 mt-2">
+                    * मोबाइल पर टैप करने पर PhonePe, GPay, Paytm की लिस्ट खुलेगी।
+                </p>
             </div>
         `;
         document.getElementById('detail-modal').classList.remove('hidden');
