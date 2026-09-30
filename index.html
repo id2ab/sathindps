@@ -429,21 +429,10 @@
                 data.donators.forEach(d => {
                     const name = getVal(d, "चंदा दाता का नाम") || getVal(d, "नाम") || "गुमनाम";
                     const receipt = getVal(d, "रसीद नं:") || getVal(d, "रसीद नं") || "-";
-                    let dateRaw = getVal(d, "दिनांक");
-                    let date = "-";
-
-                    if (dateRaw) {
-                        const dObj = new Date(dateRaw);
-                        if (!isNaN(dObj.getTime())) {
-                            // यह लोकल IST टाइम के हिसाब से DD-MM-YYYY बनाएगा (1 दिन कम नहीं होगा)
-                            const day = String(dObj.getDate()).padStart(2, '0');
-                            const month = String(dObj.getMonth() + 1).padStart(2, '0');
-                            const year = dObj.getFullYear();
-                            date = `${day}-${month}-${year}`;
-                        } else {
-                            date = dateRaw.split("T")[0];
-                        }
-                }
+                    let date = getVal(d, "दिनांक");
+                    if (date && date.includes("T")) date = date.split("T")[0];
+                    const amountRaw = getVal(d, "चंदा राशि") || getVal(d, "Amount") || "0";
+                    const amount = Number(amountRaw).toLocaleString('en-IN');
 
                     if (name && name !== "गुमनाम") {
                         validDonatorsCount++;
