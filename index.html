@@ -24,13 +24,30 @@
             flex-direction: column;
             overflow: hidden;
         }
-        /* कैरोसेल और लिस्ट का स्क्रॉलबार छिपाने के लिए */
         .no-scrollbar::-webkit-scrollbar {
             display: none;
         }
         .no-scrollbar {
             -ms-overflow-style: none;
             scrollbar-width: none;
+        }
+
+        /* दाईं से बाईं ओर चलने वाले टिकर का एनीमेशन */
+        @keyframes marqueeScroll {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+        .ticker-track {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marqueeScroll 22s linear infinite;
+        }
+        .ticker-container:hover .ticker-track {
+            animation-play-state: paused;
         }
     </style>
 </head>
@@ -69,48 +86,52 @@
         <!-- ================= TAB 1: HOME & CHANDA ================= -->
         <section id="tab-home" class="tab-content h-full flex flex-col">
             
-            <!-- FREEZE CONTAINER (कैरोसेल + बटन्स + बैलेंस कार्ड्स यहाँ लॉक रहेंगे) -->
-            <div class="shrink-0 bg-white px-4 pt-3 pb-1 border-b border-gray-100 shadow-sm">
+            <!-- FREEZE CONTAINER -->
+            <div class="shrink-0 bg-white px-4 pt-2 pb-2 border-b border-gray-100 shadow-sm">
                 
+                <!-- RIGHT TO LEFT RUNNING LATEST UPDATE TICKER -->
+                <div class="ticker-container relative w-full overflow-hidden bg-gradient-to-r from-amber-50 via-amber-100 to-amber-50 border border-amber-200 rounded-xl mb-2.5 flex items-center py-1.5 px-2 shadow-xs">
+                    <span class="shrink-0 bg-amber-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-md flex items-center gap-1 z-10 shadow-xs">
+                        <i class="fa-solid fa-bullhorn text-[9px] animate-pulse"></i> अपडेट
+                    </span>
+                    <div class="overflow-hidden w-full relative ml-2">
+                        <div id="marquee-text" class="ticker-track text-xs font-semibold text-amber-950">
+                            🚩 श्री श्री 108 नवदुर्गा पूजा महोत्सव 2026 में आप सभी का हार्दिक स्वागत है! • कलश यात्रा 11 अक्टूबर सुबह 07:00 बजे से • सहयोग राशि जमा कर अपनी रसीद संख्या तुरंत खोजें • डिजिटल दान हेतु नीचे 'सहयोग करें' बटन दबाएं।
+                        </div>
+                    </div>
+                </div>
+
                 <!-- 8 IMAGE CAROUSEL BANNER -->
                 <div class="relative w-full rounded-2xl overflow-hidden shadow-sm mb-3 border border-indigo-100 bg-gray-100">
                     <div id="carousel-track" class="flex overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar h-36">
-                        <!-- Slide 1 -->
                         <div class="min-w-full h-full snap-center relative">
                             <img src="https://lh3.googleusercontent.com/pw/AP1GczPPqhJw-GxqjvlO08mrOtlXovrOoK7oo_iKFwiu_9vUomzjssKdYrYd7HwYyuVfdOFf7kv10pQccqA4j8Q1Voke-ew_QuaL9V-haeOiRVB4R7ATuo3qAeWrB1klwfpg8Y8VYC6VmYydbmYwQwhUh3s0=w1440-h808-s-no-gm?authuser=0?w=600&auto=format&fit=crop&q=80" alt="Banner 1" class="w-full h-full object-cover">
                             <span class="absolute bottom-1 right-2 bg-black/50 text-white text-[10px] px-2 py-0.5 rounded-full backdrop-blur-sm">1 / 8</span>
                         </div>
-                        <!-- Slide 2 -->
                         <div class="min-w-full h-full snap-center relative">
                             <img src="https://lh3.googleusercontent.com/pw/AP1GczPn2o58R5YiAWkEvHqJJxhwIbhkeUUVGj90CezN8MHvq-cKU0CALjLBUX5dVRvDFodkL-R2nmbQQQjvhhoVDH1f-_TietoDViDuEn1FhFy8oPwqo_zT4kZ3VlQDRQ5uUJWRrcFullo_Bd8uhgccr84-=w1280-h720-s-no-gm?authuser=0?w=600&auto=format&fit=crop&q=80" alt="Banner 2" class="w-full h-full object-cover">
                             <span class="absolute bottom-1 right-2 bg-black/50 text-white text-[10px] px-2 py-0.5 rounded-full backdrop-blur-sm">2 / 8</span>
                         </div>
-                        <!-- Slide 3 -->
                         <div class="min-w-full h-full snap-center relative">
                             <img src="https://lh3.googleusercontent.com/pw/AP1GczNCUdlED20jRojntYSR6vXUfUN21MubHtTXEXKKYZ7PKK_jhFhgALmrP5aTiLbFUgAMzbnwvcHz1RSOkrJBg0Ujq5JQKAARUXblxRIXPdkWbyeZhMkwGjrP4G_ffsqrTBrI0XQu0DfCEmHx52bB5R8O=w1680-h945-s-no-gm?authuser=0?w=600&auto=format&fit=crop&q=80" alt="Banner 3" class="w-full h-full object-cover">
                             <span class="absolute bottom-1 right-2 bg-black/50 text-white text-[10px] px-2 py-0.5 rounded-full backdrop-blur-sm">3 / 8</span>
                         </div>
-                        <!-- Slide 4 -->
                         <div class="min-w-full h-full snap-center relative">
                             <img src="https://lh3.googleusercontent.com/pw/AP1GczMAljN3apxgOF_Hx7cVJIrrHp0gz8Cm44yloKKBrZ4_U1iZgLORMZIaJYumwLuGJpomtHhrwB7II4D2YI2IK9l_xBtLPQiMVz7rzhPuOfoptUZOz_psP7lUrMJ2ETNhvdNOFp4MyWoQPpbuEyp72lsn=w1216-h658-s-no-gm?authuser=0?w=600&auto=format&fit=crop&q=80" alt="Banner 4" class="w-full h-full object-cover">
                             <span class="absolute bottom-1 right-2 bg-black/50 text-white text-[10px] px-2 py-0.5 rounded-full backdrop-blur-sm">4 / 8</span>
                         </div>
-                        <!-- Slide 5 -->
                         <div class="min-w-full h-full snap-center relative">
                             <img src="https://lh3.googleusercontent.com/pw/AP1GczNrBSHfSj7M3Rqcu3C-3RQcak91-wPbyYuBCIw12kQwEcwR1FUqRU7DwIG6QqFY1E1ZYSZZx6IROyACwiN3jg9zgTg2Bh8uOctCZ1b2jO7TRiXjZKjJCZ_yfdcZ2mONMnBpNG6it0DfFQAziglx_nmS=w1685-h945-s-no-gm?authuser=0?w=600&auto=format&fit=crop&q=80" alt="Banner 5" class="w-full h-full object-cover">
                             <span class="absolute bottom-1 right-2 bg-black/50 text-white text-[10px] px-2 py-0.5 rounded-full backdrop-blur-sm">5 / 8</span>
                         </div>
-                        <!-- Slide 6 -->
                         <div class="min-w-full h-full snap-center relative">
                             <img src="https://lh3.googleusercontent.com/pw/AP1GczMkdzS5YMQFJrVm7n6uNnrOsRMOdoAuOAUo1sJimvt67LckAFok6BB1nKuRj_j6MoCm7skmmgiSVG7o7qlIOvw9HgZYFglDoOA024MHdxa8NKodZX6VKMr-87GXB_y3VfHnhsPZF_ZVxHWlg8J-Ykuu=w1440-h808-s-no-gm?authuser=0?w=600&auto=format&fit=crop&q=80" alt="Banner 6" class="w-full h-full object-cover">
                             <span class="absolute bottom-1 right-2 bg-black/50 text-white text-[10px] px-2 py-0.5 rounded-full backdrop-blur-sm">6 / 8</span>
                         </div>
-                        <!-- Slide 7 -->
                         <div class="min-w-full h-full snap-center relative">
                             <img src="https://lh3.googleusercontent.com/pw/AP1GczMU3S93SHeHsjcxMM-Fgu4CiMwNQGrzElqYbgalFmNZPWwN7Wu6FJMSx2Petw4IjSxhklt5Iv-KFpFkLHpOpOaTj-6dCbOMTbHjrql4JQGnnOYXphEn3foklvQ6erYYAX4Cd7iyQEMbJEeJj9bivWqO=w1199-h686-s-no-gm?authuser=0?w=600&auto=format&fit=crop&q=80" alt="Banner 7" class="w-full h-full object-cover">
                             <span class="absolute bottom-1 right-2 bg-black/50 text-white text-[10px] px-2 py-0.5 rounded-full backdrop-blur-sm">7 / 8</span>
                         </div>
-                        <!-- Slide 8 -->
                         <div class="min-w-full h-full snap-center relative">
                             <img src="https://lh3.googleusercontent.com/pw/AP1GczN_8KdXfid3WjU2pvQJUXdeFbyJYXgJWK5q2Dro1oQcOBtvDY2b80q1aRFliNQKPLmxoakOi6IdhRwGsDSxEtZowa1wN-XV6Az4jU4jmxzdibFYhGGPcM73ji9Aw1rQ4r78BNDiGTsVxVFcY4FizzNO=w1680-h945-s-no-gm?authuser=0?w=600&auto=format&fit=crop&q=80" alt="Banner 8" class="w-full h-full object-cover">
                             <span class="absolute bottom-1 right-2 bg-black/50 text-white text-[10px] px-2 py-0.5 rounded-full backdrop-blur-sm">8 / 8</span>
@@ -153,21 +174,37 @@
                 </div>
                 
                 <!-- Balance Ribbon -->
-                <div class="bg-indigo-50 p-2.5 rounded-xl border border-indigo-100 mb-2 flex justify-between items-center">
+                <div class="bg-indigo-50 p-2.5 rounded-xl border border-indigo-100 mb-3 flex justify-between items-center">
                     <span class="text-xs font-semibold text-indigo-800">शेष राशि (Balance):</span>
                     <span id="total-balance" class="text-base font-bold text-indigo-900">₹ 0</span>
                 </div>
 
-                <div class="flex justify-between items-center pt-1 pb-2">
-                    <h2 class="font-bold text-gray-800 text-sm">चंदा दाता सूची (Donators)</h2>
-                    <span class="text-[11px] text-indigo-600 font-semibold cursor-pointer">सब देखें</span>
+                <!-- FIND RECEIPT SEARCH BAR -->
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 mb-1.5 flex items-center justify-between">
+                        <span><i class="fa-solid fa-receipt text-indigo-600 mr-1"></i> रसीद खोजें (Find Receipt)</span>
+                        <span id="search-status" class="text-[10px] text-gray-400 font-normal"></span>
+                    </label>
+                    <div class="relative flex items-center">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3 text-gray-400 text-xs"></i>
+                        <input type="text" id="receipt-search-input" oninput="handleReceiptSearch()" placeholder="रसीद संख्या (उदा: 101) या नाम दर्ज करें..." class="w-full pl-8 pr-8 py-2 bg-gray-50 border border-gray-200 rounded-xl text-xs text-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition shadow-inner">
+                        <button onclick="clearSearch()" id="clear-search-btn" class="hidden absolute right-2.5 text-gray-400 hover:text-gray-600 text-sm">
+                            <i class="fa-solid fa-circle-xmark"></i>
+                        </button>
+                    </div>
                 </div>
+
             </div>
 
-            <!-- SCROLLABLE LIST CONTAINER (सिर्फ यह हिस्सा ऊपर-नीचे स्क्रॉल होगा) -->
-            <div class="flex-1 overflow-y-auto px-4 py-2 pb-24">
+            <!-- SEARCH RESULT CONTAINER -->
+            <div class="flex-1 overflow-y-auto px-4 py-3 pb-24 bg-gray-50/50">
                 <div id="donators-list" class="space-y-2">
-                    <p class="text-xs text-gray-400 text-center py-4">डेटा लोड हो रहा है...</p>
+                    <div class="text-center py-8">
+                        <div class="w-12 h-12 bg-indigo-50 text-indigo-500 rounded-full flex items-center justify-center mx-auto mb-2 text-lg">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
+                        <p class="text-xs font-medium text-gray-500">चंदा विवरण देखने के लिए ऊपर रसीद संख्या दर्ज करें</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -283,7 +320,7 @@
                 <button onclick="closeModal()" class="text-gray-400 text-2xl font-bold">&times;</button>
             </div>
             <div id="modal-body" class="space-y-2 text-sm text-gray-600 max-h-[70vh] overflow-y-auto">
-                <!-- Dynamic Content Insertion -->
+                <!-- Dynamic Content -->
             </div>
             <button onclick="closeModal()" class="w-full mt-4 bg-indigo-600 text-white py-2.5 rounded-xl font-semibold">बंद करें</button>
         </div>
@@ -302,6 +339,7 @@
         totalEstimated: 0,
         estimatedList: []
     };
+    let allDonators = [];
 
     // --- CAROUSEL AUTOPLAY & INDICATOR LOGIC ---
     let currentSlide = 0;
@@ -341,7 +379,6 @@
             }
         });
 
-        // यूजर टच करने पर टाइमर रीसेट करें
         carouselTrack.addEventListener('touchstart', () => clearInterval(carouselInterval));
         carouselTrack.addEventListener('touchend', () => {
             clearInterval(carouselInterval);
@@ -362,7 +399,7 @@
                     audioIcon.classList.remove('fa-volume-xmark');
                     audioIcon.classList.add('fa-volume-high');
                 }
-            }).catch(err => console.log("Audio waiting for user gesture"));
+            }).catch(err => console.log("Audio waiting for gesture"));
         }
         document.removeEventListener('click', startAudioOnFirstInteraction);
     }
@@ -413,7 +450,7 @@
             const response = await fetch(GOOGLE_SHEET_API_URL, { redirect: "follow" });
             const data = await response.json();
 
-            // 1. Sync Summary Data Directly From Dashboard
+            // 1. Sync Summary Data
             if (data.summary) {
                 globalSummary = data.summary;
                 document.getElementById('total-chanda').innerText = `₹ ${Number(data.summary.totalChanda || 0).toLocaleString('en-IN')}`;
@@ -421,35 +458,10 @@
                 document.getElementById('total-balance').innerText = `₹ ${Number(data.summary.balance || 0).toLocaleString('en-IN')}`;
             }
 
-            // 2. Sync Donators
-            const donatorsContainer = document.getElementById('donators-list');
-            if (data.donators && data.donators.length > 0) {
-                donatorsContainer.innerHTML = '';
-                let validDonatorsCount = 0;
-                data.donators.forEach(d => {
-                    const name = getVal(d, "चंदा दाता का नाम") || getVal(d, "नाम") || "गुमनाम";
-                    const receipt = getVal(d, "रसीद नं:") || getVal(d, "रसीद नं") || "-";
-                    let date = getVal(d, "दिनांक");
-                    if (date && date.includes("T")) date = date.split("T")[0];
-                    const amountRaw = getVal(d, "चंदा राशि") || getVal(d, "Amount") || "0";
-                    const amount = Number(amountRaw).toLocaleString('en-IN');
-
-                    if (name && name !== "गुमनाम") {
-                        validDonatorsCount++;
-                        donatorsContainer.innerHTML += `
-                            <div class="p-3 bg-gray-50 rounded-lg flex justify-between items-center border border-gray-100 shadow-sm">
-                                <div>
-                                    <p class="font-semibold text-gray-800 text-sm">${name}</p>
-                                    <p class="text-xs text-gray-500">रसीद नं: #${receipt} • ${date || '-'}</p>
-                                </div>
-                                <span class="text-emerald-600 font-bold text-sm">+ ₹ ${amount}</span>
-                            </div>
-                        `;
-                    }
-                });
-                if (validDonatorsCount === 0) donatorsContainer.innerHTML = `<p class="text-xs text-gray-400 text-center py-4">कोई चंदा दाता डेटा उपलब्ध नहीं है।</p>`;
-            } else {
-                donatorsContainer.innerHTML = `<p class="text-xs text-gray-400 text-center py-4">कोई डेटा उपलब्ध नहीं है।</p>`;
+            // 2. Cache Donators Data for Instant Searching
+            if (data.donators && Array.isArray(data.donators)) {
+                allDonators = data.donators;
+                handleReceiptSearch();
             }
 
             // 3. Sync Volunteers
@@ -522,6 +534,112 @@
         }
     }
 
+    // --- RECEIPT SEARCH LOGIC ---
+    function handleReceiptSearch() {
+        const input = document.getElementById('receipt-search-input');
+        const clearBtn = document.getElementById('clear-search-btn');
+        const container = document.getElementById('donators-list');
+        const query = (input.value || "").trim().toLowerCase();
+
+        if (query.length > 0) {
+            clearBtn.classList.remove('hidden');
+        } else {
+            clearBtn.classList.add('hidden');
+            container.innerHTML = `
+                <div class="text-center py-8">
+                    <div class="w-12 h-12 bg-indigo-50 text-indigo-500 rounded-full flex items-center justify-center mx-auto mb-2 text-lg">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                    <p class="text-xs font-medium text-gray-500">चंदा विवरण देखने के लिए ऊपर रसीद संख्या दर्ज करें</p>
+                </div>
+            `;
+            return;
+        }
+
+        if (!allDonators || allDonators.length === 0) {
+            container.innerHTML = `<p class="text-xs text-gray-400 text-center py-6">डेटा लोड हो रहा है, कृपया प्रतीक्षा करें...</p>`;
+            return;
+        }
+
+        const matches = allDonators.filter(d => {
+            const receipt = (getVal(d, "रसीद नं:") || getVal(d, "रसीद नं") || getVal(d, "receipt")).toLowerCase();
+            const name = (getVal(d, "चंदा दाता का नाम") || getVal(d, "नाम")).toLowerCase();
+            return receipt.includes(query) || name.includes(query);
+        });
+
+        if (matches.length === 0) {
+            container.innerHTML = `
+                <div class="p-6 text-center bg-white rounded-xl border border-dashed border-gray-300">
+                    <i class="fa-regular fa-circle-question text-amber-500 text-2xl mb-1"></i>
+                    <p class="text-xs font-bold text-gray-700">रसीद संख्या "${input.value}" नहीं मिली</p>
+                    <p class="text-[11px] text-gray-400 mt-1">कृपया सही रसीद संख्या दर्ज करें।</p>
+                </div>
+            `;
+            return;
+        }
+
+        let html = '';
+        matches.forEach(d => {
+            const name = getVal(d, "चंदा दाता का नाम") || getVal(d, "नाम") || "गुमनाम";
+            const receipt = getVal(d, "रसीद नं:") || getVal(d, "रसीद नं") || "-";
+            let date = getVal(d, "दिनांक");
+            if (date && date.includes("T")) date = date.split("T")[0];
+            const amountRaw = getVal(d, "चंदा राशि") || getVal(d, "Amount") || "0";
+            const amount = Number(amountRaw).toLocaleString('en-IN');
+            const address = getVal(d, "पता") || getVal(d, "ग्राम/मोहल्ला") || "";
+            const phone = getVal(d, "मोबाइल") || getVal(d, "संपर्क") || "";
+
+            html += `
+                <div class="p-4 bg-white rounded-2xl border-2 border-indigo-100 shadow-md relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-indigo-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl-xl shadow-sm">
+                        रसीद संख्या: #${receipt}
+                    </div>
+                    
+                    <div class="flex items-center gap-2 mb-2">
+                        <div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-xs">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-400">सत्यापित चंदा दाता</p>
+                            <h3 class="font-bold text-gray-800 text-base leading-tight">${name}</h3>
+                        </div>
+                    </div>
+
+                    <div class="my-2.5 p-2.5 bg-emerald-50 rounded-xl border border-emerald-100 flex justify-between items-center">
+                        <span class="text-xs text-emerald-800 font-medium">प्राप्त सहयोग राशि:</span>
+                        <span class="text-lg font-black text-emerald-700">₹ ${amount}</span>
+                    </div>
+
+                    <div class="text-[11px] text-gray-600 space-y-1 bg-gray-50 p-2.5 rounded-lg border border-gray-100">
+                        <p class="flex justify-between">
+                            <span class="text-gray-400"><i class="fa-regular fa-calendar mr-1"></i> तिथि:</span> 
+                            <span class="font-medium">${date || 'उल्लेखित नहीं'}</span>
+                        </p>
+                        ${address ? `
+                        <p class="flex justify-between">
+                            <span class="text-gray-400"><i class="fa-solid fa-location-dot mr-1"></i> पता:</span> 
+                            <span class="font-medium">${address}</span>
+                        </p>` : ''}
+                        ${phone ? `
+                        <p class="flex justify-between">
+                            <span class="text-gray-400"><i class="fa-solid fa-phone mr-1"></i> संपर्क:</span> 
+                            <span class="font-medium">${phone}</span>
+                        </p>` : ''}
+                    </div>
+                </div>
+            `;
+        });
+
+        container.innerHTML = html;
+    }
+
+    function clearSearch() {
+        const input = document.getElementById('receipt-search-input');
+        input.value = '';
+        handleReceiptSearch();
+        input.focus();
+    }
+
     // Modal: Volunteer Profile
     function openVolunteerModal(name, role, phone, address, duty, photo) {
         name = decodeURIComponent(name);
@@ -560,7 +678,6 @@
             <div class="text-center">
                 <p class="text-[11px] text-slate-500 mb-2">QR Code पर टैप करें या स्कैन करके भुगतान करें</p>
                 
-                <!-- QR CODE (TAP TO OPEN UPI APPS) -->
                 <a href="${upiLink}" class="inline-block relative group" title="टैप करके UPI ऐप खोलें">
                     <div class="bg-white p-3 border-2 border-indigo-200 rounded-2xl inline-block shadow-sm transition active:scale-95 hover:border-indigo-500">
                         <img src="https://api.qrserver.com/v1/create-qr-code/?size=170x170&data=${encodeURIComponent(upiLink)}" alt="UPI QR" class="w-40 h-40 mx-auto">
@@ -570,7 +687,6 @@
                     </div>
                 </a>
 
-                <!-- DIRECT APP BUTTONS -->
                 <div class="mt-3 grid grid-cols-2 gap-2">
                     <a href="${upiLink}" class="flex items-center justify-center gap-1.5 bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white py-2 px-3 rounded-xl text-xs font-semibold shadow-sm transition">
                         <i class="fa-solid fa-mobile-screen-button"></i> किसी भी UPI से Pay करें
@@ -580,7 +696,6 @@
                     </button>
                 </div>
 
-                <!-- ACCOUNT DETAILS -->
                 <div class="bg-slate-50 p-3 rounded-2xl border border-slate-100 text-left text-xs space-y-1 mt-3">
                     <p><strong>UPI ID:</strong> <span class="text-indigo-600 font-bold select-all">sathindps09@ybl</span></p>
                     <p><strong>नाम:</strong> SATHI NDPS</p>
