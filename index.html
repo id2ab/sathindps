@@ -32,7 +32,6 @@
             scrollbar-width: none;
         }
 
-        /* दाईं से बाईं ओर चलने वाले टिकर का एनीमेशन */
         @keyframes marqueeScroll {
             0% {
                 transform: translateX(100%);
@@ -60,8 +59,8 @@
         <source src="https://id2ab.github.io/sathindps/silence-your-thoughts-peaceful-sitar-music-for-deep-relaxation-inner-peace_eQLcpOWb.mp3" type="audio/mp3">
     </audio>
 
-    <!-- TOP HEADER (FROZEN) -->
-    <header class="bg-indigo-600 text-white p-3 shrink-0 shadow-md flex justify-between items-center z-10">
+    <!-- 1. TOP HEADER -->
+    <header class="bg-indigo-600 text-white p-3 shrink-0 shadow-md flex justify-between items-center z-20">
         <div class="flex items-center gap-3">
             <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjR0FCZKvhLDu4sYjQFN8rjDhEs7I2TxSTDNhmLWvE9nYRSkPgf6oWkA7fZubN9DvQSos-8HdKYYyFFH5x1ICL4kZgNCGsVNyaQG_IM8LwEQsVPbmNBGSP6iE1HIcGPdJE2B1v4HMpfM_B0/s150/LOGO+SNDPS.png" alt="Sathi NDPS Logo" class="h-10 w-10 object-contain rounded-full bg-white p-0.5">
             <div>
@@ -80,146 +79,144 @@
         </div>
     </header>
 
-    <!-- MAIN CONTENT AREA -->
+    <!-- 2. COMMON TICKER & CAROUSEL (सारे टैब्स पर स्थिर रहेगा) -->
+    <div class="shrink-0 bg-white px-4 pt-2 pb-2 border-b border-gray-100 shadow-sm z-10">
+        <!-- RUNNING LATEST UPDATE TICKER -->
+        <div class="ticker-container relative w-full overflow-hidden bg-gradient-to-r from-amber-50 via-amber-100 to-amber-50 border border-amber-200 rounded-xl mb-2 flex items-center py-1.5 px-2 shadow-xs">
+            <span class="shrink-0 bg-amber-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-md flex items-center gap-1 z-10 shadow-xs">
+                <i class="fa-solid fa-bullhorn text-[9px] animate-pulse"></i> अपडेट
+            </span>
+            <div class="overflow-hidden w-full relative ml-2">
+                <div id="marquee-text" class="ticker-track text-xs font-semibold text-amber-950">
+                    🚩 श्री श्री 108 नवदुर्गा पूजा महोत्सव 2026 में आप सभी का हार्दिक स्वागत है! • कलश यात्रा 11 अक्टूबर सुबह 07:00 बजे से • कलश यात्रा टोकन नंबर व विवरण चेक करें • सहयोग राशि रसीद तुरंत खोजें।
+                </div>
+            </div>
+        </div>
+
+        <!-- 8 IMAGE CAROUSEL BANNER -->
+        <div class="relative w-full rounded-2xl overflow-hidden shadow-xs border border-indigo-100 bg-gray-100">
+            <div id="carousel-track" class="flex overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar h-32">
+                <div class="min-w-full h-full snap-center relative">
+                    <img src="https://lh3.googleusercontent.com/pw/AP1GczPPqhJw-GxqjvlO08mrOtlXovrOoK7oo_iKFwiu_9vUomzjssKdYrYd7HwYyuVfdOFf7kv10pQccqA4j8Q1Voke-ew_QuaL9V-haeOiRVB4R7ATuo3qAeWrB1klwfpg8Y8VYC6VmYydbmYwQwhUh3s0=w1440-h808-s-no-gm?authuser=0?w=600&auto=format&fit=crop&q=80" alt="Banner 1" class="w-full h-full object-cover">
+                    <span class="absolute bottom-1 right-2 bg-black/50 text-white text-[10px] px-2 py-0.5 rounded-full backdrop-blur-sm">1 / 8</span>
+                </div>
+                <div class="min-w-full h-full snap-center relative">
+                    <img src="https://lh3.googleusercontent.com/pw/AP1GczPn2o58R5YiAWkEvHqJJxhwIbhkeUUVGj90CezN8MHvq-cKU0CALjLBUX5dVRvDFodkL-R2nmbQQQjvhhoVDH1f-_TietoDViDuEn1FhFy8oPwqo_zT4kZ3VlQDRQ5uUJWRrcFullo_Bd8uhgccr84-=w1280-h720-s-no-gm?authuser=0?w=600&auto=format&fit=crop&q=80" alt="Banner 2" class="w-full h-full object-cover">
+                    <span class="absolute bottom-1 right-2 bg-black/50 text-white text-[10px] px-2 py-0.5 rounded-full backdrop-blur-sm">2 / 8</span>
+                </div>
+                <div class="min-w-full h-full snap-center relative">
+                    <img src="https://lh3.googleusercontent.com/pw/AP1GczNCUdlED20jRojntYSR6vXUfUN21MubHtTXEXKKYZ7PKK_jhFhgALmrP5aTiLbFUgAMzbnwvcHz1RSOkrJBg0Ujq5JQKAARUXblxRIXPdkWbyeZhMkwGjrP4G_ffsqrTBrI0XQu0DfCEmHx52bB5R8O=w1680-h945-s-no-gm?authuser=0?w=600&auto=format&fit=crop&q=80" alt="Banner 3" class="w-full h-full object-cover">
+                    <span class="absolute bottom-1 right-2 bg-black/50 text-white text-[10px] px-2 py-0.5 rounded-full backdrop-blur-sm">3 / 8</span>
+                </div>
+                <div class="min-w-full h-full snap-center relative">
+                    <img src="https://lh3.googleusercontent.com/pw/AP1GczMAljN3apxgOF_Hx7cVJIrrHp0gz8Cm44yloKKBrZ4_U1iZgLORMZIaJYumwLuGJpomtHhrwB7II4D2YI2IK9l_xBtLPQiMVz7rzhPuOfoptUZOz_psP7lUrMJ2ETNhvdNOFp4MyWoQPpbuEyp72lsn=w1216-h658-s-no-gm?authuser=0?w=600&auto=format&fit=crop&q=80" alt="Banner 4" class="w-full h-full object-cover">
+                    <span class="absolute bottom-1 right-2 bg-black/50 text-white text-[10px] px-2 py-0.5 rounded-full backdrop-blur-sm">4 / 8</span>
+                </div>
+                <div class="min-w-full h-full snap-center relative">
+                    <img src="https://lh3.googleusercontent.com/pw/AP1GczNrBSHfSj7M3Rqcu3C-3RQcak91-wPbyYuBCIw12kQwEcwR1FUqRU7DwIG6QqFY1E1ZYSZZx6IROyACwiN3jg9zgTg2Bh8uOctCZ1b2jO7TRiXjZKjJCZ_yfdcZ2mONMnBpNG6it0DfFQAziglx_nmS=w1685-h945-s-no-gm?authuser=0?w=600&auto=format&fit=crop&q=80" alt="Banner 5" class="w-full h-full object-cover">
+                    <span class="absolute bottom-1 right-2 bg-black/50 text-white text-[10px] px-2 py-0.5 rounded-full backdrop-blur-sm">5 / 8</span>
+                </div>
+                <div class="min-w-full h-full snap-center relative">
+                    <img src="https://lh3.googleusercontent.com/pw/AP1GczMkdzS5YMQFJrVm7n6uNnrOsRMOdoAuOAUo1sJimvt67LckAFok6BB1nKuRj_j6MoCm7skmmgiSVG7o7qlIOvw9HgZYFglDoOA024MHdxa8NKodZX6VKMr-87GXB_y3VfHnhsPZF_ZVxHWlg8J-Ykuu=w1440-h808-s-no-gm?authuser=0?w=600&auto=format&fit=crop&q=80" alt="Banner 6" class="w-full h-full object-cover">
+                    <span class="absolute bottom-1 right-2 bg-black/50 text-white text-[10px] px-2 py-0.5 rounded-full backdrop-blur-sm">6 / 8</span>
+                </div>
+                <div class="min-w-full h-full snap-center relative">
+                    <img src="https://lh3.googleusercontent.com/pw/AP1GczMU3S93SHeHsjcxMM-Fgu4CiMwNQGrzElqYbgalFmNZPWwN7Wu6FJMSx2Petw4IjSxhklt5Iv-KFpFkLHpOpOaTj-6dCbOMTbHjrql4JQGnnOYXphEn3foklvQ6erYYAX4Cd7iyQEMbJEeJj9bivWqO=w1199-h686-s-no-gm?authuser=0?w=600&auto=format&fit=crop&q=80" alt="Banner 7" class="w-full h-full object-cover">
+                    <span class="absolute bottom-1 right-2 bg-black/50 text-white text-[10px] px-2 py-0.5 rounded-full backdrop-blur-sm">7 / 8</span>
+                </div>
+                <div class="min-w-full h-full snap-center relative">
+                    <img src="https://lh3.googleusercontent.com/pw/AP1GczN_8KdXfid3WjU2pvQJUXdeFbyJYXgJWK5q2Dro1oQcOBtvDY2b80q1aRFliNQKPLmxoakOi6IdhRwGsDSxEtZowa1wN-XV6Az4jU4jmxzdibFYhGGPcM73ji9Aw1rQ4r78BNDiGTsVxVFcY4FizzNO=w1680-h945-s-no-gm?authuser=0?w=600&auto=format&fit=crop&q=80" alt="Banner 8" class="w-full h-full object-cover">
+                    <span class="absolute bottom-1 right-2 bg-black/50 text-white text-[10px] px-2 py-0.5 rounded-full backdrop-blur-sm">8 / 8</span>
+                </div>
+            </div>
+
+            <!-- Dots Indicator -->
+            <div id="carousel-dots" class="absolute bottom-1.5 left-0 right-0 flex justify-center gap-1">
+                <span class="w-2.5 h-1 rounded-full bg-white transition-all duration-300"></span>
+                <span class="w-1 h-1 rounded-full bg-white/50 transition-all duration-300"></span>
+                <span class="w-1 h-1 rounded-full bg-white/50 transition-all duration-300"></span>
+                <span class="w-1 h-1 rounded-full bg-white/50 transition-all duration-300"></span>
+                <span class="w-1 h-1 rounded-full bg-white/50 transition-all duration-300"></span>
+                <span class="w-1 h-1 rounded-full bg-white/50 transition-all duration-300"></span>
+                <span class="w-1 h-1 rounded-full bg-white/50 transition-all duration-300"></span>
+                <span class="w-1 h-1 rounded-full bg-white/50 transition-all duration-300"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. MAIN CONTENT AREA -->
     <main class="flex-1 overflow-hidden relative">
 
         <!-- ================= TAB 1: HOME & CHANDA ================= -->
         <section id="tab-home" class="tab-content h-full flex flex-col">
-            
-            <!-- FREEZE CONTAINER -->
-            <div class="shrink-0 bg-white px-4 pt-2 pb-2 border-b border-gray-100 shadow-sm">
-                
-                <!-- RIGHT TO LEFT RUNNING LATEST UPDATE TICKER -->
-                <div class="ticker-container relative w-full overflow-hidden bg-gradient-to-r from-amber-50 via-amber-100 to-amber-50 border border-amber-200 rounded-xl mb-2.5 flex items-center py-1.5 px-2 shadow-xs">
-                    <span class="shrink-0 bg-amber-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-md flex items-center gap-1 z-10 shadow-xs">
-                        <i class="fa-solid fa-bullhorn text-[9px] animate-pulse"></i> अपडेट
-                    </span>
-                    <div class="overflow-hidden w-full relative ml-2">
-                        <div id="marquee-text" class="ticker-track text-xs font-semibold text-amber-950">
-                            🚩 श्री श्री 108 नवदुर्गा पूजा महोत्सव 2026 में आप सभी का हार्दिक स्वागत है! • कलश यात्रा 11 अक्टूबर सुबह 07:00 बजे से • सहयोग राशि जमा कर अपनी रसीद संख्या तुरंत खोजें • डिजिटल दान हेतु नीचे 'सहयोग करें' बटन दबाएं।
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 8 IMAGE CAROUSEL BANNER -->
-                <div class="relative w-full rounded-2xl overflow-hidden shadow-sm mb-3 border border-indigo-100 bg-gray-100">
-                    <div id="carousel-track" class="flex overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar h-36">
-                        <div class="min-w-full h-full snap-center relative">
-                            <img src="https://lh3.googleusercontent.com/pw/AP1GczPPqhJw-GxqjvlO08mrOtlXovrOoK7oo_iKFwiu_9vUomzjssKdYrYd7HwYyuVfdOFf7kv10pQccqA4j8Q1Voke-ew_QuaL9V-haeOiRVB4R7ATuo3qAeWrB1klwfpg8Y8VYC6VmYydbmYwQwhUh3s0=w1440-h808-s-no-gm?authuser=0?w=600&auto=format&fit=crop&q=80" alt="Banner 1" class="w-full h-full object-cover">
-                            <span class="absolute bottom-1 right-2 bg-black/50 text-white text-[10px] px-2 py-0.5 rounded-full backdrop-blur-sm">1 / 8</span>
-                        </div>
-                        <div class="min-w-full h-full snap-center relative">
-                            <img src="https://lh3.googleusercontent.com/pw/AP1GczPn2o58R5YiAWkEvHqJJxhwIbhkeUUVGj90CezN8MHvq-cKU0CALjLBUX5dVRvDFodkL-R2nmbQQQjvhhoVDH1f-_TietoDViDuEn1FhFy8oPwqo_zT4kZ3VlQDRQ5uUJWRrcFullo_Bd8uhgccr84-=w1280-h720-s-no-gm?authuser=0?w=600&auto=format&fit=crop&q=80" alt="Banner 2" class="w-full h-full object-cover">
-                            <span class="absolute bottom-1 right-2 bg-black/50 text-white text-[10px] px-2 py-0.5 rounded-full backdrop-blur-sm">2 / 8</span>
-                        </div>
-                        <div class="min-w-full h-full snap-center relative">
-                            <img src="https://lh3.googleusercontent.com/pw/AP1GczNCUdlED20jRojntYSR6vXUfUN21MubHtTXEXKKYZ7PKK_jhFhgALmrP5aTiLbFUgAMzbnwvcHz1RSOkrJBg0Ujq5JQKAARUXblxRIXPdkWbyeZhMkwGjrP4G_ffsqrTBrI0XQu0DfCEmHx52bB5R8O=w1680-h945-s-no-gm?authuser=0?w=600&auto=format&fit=crop&q=80" alt="Banner 3" class="w-full h-full object-cover">
-                            <span class="absolute bottom-1 right-2 bg-black/50 text-white text-[10px] px-2 py-0.5 rounded-full backdrop-blur-sm">3 / 8</span>
-                        </div>
-                        <div class="min-w-full h-full snap-center relative">
-                            <img src="https://lh3.googleusercontent.com/pw/AP1GczMAljN3apxgOF_Hx7cVJIrrHp0gz8Cm44yloKKBrZ4_U1iZgLORMZIaJYumwLuGJpomtHhrwB7II4D2YI2IK9l_xBtLPQiMVz7rzhPuOfoptUZOz_psP7lUrMJ2ETNhvdNOFp4MyWoQPpbuEyp72lsn=w1216-h658-s-no-gm?authuser=0?w=600&auto=format&fit=crop&q=80" alt="Banner 4" class="w-full h-full object-cover">
-                            <span class="absolute bottom-1 right-2 bg-black/50 text-white text-[10px] px-2 py-0.5 rounded-full backdrop-blur-sm">4 / 8</span>
-                        </div>
-                        <div class="min-w-full h-full snap-center relative">
-                            <img src="https://lh3.googleusercontent.com/pw/AP1GczNrBSHfSj7M3Rqcu3C-3RQcak91-wPbyYuBCIw12kQwEcwR1FUqRU7DwIG6QqFY1E1ZYSZZx6IROyACwiN3jg9zgTg2Bh8uOctCZ1b2jO7TRiXjZKjJCZ_yfdcZ2mONMnBpNG6it0DfFQAziglx_nmS=w1685-h945-s-no-gm?authuser=0?w=600&auto=format&fit=crop&q=80" alt="Banner 5" class="w-full h-full object-cover">
-                            <span class="absolute bottom-1 right-2 bg-black/50 text-white text-[10px] px-2 py-0.5 rounded-full backdrop-blur-sm">5 / 8</span>
-                        </div>
-                        <div class="min-w-full h-full snap-center relative">
-                            <img src="https://lh3.googleusercontent.com/pw/AP1GczMkdzS5YMQFJrVm7n6uNnrOsRMOdoAuOAUo1sJimvt67LckAFok6BB1nKuRj_j6MoCm7skmmgiSVG7o7qlIOvw9HgZYFglDoOA024MHdxa8NKodZX6VKMr-87GXB_y3VfHnhsPZF_ZVxHWlg8J-Ykuu=w1440-h808-s-no-gm?authuser=0?w=600&auto=format&fit=crop&q=80" alt="Banner 6" class="w-full h-full object-cover">
-                            <span class="absolute bottom-1 right-2 bg-black/50 text-white text-[10px] px-2 py-0.5 rounded-full backdrop-blur-sm">6 / 8</span>
-                        </div>
-                        <div class="min-w-full h-full snap-center relative">
-                            <img src="https://lh3.googleusercontent.com/pw/AP1GczMU3S93SHeHsjcxMM-Fgu4CiMwNQGrzElqYbgalFmNZPWwN7Wu6FJMSx2Petw4IjSxhklt5Iv-KFpFkLHpOpOaTj-6dCbOMTbHjrql4JQGnnOYXphEn3foklvQ6erYYAX4Cd7iyQEMbJEeJj9bivWqO=w1199-h686-s-no-gm?authuser=0?w=600&auto=format&fit=crop&q=80" alt="Banner 7" class="w-full h-full object-cover">
-                            <span class="absolute bottom-1 right-2 bg-black/50 text-white text-[10px] px-2 py-0.5 rounded-full backdrop-blur-sm">7 / 8</span>
-                        </div>
-                        <div class="min-w-full h-full snap-center relative">
-                            <img src="https://lh3.googleusercontent.com/pw/AP1GczN_8KdXfid3WjU2pvQJUXdeFbyJYXgJWK5q2Dro1oQcOBtvDY2b80q1aRFliNQKPLmxoakOi6IdhRwGsDSxEtZowa1wN-XV6Az4jU4jmxzdibFYhGGPcM73ji9Aw1rQ4r78BNDiGTsVxVFcY4FizzNO=w1680-h945-s-no-gm?authuser=0?w=600&auto=format&fit=crop&q=80" alt="Banner 8" class="w-full h-full object-cover">
-                            <span class="absolute bottom-1 right-2 bg-black/50 text-white text-[10px] px-2 py-0.5 rounded-full backdrop-blur-sm">8 / 8</span>
-                        </div>
-                    </div>
-
-                    <!-- इंडिकेटर डॉट्स -->
-                    <div id="carousel-dots" class="absolute bottom-1.5 left-0 right-0 flex justify-center gap-1">
-                        <span class="w-2 h-1 rounded-full bg-white transition-all duration-300"></span>
-                        <span class="w-1 h-1 rounded-full bg-white/50 transition-all duration-300"></span>
-                        <span class="w-1 h-1 rounded-full bg-white/50 transition-all duration-300"></span>
-                        <span class="w-1 h-1 rounded-full bg-white/50 transition-all duration-300"></span>
-                        <span class="w-1 h-1 rounded-full bg-white/50 transition-all duration-300"></span>
-                        <span class="w-1 h-1 rounded-full bg-white/50 transition-all duration-300"></span>
-                        <span class="w-1 h-1 rounded-full bg-white/50 transition-all duration-300"></span>
-                        <span class="w-1 h-1 rounded-full bg-white/50 transition-all duration-300"></span>
-                    </div>
-                </div>
-
+            <div class="shrink-0 bg-white px-4 pt-2 pb-2 border-b border-gray-100">
                 <!-- Action Buttons -->
-                <div class="grid grid-cols-2 gap-2 mb-2.5">
-                    <button onclick="openEstimatedExpenseModal()" class="bg-amber-500 hover:bg-amber-600 text-white p-2 rounded-xl text-xs font-bold flex items-center justify-center gap-2 shadow-sm transition">
+                <div class="grid grid-cols-2 gap-2 mb-2">
+                    <button onclick="openEstimatedExpenseModal()" class="bg-amber-500 hover:bg-amber-600 text-white p-2 rounded-xl text-xs font-bold flex items-center justify-center gap-2 shadow-xs transition">
                         <i class="fa-solid fa-calculator text-sm"></i> अनुमानित खर्च
                     </button>
-                    <button onclick="openDonateModal()" class="bg-emerald-600 hover:bg-emerald-700 text-white p-2 rounded-xl text-xs font-bold flex items-center justify-center gap-2 shadow-sm transition">
+                    <button onclick="openDonateModal()" class="bg-emerald-600 hover:bg-emerald-700 text-white p-2 rounded-xl text-xs font-bold flex items-center justify-center gap-2 shadow-xs transition">
                         <i class="fa-solid fa-qrcode text-sm"></i> सहयोग करें (Donate)
                     </button>
                 </div>
 
-                <!-- Collection & Expense Totals -->
+                <!-- Collection Totals -->
                 <div class="grid grid-cols-2 gap-2 mb-2">
-                    <div class="bg-emerald-50 p-2.5 rounded-xl border border-emerald-100">
+                    <div class="bg-emerald-50 p-2 rounded-xl border border-emerald-100">
                         <p class="text-[11px] text-emerald-600 font-semibold">कुल चंदा कलेक्शन</p>
-                        <p id="total-chanda" class="text-lg font-bold text-emerald-700 mt-0.5">₹ 0</p>
+                        <p id="total-chanda" class="text-base font-bold text-emerald-700 mt-0.5">₹ 0</p>
                     </div>
-                    <div class="bg-rose-50 p-2.5 rounded-xl border border-rose-100">
+                    <div class="bg-rose-50 p-2 rounded-xl border border-rose-100">
                         <p class="text-[11px] text-rose-600 font-semibold">कुल वास्तविक खर्च</p>
-                        <p id="total-expense" class="text-lg font-bold text-rose-700 mt-0.5">₹ 0</p>
+                        <p id="total-expense" class="text-base font-bold text-rose-700 mt-0.5">₹ 0</p>
                     </div>
                 </div>
                 
                 <!-- Balance Ribbon -->
-                <div class="bg-indigo-50 p-2.5 rounded-xl border border-indigo-100 mb-3 flex justify-between items-center">
+                <div class="bg-indigo-50 p-2 rounded-xl border border-indigo-100 mb-2 flex justify-between items-center">
                     <span class="text-xs font-semibold text-indigo-800">शेष राशि (Balance):</span>
                     <span id="total-balance" class="text-base font-bold text-indigo-900">₹ 0</span>
                 </div>
 
-                <!-- FIND RECEIPT SEARCH BAR -->
+                <!-- Find Receipt / Search -->
                 <div>
-                    <label class="block text-xs font-bold text-gray-700 mb-1.5 flex items-center justify-between">
-                        <span><i class="fa-solid fa-receipt text-indigo-600 mr-1"></i> रसीद खोजें (Find Receipt)</span>
-                        <span id="search-status" class="text-[10px] text-gray-400 font-normal"></span>
-                    </label>
+                    <div class="flex items-center justify-between mb-1">
+                        <label class="block text-xs font-bold text-gray-700 flex items-center">
+                            <i class="fa-solid fa-receipt text-indigo-600 mr-1"></i> रसीद खोजें (Find Receipt)
+                        </label>
+                        <span id="donators-heading" class="text-[10px] text-indigo-700 font-bold bg-indigo-50 border border-indigo-200 px-2 py-0.5 rounded-full flex items-center gap-1">
+                            <i class="fa-solid fa-trophy text-amber-500 text-[10px]"></i> टॉप 21 सर्वोच्च चंदा दाता
+                        </span>
+                    </div>
                     <div class="relative flex items-center">
                         <i class="fa-solid fa-magnifying-glass absolute left-3 text-gray-400 text-xs"></i>
-                        <input type="text" id="receipt-search-input" oninput="handleReceiptSearch()" placeholder="रसीद संख्या (उदा: 101) या नाम दर्ज करें..." class="w-full pl-8 pr-8 py-2 bg-gray-50 border border-gray-200 rounded-xl text-xs text-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition shadow-inner">
+                        <input type="text" id="receipt-search-input" oninput="handleReceiptSearch()" placeholder="रसीद संख्या या नाम दर्ज करें..." class="w-full pl-8 pr-8 py-2 bg-gray-50 border border-gray-200 rounded-xl text-xs text-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition shadow-inner">
                         <button onclick="clearSearch()" id="clear-search-btn" class="hidden absolute right-2.5 text-gray-400 hover:text-gray-600 text-sm">
                             <i class="fa-solid fa-circle-xmark"></i>
                         </button>
                     </div>
                 </div>
-
             </div>
 
-            <!-- SEARCH RESULT CONTAINER -->
+            <!-- Scrollable Cards Container -->
             <div class="flex-1 overflow-y-auto px-4 py-3 pb-24 bg-gray-50/50">
-                <div id="donators-list" class="space-y-2">
-                    <div class="text-center py-8">
-                        <div class="w-12 h-12 bg-indigo-50 text-indigo-500 rounded-full flex items-center justify-center mx-auto mb-2 text-lg">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                        </div>
-                        <p class="text-xs font-medium text-gray-500">चंदा विवरण देखने के लिए ऊपर रसीद संख्या दर्ज करें</p>
-                    </div>
+                <div id="donators-list" class="space-y-3">
+                    <p class="text-xs text-gray-400 text-center py-6">डेटा लोड हो रहा है...</p>
                 </div>
             </div>
         </section>
 
         <!-- ================= TAB 2: VOLUNTEERS ================= -->
         <section id="tab-volunteers" class="tab-content hidden h-full overflow-y-auto p-4 pb-24">
-            <h2 class="font-bold text-gray-800 text-md mb-3">समिति स्वयंसेवक (Volunteers)</h2>
+            <h2 class="font-bold text-gray-800 text-base mb-3">समिति स्वयंसेवक (Volunteers)</h2>
             <div id="volunteers-list" class="space-y-3">
-                <p class="text-xs text-gray-400 text-center py-2">डेटा लोड हो रहा है...</p>
+                <p class="text-xs text-gray-400 text-center py-4">डेटा लोड हो रहा है...</p>
             </div>
         </section>
 
         <!-- ================= TAB 3: EVENTS ================= -->
         <section id="tab-events" class="tab-content hidden h-full overflow-y-auto p-4 pb-24">
-            <h2 class="font-bold text-gray-800 text-md mb-3">कार्यक्रम सूची (Event Schedule)</h2>
+            <h2 class="font-bold text-gray-800 text-base mb-3">कार्यक्रम सूची (Event Schedule)</h2>
             <div class="space-y-3">
                 <div onclick="openEventModal('भव्य कलश यात्रा एवं कलश स्थापना', 'प्रतिपदा (up to 9:31 pm)', '11 अक्टूबर 2026 | सुबह 07:00 बजे', 'साथी नवदुर्गा पूजा समिति प्रांगण नरसंडा चौक (पुल से उत्तर)', 'अनिकेत कुमार, राजन कुमार, मुकेश कुमार', 'नरसंडा से सरमसपुर, मधुबन, कलवारी भ्रमण करते हुए कलवारी बांध नदी तट से जल उठाकर पूजा पंडाल प्रांगण तक प्रस्थान।')" class="p-3 border border-indigo-100 bg-indigo-50/50 rounded-xl cursor-pointer hover:bg-indigo-100/50 transition">
                     <div class="flex justify-between items-start">
@@ -271,7 +268,7 @@
                     <p class="text-[11px] text-gray-500 mt-0.5"><i class="fa-solid fa-location-dot text-rose-500"></i> नरसंडा चौक</p>
                 </div>
 
-                <div onclick="openEventModal('महानवमी कन्या पूजन', 'अष्टमी / नवमी (up to 11:05 pm)', '20 अक्टूबर 2026 | मंगलवार सुबह 12:50 बजे', 'साथी नवदुर्गा पूजा समिति प्रांगण नरसंडा चौक (पुल से उत्तर)', 'आनंद राज, धर्मेंद्र कुमार चौधरी, अनिकेत, निशांत एवं अन्य', 'मां दुर्गा के नौ रूपों की शक्ति का प्रतीक मानकर 2 वर्ष से 10 वर्ष तक की कन्याओं का पूजन और उन्हें सात्विक भोजन (हलवा, पूरी और काले चने) के बाद अन्य लोगों में प्रसाद वितरण।')" class="p-3 border border-indigo-100 bg-indigo-50/50 rounded-xl cursor-pointer hover:bg-indigo-100/50 transition">
+                <div onclick="openEventModal('महानवमी कन्या पूजन', 'अष्टमी / नवमी (up to 11:05 pm)', '20 अक्टूबर 2026 | मंगलवार सुबह 12:50 बजे', 'साथी नवदुर्गा पूजा समिति प्रांगण नरसंडा चौक (पुल से उत्तर)', 'आनंद राज, धर्मेंद्र कुमार चौधरी, अनिकेत, निशांत एवं अन्य', 'मां दुर्गा के नौ रूपों की शक्ति का प्रतीक मानकर 2 वर्ष से 10 वर्ष तक की कन्याओं का पूजन और उन्हें सात्विक भोजन वितरण।')" class="p-3 border border-indigo-100 bg-indigo-50/50 rounded-xl cursor-pointer hover:bg-indigo-100/50 transition">
                     <div class="flex justify-between items-start">
                         <span class="bg-indigo-600 text-white text-[10px] px-2 py-0.5 rounded font-medium">नवमी</span>
                         <span class="text-xs text-gray-500 font-semibold">20 Oct 2026</span>
@@ -283,20 +280,40 @@
             </div>
         </section>
 
-        <!-- ================= TAB 4: KALASH YATRA ================= -->
-        <section id="tab-kalash" class="tab-content hidden h-full overflow-y-auto p-4 pb-24">
-            <div class="flex justify-between items-center mb-3">
-                <h2 class="font-bold text-gray-800 text-md">कलश यात्रा सहभागी</h2>
-                <span id="kalash-total" class="text-xs bg-indigo-100 text-indigo-700 px-2 py-1 rounded-full font-bold">कुल: 0</span>
+        <!-- ================= TAB 4: KALASH YATRA (FROZEN SEARCH + EXACT CARD STYLE) ================= -->
+        <section id="tab-kalash" class="tab-content hidden h-full flex flex-col">
+            
+            <!-- FROZEN HEADER & SEARCH SECTION -->
+            <div class="shrink-0 bg-white px-4 pt-2.5 pb-2 border-b border-gray-100 shadow-xs z-10">
+                <div class="flex justify-between items-center mb-2">
+                    <div>
+                        <h2 class="font-bold text-gray-800 text-sm">कलश यात्रा सहभागी</h2>
+                        <p class="text-[10px] text-gray-400">पंजीकृत माताएं एवं बहनें</p>
+                    </div>
+                    <span id="kalash-total" class="text-xs bg-indigo-50 border border-indigo-200 text-indigo-700 px-3 py-0.5 rounded-full font-bold">कुल: 0</span>
+                </div>
+
+                <!-- Frozen Kalash Search Box -->
+                <div class="relative">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-gray-400 text-xs"></i>
+                    <input type="text" id="kalash-search-input" oninput="filterKalashList()" placeholder="टोकन नं, नाम या गांव से खोजें..." class="w-full pl-8 pr-8 py-2 bg-gray-50 border border-gray-200 rounded-xl text-xs text-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition shadow-inner">
+                    <button onclick="clearKalashSearch()" id="clear-kalash-btn" class="hidden absolute right-2.5 top-2 text-gray-400 hover:text-gray-600 text-sm">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                    </button>
+                </div>
             </div>
-            <div id="kalash-list" class="space-y-2">
-                <p class="text-xs text-gray-400 text-center py-2">डेटा लोड हो रहा है...</p>
+
+            <!-- SCROLLABLE LIST CONTAINER (सिर्फ यह हिस्सा नीचे स्क्रॉल होगा) -->
+            <div class="flex-1 overflow-y-auto px-4 py-3 pb-24 bg-gray-50/50">
+                <div id="kalash-list" class="space-y-3">
+                    <p class="text-xs text-gray-400 text-center py-6">डेटा लोड हो रहा है...</p>
+                </div>
             </div>
         </section>
 
     </main>
 
-    <!-- ================= BOTTOM NAVIGATION BAR (FROZEN) ================= -->
+    <!-- 4. BOTTOM NAVIGATION BAR -->
     <nav class="shrink-0 bg-white border-t border-gray-200 flex justify-around py-2 z-20 shadow-md">
         <button onclick="switchTab('home')" id="nav-home" class="nav-btn text-indigo-600 flex flex-col items-center text-xs font-semibold">
             <i class="fa-solid fa-house text-lg mb-1"></i> गृह
@@ -312,7 +329,7 @@
         </button>
     </nav>
 
-    <!-- ================= MODAL FOR DETAILS & POPUPS ================= -->
+    <!-- 5. DETAIL POPUP MODAL -->
     <div id="detail-modal" class="fixed inset-0 bg-black/60 z-30 hidden flex items-end justify-center">
         <div class="bg-white w-full max-w-[450px] rounded-t-2xl p-5 border-t border-gray-200">
             <div class="flex justify-between items-center border-b pb-3 mb-3">
@@ -340,6 +357,7 @@
         estimatedList: []
     };
     let allDonators = [];
+    let allKalashData = [];
 
     // --- CAROUSEL AUTOPLAY & INDICATOR LOGIC ---
     let currentSlide = 0;
@@ -350,7 +368,7 @@
     function updateCarouselDots(index) {
         dots.forEach((dot, idx) => {
             if (idx === index) {
-                dot.className = "w-3 h-1 rounded-full bg-white transition-all duration-300";
+                dot.className = "w-2.5 h-1 rounded-full bg-white transition-all duration-300";
             } else {
                 dot.className = "w-1 h-1 rounded-full bg-white/50 transition-all duration-300";
             }
@@ -399,46 +417,67 @@
                     audioIcon.classList.remove('fa-volume-xmark');
                     audioIcon.classList.add('fa-volume-high');
                 }
-            }).catch(err => console.log("Audio waiting for gesture"));
+            }).catch(err => console.log("Audio gesture waiting"));
         }
         document.removeEventListener('click', startAudioOnFirstInteraction);
     }
     document.addEventListener('click', startAudioOnFirstInteraction);
 
     function toggleAudio() {
+        if (!bgMusic) return;
         if (bgMusic.paused) {
             bgMusic.play();
-            audioIcon.classList.remove('fa-volume-xmark');
-            audioIcon.classList.add('fa-volume-high');
+            if (audioIcon) {
+                audioIcon.classList.remove('fa-volume-xmark');
+                audioIcon.classList.add('fa-volume-high');
+            }
         } else {
             bgMusic.pause();
-            audioIcon.classList.remove('fa-volume-high');
-            audioIcon.classList.add('fa-volume-xmark');
+            if (audioIcon) {
+                audioIcon.classList.remove('fa-volume-high');
+                audioIcon.classList.add('fa-volume-xmark');
+            }
         }
     }
 
     // --- TAB SWITCHING ---
     function switchTab(tabName) {
-        document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
-        document.querySelectorAll('.nav-btn').forEach(el => {
+        const allTabs = document.querySelectorAll('.tab-content');
+        allTabs.forEach(el => el.classList.add('hidden'));
+
+        const allNavBtns = document.querySelectorAll('.nav-btn');
+        allNavBtns.forEach(el => {
             el.classList.remove('text-indigo-600');
             el.classList.add('text-gray-400');
         });
 
-        document.getElementById(`tab-${tabName}`).classList.remove('hidden');
-        document.getElementById(`nav-${tabName}`).classList.add('text-indigo-600');
-        document.getElementById(`nav-${tabName}`).classList.remove('text-gray-400');
+        const activeTab = document.getElementById(`tab-${tabName}`);
+        const activeNavBtn = document.getElementById(`nav-${tabName}`);
+
+        if (activeTab) activeTab.classList.remove('hidden');
+        if (activeNavBtn) {
+            activeNavBtn.classList.remove('text-gray-400');
+            activeNavBtn.classList.add('text-indigo-600');
+        }
     }
 
+    // Key lookup
     function getVal(obj, keyName) {
-        if (!obj) return "";
+        if (!obj || typeof obj !== 'object') return "";
         const cleanKey = keyName.trim().toLowerCase();
         for (let k in obj) {
-            if (k.trim().toLowerCase() === cleanKey) {
+            if (k && k.trim().toLowerCase() === cleanKey) {
                 return obj[k] !== undefined && obj[k] !== null ? String(obj[k]).trim() : "";
             }
         }
         return "";
+    }
+
+    function parseAmount(val) {
+        if (!val) return 0;
+        const cleaned = String(val).replace(/[^0-9.-]+/g, "");
+        const num = parseFloat(cleaned);
+        return isNaN(num) ? 0 : num;
     }
 
     // --- FETCH DATA FROM GOOGLE SHEETS ---
@@ -453,78 +492,69 @@
             // 1. Sync Summary Data
             if (data.summary) {
                 globalSummary = data.summary;
-                document.getElementById('total-chanda').innerText = `₹ ${Number(data.summary.totalChanda || 0).toLocaleString('en-IN')}`;
-                document.getElementById('total-expense').innerText = `₹ ${Number(data.summary.totalExpense || 0).toLocaleString('en-IN')}`;
-                document.getElementById('total-balance').innerText = `₹ ${Number(data.summary.balance || 0).toLocaleString('en-IN')}`;
+                const chandaEl = document.getElementById('total-chanda');
+                const expenseEl = document.getElementById('total-expense');
+                const balanceEl = document.getElementById('total-balance');
+
+                if (chandaEl) chandaEl.innerText = `₹ ${Number(data.summary.totalChanda || 0).toLocaleString('en-IN')}`;
+                if (expenseEl) expenseEl.innerText = `₹ ${Number(data.summary.totalExpense || 0).toLocaleString('en-IN')}`;
+                if (balanceEl) balanceEl.innerText = `₹ ${Number(data.summary.balance || 0).toLocaleString('en-IN')}`;
             }
 
-            // 2. Cache Donators Data for Instant Searching
+            // 2. Cache Donators Data & Render Top 21
             if (data.donators && Array.isArray(data.donators)) {
                 allDonators = data.donators;
-                handleReceiptSearch();
+                renderTop21Donators();
             }
 
-            // 3. Sync Volunteers
+            // 3. Sync Volunteers (Tab B)
             const volunteersContainer = document.getElementById('volunteers-list');
-            if (data.volunteers && data.volunteers.length > 0) {
-                volunteersContainer.innerHTML = '';
-                let validVolunteers = 0;
-                data.volunteers.forEach(v => {
-                    const name = getVal(v, "नाम");
-                    if (!name) return;
+            if (volunteersContainer) {
+                if (data.volunteers && Array.isArray(data.volunteers) && data.volunteers.length > 0) {
+                    volunteersContainer.innerHTML = '';
+                    let validVolunteers = 0;
 
-                    validVolunteers++;
-                    const role = getVal(v, "रोल") || "सदस्य";
-                    const phone = getVal(v, "संपर्क");
-                    const address = getVal(v, "पता");
-                    const duty = getVal(v, "आवंटित कार्य") || "-";
-                    const photo = getVal(v, "फोटो");
+                    data.volunteers.forEach(v => {
+                        const name = getVal(v, "नाम");
+                        if (!name) return;
 
-                    const initials = name.split(" ").filter(Boolean).map(n => n[0]).join("").substring(0, 2).toUpperCase() || "SV";
+                        validVolunteers++;
+                        const role = getVal(v, "रोल") || "सदस्य";
+                        const phone = getVal(v, "संपर्क");
+                        const address = getVal(v, "पता");
+                        const duty = getVal(v, "आवंटित कार्य") || "-";
+                        const photo = getVal(v, "फोटो");
 
-                    const avatarHtml = photo 
-                        ? `<img src="${photo}" alt="${name}" class="w-12 h-12 rounded-full object-cover border border-indigo-100">`
-                        : `<div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center font-bold text-lg">${initials}</div>`;
+                        const initials = name.split(" ").filter(Boolean).map(n => n[0]).join("").substring(0, 2).toUpperCase() || "SV";
 
-                    volunteersContainer.innerHTML += `
-                        <div onclick="openVolunteerModal('${encodeURIComponent(name)}', '${encodeURIComponent(role)}', '${encodeURIComponent(phone)}', '${encodeURIComponent(address)}', '${encodeURIComponent(duty)}', '${encodeURIComponent(photo)}')" class="p-3 bg-white border border-gray-200 rounded-xl flex items-center gap-3 cursor-pointer hover:bg-indigo-50 transition shadow-sm">
-                            ${avatarHtml}
-                            <div class="flex-1">
-                                <h3 class="font-bold text-gray-800 text-sm">${name}</h3>
-                                <p class="text-xs text-gray-500">रोल: ${role}</p>
+                        const avatarHtml = photo 
+                            ? `<img src="${photo}" alt="${name}" class="w-12 h-12 rounded-full object-cover border border-indigo-100">`
+                            : `<div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center font-bold text-lg">${initials}</div>`;
+
+                        volunteersContainer.innerHTML += `
+                            <div onclick="openVolunteerModal('${encodeURIComponent(name)}', '${encodeURIComponent(role)}', '${encodeURIComponent(phone)}', '${encodeURIComponent(address)}', '${encodeURIComponent(duty)}', '${encodeURIComponent(photo)}')" class="p-3 bg-white border border-gray-200 rounded-xl flex items-center gap-3 cursor-pointer hover:bg-indigo-50 transition shadow-xs">
+                                ${avatarHtml}
+                                <div class="flex-1">
+                                    <h3 class="font-bold text-gray-800 text-sm">${name}</h3>
+                                    <p class="text-xs text-gray-500">रोल: ${role}</p>
+                                </div>
+                                <i class="fa-solid fa-chevron-right text-gray-400 text-xs"></i>
                             </div>
-                            <i class="fa-solid fa-chevron-right text-gray-400 text-xs"></i>
-                        </div>
-                    `;
-                });
-                if (validVolunteers === 0) volunteersContainer.innerHTML = `<p class="text-xs text-gray-400 text-center py-2">कोई स्वयंसेवक उपलब्ध नहीं है।</p>`;
+                        `;
+                    });
+
+                    if (validVolunteers === 0) {
+                        volunteersContainer.innerHTML = `<p class="text-xs text-gray-400 text-center py-4">कोई स्वयंसेवक उपलब्ध नहीं है।</p>`;
+                    }
+                } else {
+                    volunteersContainer.innerHTML = `<p class="text-xs text-gray-400 text-center py-4">कोई स्वयंसेवक डेटा नहीं मिला।</p>`;
+                }
             }
 
             // 4. Sync Kalash Yatra
-            const kalashContainer = document.getElementById('kalash-list');
-            if (data.kalash && data.kalash.length > 0) {
-                kalashContainer.innerHTML = '';
-                let validKalashCount = 0;
-                data.kalash.forEach(k => {
-                    const name = getVal(k, "नाम");
-                    if (!name) return;
-
-                    validKalashCount++;
-                    const parent = getVal(k, "पिता का नाम") || getVal(k, "पति का नाम");
-                    const status = getVal(k, "टोकन जारी स्टेट्स") || "टोकन जारी";
-
-                    kalashContainer.innerHTML += `
-                        <div class="p-3 bg-white border border-gray-200 rounded-lg flex justify-between items-center shadow-sm">
-                            <div>
-                                <p class="font-bold text-gray-800 text-sm">${validKalashCount}. ${name}</p>
-                                <p class="text-xs text-gray-500">${parent ? 'पिता/पति: ' + parent : ''}</p>
-                            </div>
-                            <span class="text-xs bg-emerald-100 text-emerald-700 px-2 py-1 rounded font-semibold">${status}</span>
-                        </div>
-                    `;
-                });
-                document.getElementById('kalash-total').innerText = `कुल: ${validKalashCount}`;
-                if (validKalashCount === 0) kalashContainer.innerHTML = `<p class="text-xs text-gray-400 text-center py-2">कोई सहभागी पंजीकृत नहीं है।</p>`;
+            if (data.kalash && Array.isArray(data.kalash)) {
+                allKalashData = data.kalash;
+                renderKalashList(allKalashData);
             }
 
         } catch (err) {
@@ -534,26 +564,149 @@
         }
     }
 
+    // --- TEMPLATE 1: DONOR CARD HTML ---
+    function generateDonorCardHTML(d, rankBadgeText = "") {
+        const name = getVal(d, "चंदा दाता का नाम") || getVal(d, "नाम") || "गुमनाम";
+        const receipt = getVal(d, "रसीद नं:") || getVal(d, "रसीद नं") || getVal(d, "receipt") || "-";
+        let date = getVal(d, "दिनांक");
+        if (date && date.includes("T")) date = date.split("T")[0];
+        const amountNum = parseAmount(getVal(d, "चंदा राशि") || getVal(d, "Amount"));
+        const amountFormatted = amountNum.toLocaleString('en-IN');
+
+        return `
+            <div class="relative bg-white rounded-2xl border-2 border-indigo-100 p-4 shadow-sm overflow-hidden">
+                <div class="absolute top-0 right-0 bg-indigo-600 text-white text-[11px] font-bold px-3 py-1 rounded-bl-xl shadow-xs">
+                    रसीद संख्या: #${receipt}
+                </div>
+
+                <div class="flex items-center gap-2.5 mb-2.5 pr-24">
+                    <div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-check text-xs font-bold"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-1.5">
+                            <span class="text-[11px] text-gray-400 font-medium">सत्यापित चंदा दाता</span>
+                            ${rankBadgeText ? `<span class="text-[9px] bg-amber-100 text-amber-800 font-bold px-1.5 py-0.2 rounded">${rankBadgeText}</span>` : ''}
+                        </div>
+                        <h3 class="font-extrabold text-gray-900 text-base leading-tight mt-0.5">${name}</h3>
+                    </div>
+                </div>
+
+                <div class="bg-[#eefbf4] border border-[#d2f3e2] rounded-xl px-3.5 py-2.5 flex items-center justify-between my-2.5">
+                    <span class="text-xs font-semibold text-[#0f5132]">प्राप्त सहयोग राशि:</span>
+                    <span class="text-xl font-black text-[#0f5132]">₹ ${amountFormatted}</span>
+                </div>
+
+                <div class="flex items-center justify-between text-xs text-gray-500 pt-1 border-t border-gray-100/80">
+                    <div class="flex items-center gap-1.5 text-gray-500">
+                        <i class="fa-regular fa-calendar text-[11px]"></i>
+                        <span>तिथि:</span>
+                    </div>
+                    <span class="font-semibold text-gray-700">${date || 'उपलब्ध नहीं'}</span>
+                </div>
+            </div>
+        `;
+    }
+
+    // --- TEMPLATE 2: KALASH CARD HTML (EXACT SCREENSHOT STYLE) ---
+    function generateKalashCardHTML(k) {
+        const name = getVal(k, "नाम") || "अज्ञात";
+        const village = getVal(k, "गाव / शहर") || getVal(k, "गाँव / शहर") || getVal(k, "गाव") || getVal(k, "गांव") || getVal(k, "शहर") || "-";
+        const token = getVal(k, "टोकन नंबर") || getVal(k, "टोकन नं") || getVal(k, "टोकन") || "-";
+        const amountNum = parseAmount(getVal(k, "सहयोग राशि") || getVal(k, "राशि"));
+        const amountFormatted = amountNum.toLocaleString('en-IN');
+
+        return `
+            <div class="relative bg-white rounded-2xl border-2 border-indigo-100 p-4 shadow-sm overflow-hidden">
+                <!-- Top Right Ribbon (टोकन संख्या) -->
+                <div class="absolute top-0 right-0 bg-indigo-600 text-white text-[11px] font-bold px-3 py-1 rounded-bl-xl shadow-xs">
+                    टोकन संख्या: #${token}
+                </div>
+
+                <!-- Verified Badge & Name -->
+                <div class="flex items-center gap-2.5 mb-2.5 pr-24">
+                    <div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-check text-xs font-bold"></i>
+                    </div>
+                    <div>
+                        <span class="text-[11px] text-gray-400 font-medium">पंजीकृत कलश यात्री</span>
+                        <h3 class="font-extrabold text-gray-900 text-base leading-tight mt-0.5">${name}</h3>
+                    </div>
+                </div>
+
+                <!-- Green Amount Box (प्राप्त सहयोग राशि) -->
+                <div class="bg-[#eefbf4] border border-[#d2f3e2] rounded-xl px-3.5 py-2.5 flex items-center justify-between my-2.5">
+                    <span class="text-xs font-semibold text-[#0f5132]">प्राप्त सहयोग राशि:</span>
+                    <span class="text-xl font-black text-[#0f5132]">₹ ${amountFormatted}</span>
+                </div>
+
+                <!-- Bottom Footer (गाव / शहर) -->
+                <div class="flex items-center justify-between text-xs text-gray-500 pt-1 border-t border-gray-100/80">
+                    <div class="flex items-center gap-1.5 text-gray-500">
+                        <i class="fa-solid fa-location-dot text-[11px] text-rose-500"></i>
+                        <span>गाव / शहर:</span>
+                    </div>
+                    <span class="font-semibold text-gray-700">${village}</span>
+                </div>
+            </div>
+        `;
+    }
+
+    // --- RENDER TOP 21 DONATORS ---
+    function renderTop21Donators() {
+        const container = document.getElementById('donators-list');
+        const heading = document.getElementById('donators-heading');
+        if (!container) return;
+
+        if (heading) {
+            heading.innerHTML = `<i class="fa-solid fa-trophy text-amber-500 text-[10px]"></i> टॉप 21 सर्वोच्च चंदा दाता`;
+        }
+
+        if (!allDonators || allDonators.length === 0) {
+            container.innerHTML = `<p class="text-xs text-gray-400 text-center py-6">कोई चंदा दाता डेटा उपलब्ध नहीं है।</p>`;
+            return;
+        }
+
+        const sortedDonators = [...allDonators]
+            .filter(d => {
+                const name = getVal(d, "चंदा दाता का नाम") || getVal(d, "नाम");
+                return name && name !== "गुमनाम";
+            })
+            .sort((a, b) => {
+                const amtA = parseAmount(getVal(a, "चंदा राशि") || getVal(a, "Amount"));
+                const amtB = parseAmount(getVal(b, "चंदा राशि") || getVal(b, "Amount"));
+                return amtB - amtA;
+            });
+
+        const top21 = sortedDonators.slice(0, 21);
+        let html = '';
+
+        top21.forEach((d, idx) => {
+            html += generateDonorCardHTML(d, `रैंक #${idx + 1}`);
+        });
+
+        container.innerHTML = html;
+    }
+
     // --- RECEIPT SEARCH LOGIC ---
     function handleReceiptSearch() {
         const input = document.getElementById('receipt-search-input');
         const clearBtn = document.getElementById('clear-search-btn');
         const container = document.getElementById('donators-list');
+        const heading = document.getElementById('donators-heading');
+        if (!input || !container) return;
+
         const query = (input.value || "").trim().toLowerCase();
 
-        if (query.length > 0) {
-            clearBtn.classList.remove('hidden');
-        } else {
-            clearBtn.classList.add('hidden');
-            container.innerHTML = `
-                <div class="text-center py-8">
-                    <div class="w-12 h-12 bg-indigo-50 text-indigo-500 rounded-full flex items-center justify-center mx-auto mb-2 text-lg">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </div>
-                    <p class="text-xs font-medium text-gray-500">चंदा विवरण देखने के लिए ऊपर रसीद संख्या दर्ज करें</p>
-                </div>
-            `;
+        if (query.length === 0) {
+            if (clearBtn) clearBtn.classList.add('hidden');
+            renderTop21Donators();
             return;
+        }
+
+        if (clearBtn) clearBtn.classList.remove('hidden');
+        if (heading) {
+            heading.innerHTML = `<i class="fa-solid fa-magnifying-glass text-[10px]"></i> खोज परिणाम`;
         }
 
         if (!allDonators || allDonators.length === 0) {
@@ -569,9 +722,9 @@
 
         if (matches.length === 0) {
             container.innerHTML = `
-                <div class="p-6 text-center bg-white rounded-xl border border-dashed border-gray-300">
+                <div class="p-6 text-center bg-white rounded-2xl border border-dashed border-gray-300">
                     <i class="fa-regular fa-circle-question text-amber-500 text-2xl mb-1"></i>
-                    <p class="text-xs font-bold text-gray-700">रसीद संख्या "${input.value}" नहीं मिली</p>
+                    <p class="text-xs font-bold text-gray-700">रसीद संख्या या नाम "${input.value}" नहीं मिला</p>
                     <p class="text-[11px] text-gray-400 mt-1">कृपया सही रसीद संख्या दर्ज करें।</p>
                 </div>
             `;
@@ -580,54 +733,7 @@
 
         let html = '';
         matches.forEach(d => {
-            const name = getVal(d, "चंदा दाता का नाम") || getVal(d, "नाम") || "गुमनाम";
-            const receipt = getVal(d, "रसीद नं:") || getVal(d, "रसीद नं") || "-";
-            let date = getVal(d, "दिनांक");
-            if (date && date.includes("T")) date = date.split("T")[0];
-            const amountRaw = getVal(d, "चंदा राशि") || getVal(d, "Amount") || "0";
-            const amount = Number(amountRaw).toLocaleString('en-IN');
-            const address = getVal(d, "पता") || getVal(d, "ग्राम/मोहल्ला") || "";
-            const phone = getVal(d, "मोबाइल") || getVal(d, "संपर्क") || "";
-
-            html += `
-                <div class="p-4 bg-white rounded-2xl border-2 border-indigo-100 shadow-md relative overflow-hidden">
-                    <div class="absolute top-0 right-0 bg-indigo-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl-xl shadow-sm">
-                        रसीद संख्या: #${receipt}
-                    </div>
-                    
-                    <div class="flex items-center gap-2 mb-2">
-                        <div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-xs">
-                            <i class="fa-solid fa-check"></i>
-                        </div>
-                        <div>
-                            <p class="text-xs text-gray-400">सत्यापित चंदा दाता</p>
-                            <h3 class="font-bold text-gray-800 text-base leading-tight">${name}</h3>
-                        </div>
-                    </div>
-
-                    <div class="my-2.5 p-2.5 bg-emerald-50 rounded-xl border border-emerald-100 flex justify-between items-center">
-                        <span class="text-xs text-emerald-800 font-medium">प्राप्त सहयोग राशि:</span>
-                        <span class="text-lg font-black text-emerald-700">₹ ${amount}</span>
-                    </div>
-
-                    <div class="text-[11px] text-gray-600 space-y-1 bg-gray-50 p-2.5 rounded-lg border border-gray-100">
-                        <p class="flex justify-between">
-                            <span class="text-gray-400"><i class="fa-regular fa-calendar mr-1"></i> तिथि:</span> 
-                            <span class="font-medium">${date || 'उल्लेखित नहीं'}</span>
-                        </p>
-                        ${address ? `
-                        <p class="flex justify-between">
-                            <span class="text-gray-400"><i class="fa-solid fa-location-dot mr-1"></i> पता:</span> 
-                            <span class="font-medium">${address}</span>
-                        </p>` : ''}
-                        ${phone ? `
-                        <p class="flex justify-between">
-                            <span class="text-gray-400"><i class="fa-solid fa-phone mr-1"></i> संपर्क:</span> 
-                            <span class="font-medium">${phone}</span>
-                        </p>` : ''}
-                    </div>
-                </div>
-            `;
+            html += generateDonorCardHTML(d);
         });
 
         container.innerHTML = html;
@@ -635,9 +741,80 @@
 
     function clearSearch() {
         const input = document.getElementById('receipt-search-input');
-        input.value = '';
-        handleReceiptSearch();
-        input.focus();
+        if (input) {
+            input.value = '';
+            handleReceiptSearch();
+            input.focus();
+        }
+    }
+
+    // --- RENDER KALASH LIST ---
+    function renderKalashList(list) {
+        const kalashContainer = document.getElementById('kalash-list');
+        if (!kalashContainer) return;
+        kalashContainer.innerHTML = '';
+        let validKalashCount = 0;
+
+        if (!list || !Array.isArray(list)) return;
+
+        let html = '';
+        list.forEach(k => {
+            const name = getVal(k, "नाम");
+            if (!name) return;
+
+            validKalashCount++;
+            html += generateKalashCardHTML(k);
+        });
+
+        const totalBadge = document.getElementById('kalash-total');
+        if (totalBadge) totalBadge.innerText = `कुल: ${validKalashCount}`;
+
+        if (validKalashCount === 0) {
+            kalashContainer.innerHTML = `
+                <div class="p-6 text-center bg-white rounded-2xl border border-dashed border-gray-300">
+                    <i class="fa-regular fa-circle-question text-amber-500 text-2xl mb-1"></i>
+                    <p class="text-xs font-bold text-gray-700">कोई सहभागी नहीं मिला</p>
+                </div>
+            `;
+        } else {
+            kalashContainer.innerHTML = html;
+        }
+    }
+
+    // Filter Kalash by Name, Village or Token
+    function filterKalashList() {
+        const input = document.getElementById('kalash-search-input');
+        const clearBtn = document.getElementById('clear-kalash-btn');
+        if (!input) return;
+        const q = (input.value || "").trim().toLowerCase();
+        
+        if (q.length > 0) {
+            if (clearBtn) clearBtn.classList.remove('hidden');
+        } else {
+            if (clearBtn) clearBtn.classList.add('hidden');
+            renderKalashList(allKalashData);
+            return;
+        }
+
+        const filtered = allKalashData.filter(k => {
+            const name = (getVal(k, "नाम")).toLowerCase();
+            const village = (getVal(k, "गाव / शहर") || getVal(k, "गाँव / शहर") || getVal(k, "गाव") || getVal(k, "गांव")).toLowerCase();
+            const token = (getVal(k, "टोकन नंबर") || getVal(k, "टोकन नं") || getVal(k, "टोकन")).toLowerCase();
+            return name.includes(q) || village.includes(q) || token.includes(q);
+        });
+
+        renderKalashList(filtered);
+    }
+
+    function clearKalashSearch() {
+        const input = document.getElementById('kalash-search-input');
+        const clearBtn = document.getElementById('clear-kalash-btn');
+        if (input) {
+            input.value = '';
+            if (clearBtn) clearBtn.classList.add('hidden');
+            renderKalashList(allKalashData);
+            input.focus();
+        }
     }
 
     // Modal: Volunteer Profile
@@ -652,13 +829,13 @@
         const initials = name.split(" ").filter(Boolean).map(n => n[0]).join("").substring(0, 2).toUpperCase() || "SV";
         
         const photoSection = photo && photo !== "undefined"
-            ? `<div class="text-center mb-3"><img src="${photo}" alt="${name}" class="w-24 h-24 rounded-full mx-auto object-cover border-2 border-indigo-500 shadow-md"></div>`
-            : `<div class="text-center mb-3"><div class="w-20 h-20 bg-indigo-100 text-indigo-600 rounded-full mx-auto flex items-center justify-center font-bold text-2xl shadow-inner">${initials}</div></div>`;
+            ? `<div class="text-center mb-3"><img src="${photo}" alt="${name}" class="w-20 h-20 rounded-full mx-auto object-cover border-2 border-indigo-500 shadow-md"></div>`
+            : `<div class="text-center mb-3"><div class="w-16 h-16 bg-indigo-100 text-indigo-600 rounded-full mx-auto flex items-center justify-center font-bold text-xl shadow-inner">${initials}</div></div>`;
 
         document.getElementById('modal-title').innerText = "Volunteer Profile";
         document.getElementById('modal-body').innerHTML = `
             ${photoSection}
-            <div class="space-y-1.5 bg-gray-50 p-3 rounded-xl border text-sm">
+            <div class="space-y-1.5 bg-gray-50 p-3 rounded-xl border text-xs">
                 <p><strong>नाम:</strong> ${name}</p>
                 <p><strong>रोल:</strong> ${role}</p>
                 <p><strong>संपर्क:</strong> ${phone || 'उपलब्ध नहीं'}</p>
@@ -680,7 +857,7 @@
                 
                 <a href="${upiLink}" class="inline-block relative group" title="टैप करके UPI ऐप खोलें">
                     <div class="bg-white p-3 border-2 border-indigo-200 rounded-2xl inline-block shadow-sm transition active:scale-95 hover:border-indigo-500">
-                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=170x170&data=${encodeURIComponent(upiLink)}" alt="UPI QR" class="w-40 h-40 mx-auto">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=170x170&data=${encodeURIComponent(upiLink)}" alt="UPI QR" class="w-36 h-36 mx-auto">
                         <span class="absolute bottom-2 left-0 right-0 mx-auto text-[10px] bg-indigo-600 text-white font-medium px-2 py-0.5 rounded-full w-max shadow">
                             <i class="fa-solid fa-arrow-up-right-from-square text-[9px] mr-1"></i>टैप करके Pay करें
                         </span>
@@ -688,7 +865,7 @@
                 </a>
 
                 <div class="mt-3 grid grid-cols-2 gap-2">
-                    <a href="${upiLink}" class="flex items-center justify-center gap-1.5 bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white py-2 px-3 rounded-xl text-xs font-semibold shadow-sm transition">
+                    <a href="${upiLink}" class="flex items-center justify-center gap-1.5 bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white py-2 px-3 rounded-xl text-xs font-semibold shadow-xs transition">
                         <i class="fa-solid fa-mobile-screen-button"></i> किसी भी UPI से Pay करें
                     </a>
                     <button onclick="navigator.clipboard.writeText('sathindps09@ybl'); alert('UPI ID कॉपी हो गई!');" class="flex items-center justify-center gap-1.5 bg-slate-100 hover:bg-slate-200 active:scale-95 text-slate-700 py-2 px-3 rounded-xl text-xs font-semibold border border-slate-200 transition">
@@ -703,7 +880,7 @@
                 </div>
                 
                 <p class="text-[10px] text-slate-400 mt-2">
-                    * मोबाइल पर टैप करने पर PhonePe, GPay, Paytm की लिस्ट खुलेगी।
+                    * मोबाइल पर टैप करने पर PhonePe, GPay, Paytm आदि खुलेंगे।
                 </p>
             </div>
         `;
