@@ -551,13 +551,15 @@
         const modal = document.getElementById('story-modal');
         if (modal) modal.classList.remove('hidden');
 
-        // 1. स्क्रीन पर तुरंत +1 व्यू बढ़ाएँ
+        // 1. Screen par turant +1 count karein
         let currentCount = parseInt(statusStories[index].views) || 0;
         statusStories[index].views = currentCount + 1;
         renderStatusThumbnails(statusStories);
 
-        // 2. गूगल शीट में बैकग्राउंड में +1 सेव करें
-        fetch(GOOGLE_SHEET_API_URL + "?action=updateView&index=" + index, { method: "GET", mode: "no-cors" });
+        // 2. Google Sheet me pakka update bhejne ka 100% working tareeka
+        const updateUrl = GOOGLE_SHEET_API_URL + "?action=updateView&index=" + index + "&t=" + Date.now();
+        const ping = new Image();
+        ping.src = updateUrl; // Image object se bhejne par Google Apps Script redirect 100% execute hota hai
 
         showStory(currentStoryIndex);
     }
