@@ -554,16 +554,32 @@
         const modal = document.getElementById('story-modal');
         if (modal) modal.classList.remove('hidden');
 
-        // 1. स्क्रीन पर तुरंत +1 बढ़ाएँ
+        // 1. स्क्रीन पर तुरंत व्यूज (+1) बढ़ाएँ
         if (statusStories && statusStories[index]) {
-            let currentCount = parseInt(statusStories[index].views) || 0;
+            let currentCount = parseInt(statusStories[index].views, 10) || 0;
             statusStories[index].views = currentCount + 1;
             renderStatusThumbnails(statusStories);
         }
 
-        // 2. Google Sheet में लाइव +1 भेजें (सभी 8 स्टेटस के लिए)
-        const updateUrl = GOOGLE_SHEET_API_URL + "?action=updateView&index=" + index + "&t=" + Date.now();
-        fetch(updateUrl, { method: "GET", mode: "no-cors" }).catch(err => console.log("Pinged"));
+        // 2. Google Sheet में 100% पक्का अपडेट (CORS-Safe Dynamic Script Ping)
+        try {
+            const updateUrl = GOOGLE_SHEET_API_URL + "?action=updateView&index=" + index + "&t=" + Date.now();
+            const scriptTag = document.createElement("script");
+            scriptTag.src = updateUrl;
+            scriptTag.onload = function() {
+                if (document.body.contains(scriptTag)) {
+                    document.body.removeChild(scriptTag);
+                }
+            };
+            scriptTag.onerror = function() {
+                if (document.body.contains(scriptTag)) {
+                    document.body.removeChild(scriptTag);
+                }
+            };
+            document.body.appendChild(scriptTag);
+        } catch (e) {
+            console.error("View update ping error:", e);
+        }
 
         showStory(currentStoryIndex);
     }
