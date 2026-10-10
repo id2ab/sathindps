@@ -441,7 +441,8 @@
 
 <!-- JAVASCRIPT LOGIC -->
 <script>
-    const GOOGLE_SHEET_API_URL = "https://script.google.com/macros/s/AKfycbzjb1t4v1cj34YmD7ov7fK0viOR9Y1wMLRSh7cGqu2LJUkvSab4HHou3_DkesAjjIz2yw/exec";
+    // आपका लाइव Google Apps Script Web App URL
+    const GOOGLE_SHEET_API_URL = "https://script.google.com/macros/s/AKfycbx_n4x0ju6IwQxxUKXWUZR36Hhq2A83EpCGV6xdkRur5JJG11gFCxCWv2-LttVN9PH8AA/exec";
 
     let globalSummary = {
         totalChanda: 0,
@@ -454,18 +455,6 @@
     let allVolunteers = [];
     let allKalashData = [];
     let statusStories = [];
-
-    // आपकी गूगल शीट का असली स्टेटस डेटा
-    const BACKUP_STORIES = [
-        { name: "भव्य कलश यात्रा", image: "https://lh3.googleusercontent.com/pw/AP1GczPPqhJw-GxqjvlO08mrOtlXovrOoK7oo_iKFwiu_9vUomzjssKdYrYd7HwYyuVfdOFf7kv10pQccqA4j8Q1Voke-ew_QuaL9V-haeOiRVB4R7ATuo3qAeWrB1klwfpg8Y8VYC6VmYydbmYwQwhUh3s0=w1440-h808-s-no-gm?authuser=0", views: "1.2k" },
-        { name: "कलश स्थापना", image: "https://lh3.googleusercontent.com/pw/AP1GczPn2o58R5YiAWkEvHqJJxhwIbhkeUUVGj90CezN8MHvq-cKU0CALjLBUX5dVRvDFodkL-R2nmbQQQjvhhoVDH1f-_TietoDViDuEn1FhFy8oPwqo_zT4kZ3VlQDRQ5uUJWRrcFullo_Bd8uhgccr84-=w1280-h720-s-no-gm?authuser=0", views: "980" },
-        { name: "दीपों प्रज्वलन", image: "https://lh3.googleusercontent.com/pw/AP1GczN_8KdXfid3WjU2pvQJUXdeFbyJYXgJWK5q2Dro1oQcOBtvDY2b80q1aRFliNQKPLmxoakOi6IdhRwGsDSxEtZowa1wN-XV6Az4jU4jmxzdibFYhGGPcM73ji9Aw1rQ4r78BNDiGTsVxVFcY4FizzNO=w1680-h945-s-no-gm?authuser=0", views: "850" },
-        { name: "विल्वा निमंत्रण", image: "https://lh3.googleusercontent.com/pw/AP1GczMU3S93SHeHsjcxMM-Fgu4CiMwNQGrzElqYbgalFmNZPWwN7Wu6FJMSx2Petw4IjSxhklt5Iv-KFpFkLHpOpOaTj-6dCbOMTbHjrql4JQGnnOYXphEn3foklvQ6erYYAX4Cd7iyQEMbJEeJj9bivWqO=w1199-h686-s-no-gm?authuser=0", views: "740" },
-        { name: "प्राण प्रतिष्ठा", image: "https://lh3.googleusercontent.com/pw/AP1GczMkdzS5YMQFJrVm7n6uNnrOsRMOdoAuOAUo1sJimvt67LckAFok6BB1nKuRj_j6MoCm7skmmgiSVG7o7qlIOvw9HgZYFglDoOA024MHdxa8NKodZX6VKMr-87GXB_y3VfHnhsPZF_ZVxHWlg8J-Ykuu=w1440-h808-s-no-gm?authuser=0", views: "620" },
-        { name: "Ma", image: "https://lh3.googleusercontent.com/pw/AP1GczMAljN3apxgOF_Hx7cVJIrrHp0gz8Cm44yloKKBrZ4_U1iZgLORMZIaJYumwLuGJpomtHhrwB7II4D2YI2IK9l_xBtLPQiMVz7rzhPuOfoptUZOz_psP7lUrMJ2ETNhvdNOFp4MyWoQPpbuEyp72lsn=w1216-h658-s-no-gm?authuser=0", views: "510" },
-        { name: "devi", image: "https://lh3.googleusercontent.com/pw/AP1GczMAljN3apxgOF_Hx7cVJIrrHp0gz8Cm44yloKKBrZ4_U1iZgLORMZIaJYumwLuGJpomtHhrwB7II4D2YI2IK9l_xBtLPQiMVz7rzhPuOfoptUZOz_psP7lUrMJ2ETNhvdNOFp4MyWoQPpbuEyp72lsn=w1216-h658-s-no-gm?authuser=0", views: "430" },
-        { name: "devi durga", image: "https://lh3.googleusercontent.com/pw/AP1GczPPqhJw-GxqjvlO08mrOtlXovrOoK7oo_iKFwiu_9vUomzjssKdYrYd7HwYyuVfdOFf7kv10pQccqA4j8Q1Voke-ew_QuaL9V-haeOiRVB4R7ATuo3qAeWrB1klwfpg8Y8VYC6VmYydbmYwQwhUh3s0=w1440-h808-s-no-gm?authuser=0", views: "390" }
-    ];
 
     function getVal(obj, keyName) {
         if (!obj || typeof obj !== 'object') return "";
@@ -510,11 +499,16 @@
         const container = document.getElementById('status-container');
         if (!container) return;
 
+        if (!storiesList || storiesList.length === 0) {
+            container.innerHTML = `<p class="text-xs text-gray-400 py-6 px-2">कोई स्टेटस उपलब्ध नहीं है।</p>`;
+            return;
+        }
+
         let html = '';
         storiesList.forEach((item, index) => {
             const name = item.name || `झलक ${index + 1}`;
             const img = item.image;
-            const views = item.views || (120 + (index * 45));
+            const views = item.views || 0;
 
             html += `
                 <div onclick="openStory(${index})" class="shrink-0 w-24 h-36 rounded-2xl relative overflow-hidden cursor-pointer shadow-sm active:scale-95 transition bg-slate-900 border border-gray-200">
@@ -540,7 +534,7 @@
         container.innerHTML = html;
     }
 
-    // --- STORY VIEWER (VIEW COUNT +1 UPDATE) ---
+    // --- STORY VIEWER & LIVE +1 VIEW UPDATE ---
     let currentStoryIndex = 0;
     let storyTimer = null;
     let storyProgressInterval = null;
@@ -551,15 +545,15 @@
         const modal = document.getElementById('story-modal');
         if (modal) modal.classList.remove('hidden');
 
-        // 1. Screen par turant +1 count karein
+        // 1. स्क्रीन पर तुरंत +1 व्यू बढ़ाएँ
         let currentCount = parseInt(statusStories[index].views) || 0;
         statusStories[index].views = currentCount + 1;
         renderStatusThumbnails(statusStories);
 
-        // 2. Google Sheet me pakka update bhejne ka 100% working tareeka
+        // 2. Google Sheet के Column D में लाइव +1 सेव करें
         const updateUrl = GOOGLE_SHEET_API_URL + "?action=updateView&index=" + index + "&t=" + Date.now();
         const ping = new Image();
-        ping.src = updateUrl; // Image object se bhejne par Google Apps Script redirect 100% execute hota hai
+        ping.src = updateUrl;
 
         showStory(currentStoryIndex);
     }
@@ -580,7 +574,7 @@
         document.getElementById('story-author-img').src = story.image;
         document.getElementById('story-author-title').innerText = story.name;
         document.getElementById('story-caption').innerText = story.caption || story.name;
-        document.getElementById('story-views-count-text').innerText = story.views || "100+";
+        document.getElementById('story-views-count-text').innerText = story.views || "1";
 
         const progressContainer = document.getElementById('story-progress-container');
         progressContainer.innerHTML = '';
@@ -639,38 +633,24 @@
             const response = await fetch(cacheBusterUrl, { redirect: "follow" });
             const data = await response.json();
 
-            // 1. Stories Data (Google Sheet से ऑटो-डिटेक्ट)
+            // 1. Stories Data (सीधे आपके JSON से पार्स)
             if (data && data.stories && Array.isArray(data.stories) && data.stories.length > 0) {
-                let parsedList = [];
-                data.stories.forEach((item, idx) => {
-                    let name = item["नाम"] || item["name"] || item["title"] || "";
-                    let img = "";
-
-                    // किसी भी कुंजी में से http लिंक को ढूँढना
-                    for (let k in item) {
-                        let val = String(item[k] || "").trim();
-                        if (val.indexOf("http") !== -1) {
-                            img = val;
-                            break;
+                statusStories = data.stories.map((item, idx) => {
+                    const name = item["नाम"] || item["name"] || `झलक ${idx + 1}`;
+                    let img = item["फोटो"] || item["image"] || "";
+                    if (!img) {
+                        for (let k in item) {
+                            let val = String(item[k] || "").trim();
+                            if (val.indexOf("http") !== -1) { img = val; break; }
                         }
                     }
+                    const caption = item["Caption"] || item["caption"] || name;
+                    const views = parseInt(item["Views"] || item["views"] || 0) || 0;
+                    return { name, image: img, caption, views };
+                }).filter(s => s.image && s.image.indexOf("http") !== -1);
 
-                    if (img) {
-                        if (!name) name = `झलक ${idx + 1}`;
-                        let views = item["Views"] || item["views"] || item["व्यू"] || (150 + (idx * 40));
-                        parsedList.push({ name: name, image: img, caption: name, views: views });
-                    }
-                });
-
-                if (parsedList.length > 0) {
-                    statusStories = parsedList;
-                } else {
-                    statusStories = BACKUP_STORIES;
-                }
-            } else {
-                statusStories = BACKUP_STORIES;
+                renderStatusThumbnails(statusStories);
             }
-            renderStatusThumbnails(statusStories);
 
             // 2. Summary
             if (data.summary) {
@@ -706,8 +686,6 @@
 
         } catch (err) {
             console.error("Fetch Error:", err);
-            statusStories = BACKUP_STORIES;
-            renderStatusThumbnails(statusStories);
         } finally {
             if (refreshIcon) refreshIcon.classList.remove('fa-spin');
         }
@@ -1144,10 +1122,7 @@
         }
     }
 
-    // शुरुआती लोड: तुरंत स्टेटस रेंडर करेगा और फिर सर्वर से सिंक करेगा
     window.addEventListener('DOMContentLoaded', () => {
-        statusStories = BACKUP_STORIES;
-        renderStatusThumbnails(statusStories);
         fetchSheetData();
     });
 </script>
