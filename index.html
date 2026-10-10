@@ -32,13 +32,13 @@
             scrollbar-width: none;
         }
 
+        .hidden {
+            display: none !important;
+        }
+
         @keyframes marqueeScroll {
-            0% {
-                transform: translateX(100%);
-            }
-            100% {
-                transform: translateX(-100%);
-            }
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
         }
         .ticker-track {
             display: inline-block;
@@ -79,71 +79,33 @@
         </div>
     </header>
 
-    <!-- 2. COMMON TICKER & CAROUSEL -->
-    <div class="shrink-0 bg-white px-4 pt-2 pb-2 border-b border-gray-100 shadow-sm z-10">
-        <!-- RUNNING LATEST UPDATE TICKER -->
-        <div class="ticker-container relative w-full overflow-hidden bg-gradient-to-r from-amber-50 via-amber-100 to-amber-50 border border-amber-200 rounded-xl mb-2 flex items-center py-1.5 px-2 shadow-xs">
+    <!-- 2. COMMON TICKER & WHATSAPP STATUS BAR -->
+    <div class="shrink-0 bg-white px-4 pt-2 pb-2.5 border-b border-gray-100 shadow-sm z-10">
+        <div class="ticker-container relative w-full overflow-hidden bg-gradient-to-r from-amber-50 via-amber-100 to-amber-50 border border-amber-200 rounded-xl mb-2.5 flex items-center py-1.5 px-2 shadow-xs">
             <span class="shrink-0 bg-amber-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-md flex items-center gap-1 z-10 shadow-xs">
                 <i class="fa-solid fa-bullhorn text-[9px] animate-pulse"></i> अपडेट
             </span>
             <div class="overflow-hidden w-full relative ml-2">
                 <div id="marquee-text" class="ticker-track text-xs font-semibold text-amber-950">
-                    🚩 श्री श्री 108 नवदुर्गा पूजा महोत्सव 2026 में आप सभी का हार्दिक स्वागत है! • कलश यात्रा 11 अक्टूबर सुबह 07:00 बजे से • कलश यात्रा टोकन नंबर व विवरण चेक करें • सहयोग राशि रसीद तुरंत खोजें।
+                    🚩 श्री श्री 108 नवदुर्गा पूजा महोत्सव 2026 में आप सभी का हार्दिक स्वागत है! • कलश यात्रा 11 अक्टूबर सुबह 07:00 बजे से • कलश यात्रा टोकन नंबर व विवरण चेक करें • स्टेटस फोटो देखने हेतु टैप करें।
                 </div>
             </div>
         </div>
 
-        <!-- 8 IMAGE CAROUSEL BANNER -->
-        <div class="relative w-full rounded-2xl overflow-hidden shadow-xs border border-indigo-100 bg-gray-100">
-            <div id="carousel-track" class="flex overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar h-32">
-                <div class="min-w-full h-full snap-center relative">
-                    <img src="https://lh3.googleusercontent.com/pw/AP1GczPPqhJw-GxqjvlO08mrOtlXovrOoK7oo_iKFwiu_9vUomzjssKdYrYd7HwYyuVfdOFf7kv10pQccqA4j8Q1Voke-ew_QuaL9V-haeOiRVB4R7ATuo3qAeWrB1klwfpg8Y8VYC6VmYydbmYwQwhUh3s0=w1440-h808-s-no-gm?authuser=0?w=600&auto=format&fit=crop&q=80" alt="Banner 1" class="w-full h-full object-cover">
-                    <span class="absolute bottom-1 right-2 bg-black/50 text-white text-[10px] px-2 py-0.5 rounded-full backdrop-blur-sm">1 / 8</span>
-                </div>
-                <div class="min-w-full h-full snap-center relative">
-                    <img src="https://lh3.googleusercontent.com/pw/AP1GczPn2o58R5YiAWkEvHqJJxhwIbhkeUUVGj90CezN8MHvq-cKU0CALjLBUX5dVRvDFodkL-R2nmbQQQjvhhoVDH1f-_TietoDViDuEn1FhFy8oPwqo_zT4kZ3VlQDRQ5uUJWRrcFullo_Bd8uhgccr84-=w1280-h720-s-no-gm?authuser=0?w=600&auto=format&fit=crop&q=80" alt="Banner 2" class="w-full h-full object-cover">
-                    <span class="absolute bottom-1 right-2 bg-black/50 text-white text-[10px] px-2 py-0.5 rounded-full backdrop-blur-sm">2 / 8</span>
-                </div>
-                <div class="min-w-full h-full snap-center relative">
-                    <img src="https://lh3.googleusercontent.com/pw/AP1GczNCUdlED20jRojntYSR6vXUfUN21MubHtTXEXKKYZ7PKK_jhFhgALmrP5aTiLbFUgAMzbnwvcHz1RSOkrJBg0Ujq5JQKAARUXblxRIXPdkWbyeZhMkwGjrP4G_ffsqrTBrI0XQu0DfCEmHx52bB5R8O=w1680-h945-s-no-gm?authuser=0?w=600&auto=format&fit=crop&q=80" alt="Banner 3" class="w-full h-full object-cover">
-                    <span class="absolute bottom-1 right-2 bg-black/50 text-white text-[10px] px-2 py-0.5 rounded-full backdrop-blur-sm">3 / 8</span>
-                </div>
-                <div class="min-w-full h-full snap-center relative">
-                    <img src="https://lh3.googleusercontent.com/pw/AP1GczMAljN3apxgOF_Hx7cVJIrrHp0gz8Cm44yloKKBrZ4_U1iZgLORMZIaJYumwLuGJpomtHhrwB7II4D2YI2IK9l_xBtLPQiMVz7rzhPuOfoptUZOz_psP7lUrMJ2ETNhvdNOFp4MyWoQPpbuEyp72lsn=w1216-h658-s-no-gm?authuser=0?w=600&auto=format&fit=crop&q=80" alt="Banner 4" class="w-full h-full object-cover">
-                    <span class="absolute bottom-1 right-2 bg-black/50 text-white text-[10px] px-2 py-0.5 rounded-full backdrop-blur-sm">4 / 8</span>
-                </div>
-                <div class="min-w-full h-full snap-center relative">
-                    <img src="https://lh3.googleusercontent.com/pw/AP1GczNrBSHfSj7M3Rqcu3C-3RQcak91-wPbyYuBCIw12kQwEcwR1FUqRU7DwIG6QqFY1E1ZYSZZx6IROyACwiN3jg9zgTg2Bh8uOctCZ1b2jO7TRiXjZKjJCZ_yfdcZ2mONMnBpNG6it0DfFQAziglx_nmS=w1685-h945-s-no-gm?authuser=0?w=600&auto=format&fit=crop&q=80" alt="Banner 5" class="w-full h-full object-cover">
-                    <span class="absolute bottom-1 right-2 bg-black/50 text-white text-[10px] px-2 py-0.5 rounded-full backdrop-blur-sm">5 / 8</span>
-                </div>
-                <div class="min-w-full h-full snap-center relative">
-                    <img src="https://lh3.googleusercontent.com/pw/AP1GczMkdzS5YMQFJrVm7n6uNnrOsRMOdoAuOAUo1sJimvt67LckAFok6BB1nKuRj_j6MoCm7skmmgiSVG7o7qlIOvw9HgZYFglDoOA024MHdxa8NKodZX6VKMr-87GXB_y3VfHnhsPZF_ZVxHWlg8J-Ykuu=w1440-h808-s-no-gm?authuser=0?w=600&auto=format&fit=crop&q=80" alt="Banner 6" class="w-full h-full object-cover">
-                    <span class="absolute bottom-1 right-2 bg-black/50 text-white text-[10px] px-2 py-0.5 rounded-full backdrop-blur-sm">6 / 8</span>
-                </div>
-                <div class="min-w-full h-full snap-center relative">
-                    <img src="https://lh3.googleusercontent.com/pw/AP1GczMU3S93SHeHsjcxMM-Fgu4CiMwNQGrzElqYbgalFmNZPWwN7Wu6FJMSx2Petw4IjSxhklt5Iv-KFpFkLHpOpOaTj-6dCbOMTbHjrql4JQGnnOYXphEn3foklvQ6erYYAX4Cd7iyQEMbJEeJj9bivWqO=w1199-h686-s-no-gm?authuser=0?w=600&auto=format&fit=crop&q=80" alt="Banner 7" class="w-full h-full object-cover">
-                    <span class="absolute bottom-1 right-2 bg-black/50 text-white text-[10px] px-2 py-0.5 rounded-full backdrop-blur-sm">7 / 8</span>
-                </div>
-                <div class="min-w-full h-full snap-center relative">
-                    <img src="https://lh3.googleusercontent.com/pw/AP1GczN_8KdXfid3WjU2pvQJUXdeFbyJYXgJWK5q2Dro1oQcOBtvDY2b80q1aRFliNQKPLmxoakOi6IdhRwGsDSxEtZowa1wN-XV6Az4jU4jmxzdibFYhGGPcM73ji9Aw1rQ4r78BNDiGTsVxVFcY4FizzNO=w1680-h945-s-no-gm?authuser=0?w=600&auto=format&fit=crop&q=80" alt="Banner 8" class="w-full h-full object-cover">
-                    <span class="absolute bottom-1 right-2 bg-black/50 text-white text-[10px] px-2 py-0.5 rounded-full backdrop-blur-sm">8 / 8</span>
-                </div>
-            </div>
+        <div class="flex items-center justify-between mb-1.5 px-0.5">
+            <span class="text-[11px] font-bold text-gray-700 flex items-center gap-1">
+                <i class="fa-brands fa-whatsapp text-emerald-500 text-xs"></i> ताज़ा झलकियाँ (Status)
+            </span>
+            <span class="text-[9px] text-gray-400">दाएँ-बाएँ सरकाएँ • टैप करें</span>
+        </div>
 
-            <div id="carousel-dots" class="absolute bottom-1.5 left-0 right-0 flex justify-center gap-1">
-                <span class="w-2.5 h-1 rounded-full bg-white transition-all duration-300"></span>
-                <span class="w-1 h-1 rounded-full bg-white/50 transition-all duration-300"></span>
-                <span class="w-1 h-1 rounded-full bg-white/50 transition-all duration-300"></span>
-                <span class="w-1 h-1 rounded-full bg-white/50 transition-all duration-300"></span>
-                <span class="w-1 h-1 rounded-full bg-white/50 transition-all duration-300"></span>
-                <span class="w-1 h-1 rounded-full bg-white/50 transition-all duration-300"></span>
-                <span class="w-1 h-1 rounded-full bg-white/50 transition-all duration-300"></span>
-                <span class="w-1 h-1 rounded-full bg-white/50 transition-all duration-300"></span>
-            </div>
+        <!-- स्टेटस कार्ड्स कंटेनर (गूगल शीट से लाइव लोड) -->
+        <div id="status-container" class="flex gap-2.5 overflow-x-auto no-scrollbar py-1 min-h-[148px]">
+            <p class="text-xs text-gray-400 py-6 px-2">स्टेटस लोड हो रहा है...</p>
         </div>
     </div>
 
-    <!-- 3. MAIN CONTENT AREA -->
+    <!-- 3. MAIN CONTENT TABS AREA -->
     <main class="flex-1 overflow-hidden relative">
 
         <!-- ================= TAB 1: HOME & CHANDA ================= -->
@@ -200,7 +162,7 @@
             </div>
         </section>
 
-        <!-- ================= TAB 2: VOLUNTEERS (NO MODAL, CIRCLE PHOTO, DIRECT BUTTONS) ================= -->
+        <!-- ================= TAB 2: VOLUNTEERS ================= -->
         <section id="tab-volunteers" class="tab-content hidden h-full flex flex-col">
             <div class="shrink-0 bg-white px-4 pt-2.5 pb-2 border-b border-gray-100 shadow-xs z-10">
                 <div class="flex justify-between items-center mb-2">
@@ -211,7 +173,6 @@
                     <span id="volunteers-total" class="text-xs bg-indigo-50 border border-indigo-200 text-indigo-700 px-3 py-0.5 rounded-full font-bold">कुल: 0</span>
                 </div>
 
-                <!-- Volunteer Search Box -->
                 <div class="relative">
                     <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-gray-400 text-xs"></i>
                     <input type="text" id="volunteer-search-input" oninput="filterVolunteersList()" placeholder="नाम या रोल से खोजें..." class="w-full pl-8 pr-8 py-2 bg-gray-50 border border-gray-200 rounded-xl text-xs text-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition shadow-inner">
@@ -221,7 +182,6 @@
                 </div>
             </div>
 
-            <!-- Scrollable Volunteers List -->
             <div class="flex-1 overflow-y-auto px-4 py-3 pb-24 bg-gray-50/50">
                 <div id="volunteers-list" class="space-y-3">
                     <p class="text-xs text-gray-400 text-center py-6">डेटा लोड हो रहा है...</p>
@@ -242,11 +202,8 @@
             </div>
 
             <div class="space-y-3">
-                <!-- Event 1 -->
                 <div onclick="openEventModal('भव्य कलश यात्रा एवं कलश स्थापना', 'प्रतिपदा (up to 9:31 pm)', '11 अक्टूबर 2026 | सुबह 07:00 बजे', 'साथी नवदुर्गा पूजा समिति प्रांगण नरसंडा चौक (पुल से उत्तर)', 'अनिकेत कुमार, राजन कुमार, मुकेश कुमार', 'नरसंडा से सरमसपुर, मधुबन, कलवारी भ्रमण करते हुए कलवारी बांध नदी तट से जल उठाकर पूजा पंडाल प्रांगण तक प्रस्थान।')" class="relative bg-white rounded-2xl border-2 border-indigo-100 p-4 shadow-sm overflow-hidden cursor-pointer active:scale-98 transition">
-                    <div class="absolute top-0 right-0 bg-indigo-600 text-white text-[11px] font-bold px-3 py-1 rounded-bl-xl shadow-xs">
-                        11 Oct 2026
-                    </div>
+                    <div class="absolute top-0 right-0 bg-indigo-600 text-white text-[11px] font-bold px-3 py-1 rounded-bl-xl shadow-xs">11 Oct 2026</div>
                     <div class="flex items-center gap-2.5 mb-2.5 pr-24">
                         <div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
                             <i class="fa-solid fa-om text-xs font-bold"></i>
@@ -269,11 +226,8 @@
                     </div>
                 </div>
 
-                <!-- Event 2 -->
                 <div onclick="openEventModal('दीपों प्रज्वलन', 'पंचमी & षष्ठी (up to 9:14 pm)', '15 अक्टूबर 2026 | शाम 06:00 बजे', 'साथी नवदुर्गा पूजा समिति प्रांगण नरसंडा चौक (पुल से उत्तर)', 'दीसंबर कुमार, राजन कुमार, धर्मेंद्र कुमार चौधरी', 'पूजा पंडाल प्रांगण में सभी कलश यात्री एवं श्रद्धालुओं द्वारा दीप प्रज्वलन कर भगवती की आराधना कार्यक्रम।')" class="relative bg-white rounded-2xl border-2 border-indigo-100 p-4 shadow-sm overflow-hidden cursor-pointer active:scale-98 transition">
-                    <div class="absolute top-0 right-0 bg-indigo-600 text-white text-[11px] font-bold px-3 py-1 rounded-bl-xl shadow-xs">
-                        15 Oct 2026
-                    </div>
+                    <div class="absolute top-0 right-0 bg-indigo-600 text-white text-[11px] font-bold px-3 py-1 rounded-bl-xl shadow-xs">15 Oct 2026</div>
                     <div class="flex items-center gap-2.5 mb-2.5 pr-24">
                         <div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
                             <i class="fa-solid fa-fire-flame-curved text-xs font-bold"></i>
@@ -296,11 +250,8 @@
                     </div>
                 </div>
 
-                <!-- Event 3 -->
                 <div onclick="openEventModal('विल्वा निमंत्रण (बेल पूजन)', 'षष्ठी & सप्तमी (up to 10:05 pm)', '16 अक्टूबर 2026 | शाम 06:30 बजे', 'साथी नवदुर्गा पूजा समिति प्रांगण नरसंडा चौक (पुल से उत्तर)', 'दीसंबर कुमार, राजन कुमार, धर्मेंद्र कुमार चौधरी', 'पंडित जी एवं यजमान द्वारा बेल पूजन एवं आमंत्रण।')" class="relative bg-white rounded-2xl border-2 border-indigo-100 p-4 shadow-sm overflow-hidden cursor-pointer active:scale-98 transition">
-                    <div class="absolute top-0 right-0 bg-indigo-600 text-white text-[11px] font-bold px-3 py-1 rounded-bl-xl shadow-xs">
-                        16 Oct 2026
-                    </div>
+                    <div class="absolute top-0 right-0 bg-indigo-600 text-white text-[11px] font-bold px-3 py-1 rounded-bl-xl shadow-xs">16 Oct 2026</div>
                     <div class="flex items-center gap-2.5 mb-2.5 pr-24">
                         <div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
                             <i class="fa-solid fa-tree text-xs font-bold"></i>
@@ -323,11 +274,8 @@
                     </div>
                 </div>
 
-                <!-- Event 4 -->
                 <div onclick="openEventModal('प्राण प्रतिष्ठा', 'सप्तमी (up to 11:02 pm)', '18 अक्टूबर 2026 | सुबह 09:47 बजे', 'साथी नवदुर्गा पूजा समिति प्रांगण नरसंडा चौक (पुल से उत्तर)', 'अनिकेत कुमार, धर्मेंद्र कुमार चौधरी, निसु', 'प्राण प्रतिष्ठा और बोधन: कलश स्थापना के बाद मंत्रों से देवी की मूर्ति में प्राण प्रतिष्ठित किए जाते हैं।')" class="relative bg-white rounded-2xl border-2 border-indigo-100 p-4 shadow-sm overflow-hidden cursor-pointer active:scale-98 transition">
-                    <div class="absolute top-0 right-0 bg-indigo-600 text-white text-[11px] font-bold px-3 py-1 rounded-bl-xl shadow-xs">
-                        18 Oct 2026
-                    </div>
+                    <div class="absolute top-0 right-0 bg-indigo-600 text-white text-[11px] font-bold px-3 py-1 rounded-bl-xl shadow-xs">18 Oct 2026</div>
                     <div class="flex items-center gap-2.5 mb-2.5 pr-24">
                         <div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
                             <i class="fa-solid fa-hands-praying text-xs font-bold"></i>
@@ -350,11 +298,8 @@
                     </div>
                 </div>
 
-                <!-- Event 5 -->
                 <div onclick="openEventModal('महाष्टमी प्रसाद दानम', 'अष्टमी (up to 11:05 pm)', '19 अक्टूबर 2026 | सोमवार सुबह 10:52 बजे', 'साथी नवदुर्गा पूजा समिति प्रांगण नरसंडा चौक (पुल से उत्तर)', 'मुकेश कुमार, धर्मेंद्र कुमार चौधरी, निशांत कुमार एवं अन्य', 'सूजी एवं काले चने का हलवा माता को भोग लगाने के बाद वितरण।')" class="relative bg-white rounded-2xl border-2 border-indigo-100 p-4 shadow-sm overflow-hidden cursor-pointer active:scale-98 transition">
-                    <div class="absolute top-0 right-0 bg-indigo-600 text-white text-[11px] font-bold px-3 py-1 rounded-bl-xl shadow-xs">
-                        19 Oct 2026
-                    </div>
+                    <div class="absolute top-0 right-0 bg-indigo-600 text-white text-[11px] font-bold px-3 py-1 rounded-bl-xl shadow-xs">19 Oct 2026</div>
                     <div class="flex items-center gap-2.5 mb-2.5 pr-24">
                         <div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
                             <i class="fa-solid fa-bowl-food text-xs font-bold"></i>
@@ -377,11 +322,8 @@
                     </div>
                 </div>
 
-                <!-- Event 6 -->
                 <div onclick="openEventModal('महानवमी कन्या पूजन', 'अष्टमी / नवमी (up to 11:05 pm)', '20 अक्टूबर 2026 | मंगलवार सुबह 12:50 बजे', 'साथी नवदुर्गा पूजा समिति प्रांगण नरसंडा चौक (पुल से उत्तर)', 'आनंद राज, धर्मेंद्र कुमार चौधरी, अनिकेत, निशांत एवं अन्य', 'मां दुर्गा के नौ रूपों की शक्ति का प्रतीक मानकर 2 वर्ष से 10 वर्ष तक की कन्याओं का पूजन और उन्हें सात्विक भोजन वितरण।')" class="relative bg-white rounded-2xl border-2 border-indigo-100 p-4 shadow-sm overflow-hidden cursor-pointer active:scale-98 transition">
-                    <div class="absolute top-0 right-0 bg-indigo-600 text-white text-[11px] font-bold px-3 py-1 rounded-bl-xl shadow-xs">
-                        20 Oct 2026
-                    </div>
+                    <div class="absolute top-0 right-0 bg-indigo-600 text-white text-[11px] font-bold px-3 py-1 rounded-bl-xl shadow-xs">20 Oct 2026</div>
                     <div class="flex items-center gap-2.5 mb-2.5 pr-24">
                         <div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
                             <i class="fa-solid fa-heart text-xs font-bold"></i>
@@ -451,16 +393,46 @@
         </button>
     </nav>
 
-    <!-- 5. DETAIL POPUP MODAL (सिर्फ इवेंट्स व अन्य जानकारी के लिए) -->
+    <!-- 5. WHATSAPP FULL SCREEN STORY VIEWER MODAL -->
+    <div id="story-modal" class="fixed inset-0 bg-black z-50 hidden flex flex-col justify-between select-none">
+        <div class="p-3 z-20">
+            <div id="story-progress-container" class="flex gap-1.5 w-full mb-3"></div>
+            <div class="flex justify-between items-center text-white px-1">
+                <div class="flex items-center gap-2.5">
+                    <img id="story-author-img" src="" alt="Thumbnail" class="w-9 h-9 rounded-full object-cover border-2 border-emerald-400 shadow">
+                    <div>
+                        <h4 id="story-author-title" class="font-bold text-xs leading-tight">Sathi NDPS</h4>
+                        <p id="story-time-badge" class="text-[10px] text-gray-300">लाइव स्टेटस</p>
+                    </div>
+                </div>
+                <button onclick="closeStory()" class="text-white hover:text-gray-300 text-xl font-bold p-1">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="flex-1 relative flex items-center justify-center overflow-hidden">
+            <img id="story-full-img" src="" alt="Story View" class="w-full h-full object-contain">
+            <div onclick="prevStory()" class="absolute left-0 top-0 w-1/3 h-full cursor-pointer z-10"></div>
+            <div onclick="nextStory()" class="absolute right-0 top-0 w-2/3 h-full cursor-pointer z-10"></div>
+        </div>
+
+        <div class="p-4 text-center z-20 bg-gradient-to-t from-black/80 to-transparent">
+            <p id="story-caption" class="text-white text-xs font-semibold drop-shadow mb-1"></p>
+            <span id="story-views-bottom" class="inline-flex items-center gap-1 bg-black/40 text-emerald-300 text-[10px] px-2.5 py-0.5 rounded-full border border-emerald-500/30">
+                <i class="fa-solid fa-eye"></i> <span id="story-views-count-text">0</span> व्यूज
+            </span>
+        </div>
+    </div>
+
+    <!-- 6. DETAIL POPUP MODAL -->
     <div id="detail-modal" class="fixed inset-0 bg-black/60 z-30 hidden flex items-end justify-center">
         <div class="bg-white w-full max-w-[450px] rounded-t-2xl p-5 border-t border-gray-200">
             <div class="flex justify-between items-center border-b pb-3 mb-3">
                 <h3 id="modal-title" class="font-bold text-lg text-gray-800">Detail View</h3>
                 <button onclick="closeModal()" class="text-gray-400 text-2xl font-bold">&times;</button>
             </div>
-            <div id="modal-body" class="space-y-2 text-sm text-gray-600 max-h-[70vh] overflow-y-auto">
-                <!-- Dynamic Content -->
-            </div>
+            <div id="modal-body" class="space-y-2 text-sm text-gray-600 max-h-[70vh] overflow-y-auto"></div>
             <button onclick="closeModal()" class="w-full mt-4 bg-indigo-600 text-white py-2.5 rounded-xl font-semibold">बंद करें</button>
         </div>
     </div>
@@ -481,89 +453,38 @@
     let allDonators = [];
     let allVolunteers = [];
     let allKalashData = [];
+    let statusStories = [];
 
-    // --- CAROUSEL AUTOPLAY & INDICATOR LOGIC ---
-    let currentSlide = 0;
-    const totalSlides = 8;
-    const carouselTrack = document.getElementById('carousel-track');
-    const dots = document.querySelectorAll('#carousel-dots span');
+    // आपकी गूगल शीट का असली स्टेटस डेटा
+    const BACKUP_STORIES = [
+        { name: "भव्य कलश यात्रा", image: "https://lh3.googleusercontent.com/pw/AP1GczPPqhJw-GxqjvlO08mrOtlXovrOoK7oo_iKFwiu_9vUomzjssKdYrYd7HwYyuVfdOFf7kv10pQccqA4j8Q1Voke-ew_QuaL9V-haeOiRVB4R7ATuo3qAeWrB1klwfpg8Y8VYC6VmYydbmYwQwhUh3s0=w1440-h808-s-no-gm?authuser=0", views: "1.2k" },
+        { name: "कलश स्थापना", image: "https://lh3.googleusercontent.com/pw/AP1GczPn2o58R5YiAWkEvHqJJxhwIbhkeUUVGj90CezN8MHvq-cKU0CALjLBUX5dVRvDFodkL-R2nmbQQQjvhhoVDH1f-_TietoDViDuEn1FhFy8oPwqo_zT4kZ3VlQDRQ5uUJWRrcFullo_Bd8uhgccr84-=w1280-h720-s-no-gm?authuser=0", views: "980" },
+        { name: "दीपों प्रज्वलन", image: "https://lh3.googleusercontent.com/pw/AP1GczN_8KdXfid3WjU2pvQJUXdeFbyJYXgJWK5q2Dro1oQcOBtvDY2b80q1aRFliNQKPLmxoakOi6IdhRwGsDSxEtZowa1wN-XV6Az4jU4jmxzdibFYhGGPcM73ji9Aw1rQ4r78BNDiGTsVxVFcY4FizzNO=w1680-h945-s-no-gm?authuser=0", views: "850" },
+        { name: "विल्वा निमंत्रण", image: "https://lh3.googleusercontent.com/pw/AP1GczMU3S93SHeHsjcxMM-Fgu4CiMwNQGrzElqYbgalFmNZPWwN7Wu6FJMSx2Petw4IjSxhklt5Iv-KFpFkLHpOpOaTj-6dCbOMTbHjrql4JQGnnOYXphEn3foklvQ6erYYAX4Cd7iyQEMbJEeJj9bivWqO=w1199-h686-s-no-gm?authuser=0", views: "740" },
+        { name: "प्राण प्रतिष्ठा", image: "https://lh3.googleusercontent.com/pw/AP1GczMkdzS5YMQFJrVm7n6uNnrOsRMOdoAuOAUo1sJimvt67LckAFok6BB1nKuRj_j6MoCm7skmmgiSVG7o7qlIOvw9HgZYFglDoOA024MHdxa8NKodZX6VKMr-87GXB_y3VfHnhsPZF_ZVxHWlg8J-Ykuu=w1440-h808-s-no-gm?authuser=0", views: "620" },
+        { name: "Ma", image: "https://lh3.googleusercontent.com/pw/AP1GczMAljN3apxgOF_Hx7cVJIrrHp0gz8Cm44yloKKBrZ4_U1iZgLORMZIaJYumwLuGJpomtHhrwB7II4D2YI2IK9l_xBtLPQiMVz7rzhPuOfoptUZOz_psP7lUrMJ2ETNhvdNOFp4MyWoQPpbuEyp72lsn=w1216-h658-s-no-gm?authuser=0", views: "510" },
+        { name: "devi", image: "https://lh3.googleusercontent.com/pw/AP1GczMAljN3apxgOF_Hx7cVJIrrHp0gz8Cm44yloKKBrZ4_U1iZgLORMZIaJYumwLuGJpomtHhrwB7II4D2YI2IK9l_xBtLPQiMVz7rzhPuOfoptUZOz_psP7lUrMJ2ETNhvdNOFp4MyWoQPpbuEyp72lsn=w1216-h658-s-no-gm?authuser=0", views: "430" },
+        { name: "devi durga", image: "https://lh3.googleusercontent.com/pw/AP1GczPPqhJw-GxqjvlO08mrOtlXovrOoK7oo_iKFwiu_9vUomzjssKdYrYd7HwYyuVfdOFf7kv10pQccqA4j8Q1Voke-ew_QuaL9V-haeOiRVB4R7ATuo3qAeWrB1klwfpg8Y8VYC6VmYydbmYwQwhUh3s0=w1440-h808-s-no-gm?authuser=0", views: "390" }
+    ];
 
-    function updateCarouselDots(index) {
-        dots.forEach((dot, idx) => {
-            if (idx === index) {
-                dot.className = "w-2.5 h-1 rounded-full bg-white transition-all duration-300";
-            } else {
-                dot.className = "w-1 h-1 rounded-full bg-white/50 transition-all duration-300";
-            }
-        });
-    }
-
-    function autoSlideCarousel() {
-        if (!carouselTrack) return;
-        currentSlide = (currentSlide + 1) % totalSlides;
-        const slideWidth = carouselTrack.clientWidth;
-        carouselTrack.scrollTo({
-            left: currentSlide * slideWidth,
-            behavior: 'smooth'
-        });
-        updateCarouselDots(currentSlide);
-    }
-
-    let carouselInterval = setInterval(autoSlideCarousel, 3000);
-
-    if (carouselTrack) {
-        carouselTrack.addEventListener('scroll', () => {
-            const index = Math.round(carouselTrack.scrollLeft / carouselTrack.clientWidth);
-            if (index !== currentSlide) {
-                currentSlide = index;
-                updateCarouselDots(currentSlide);
-            }
-        });
-
-        carouselTrack.addEventListener('touchstart', () => clearInterval(carouselInterval));
-        carouselTrack.addEventListener('touchend', () => {
-            clearInterval(carouselInterval);
-            carouselInterval = setInterval(autoSlideCarousel, 3000);
-        });
-    }
-
-    // --- AUDIO LOGIC ---
-    const bgMusic = document.getElementById('bg-music');
-    const audioIcon = document.getElementById('audio-icon');
-
-    if (bgMusic) bgMusic.volume = 0.15;
-
-    function startAudioOnFirstInteraction() {
-        if (bgMusic && bgMusic.paused) {
-            bgMusic.play().then(() => {
-                if (audioIcon) {
-                    audioIcon.classList.remove('fa-volume-xmark');
-                    audioIcon.classList.add('fa-volume-high');
-                }
-            }).catch(err => console.log("Audio gesture waiting"));
-        }
-        document.removeEventListener('click', startAudioOnFirstInteraction);
-    }
-    document.addEventListener('click', startAudioOnFirstInteraction);
-
-    function toggleAudio() {
-        if (!bgMusic) return;
-        if (bgMusic.paused) {
-            bgMusic.play();
-            if (audioIcon) {
-                audioIcon.classList.remove('fa-volume-xmark');
-                audioIcon.classList.add('fa-volume-high');
-            }
-        } else {
-            bgMusic.pause();
-            if (audioIcon) {
-                audioIcon.classList.remove('fa-volume-high');
-                audioIcon.classList.add('fa-volume-xmark');
+    function getVal(obj, keyName) {
+        if (!obj || typeof obj !== 'object') return "";
+        const cleanKey = keyName.trim().toLowerCase();
+        for (let k in obj) {
+            if (k && k.trim().toLowerCase() === cleanKey) {
+                return obj[k] !== undefined && obj[k] !== null ? String(obj[k]).trim() : "";
             }
         }
+        return "";
     }
 
-    // --- TAB SWITCHING ---
+    function parseAmount(val) {
+        if (!val) return 0;
+        const cleaned = String(val).replace(/[^0-9.-]+/g, "");
+        const num = parseFloat(cleaned);
+        return isNaN(num) ? 0 : num;
+    }
+
     function switchTab(tabName) {
         const allTabs = document.querySelectorAll('.tab-content');
         allTabs.forEach(el => el.classList.add('hidden'));
@@ -584,34 +505,172 @@
         }
     }
 
-    function getVal(obj, keyName) {
-        if (!obj || typeof obj !== 'object') return "";
-        const cleanKey = keyName.trim().toLowerCase();
-        for (let k in obj) {
-            if (k && k.trim().toLowerCase() === cleanKey) {
-                return obj[k] !== undefined && obj[k] !== null ? String(obj[k]).trim() : "";
-            }
+    // --- WHATSAPP STATUS RENDER ---
+    function renderStatusThumbnails(storiesList) {
+        const container = document.getElementById('status-container');
+        if (!container) return;
+
+        let html = '';
+        storiesList.forEach((item, index) => {
+            const name = item.name || `झलक ${index + 1}`;
+            const img = item.image;
+            const views = item.views || (120 + (index * 45));
+
+            html += `
+                <div onclick="openStory(${index})" class="shrink-0 w-24 h-36 rounded-2xl relative overflow-hidden cursor-pointer shadow-sm active:scale-95 transition bg-slate-900 border border-gray-200">
+                    <img src="${img}" alt="${name}" class="w-full h-full object-cover opacity-85">
+                    <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/80"></div>
+                    
+                    <div class="absolute top-1.5 left-1.5 flex items-center">
+                        <div class="relative w-8 h-8 rounded-full p-0.5 border-2 border-emerald-400 bg-black/40 flex items-center justify-center shadow-md">
+                            <img src="${img}" alt="${name}" class="w-full h-full rounded-full object-cover">
+                            <span class="absolute -bottom-1 -right-1 bg-emerald-500 text-white text-[8px] font-black px-1 py-0.2 rounded-full border border-white flex items-center gap-0.5 shadow">
+                                <i class="fa-solid fa-eye text-[7px]"></i>${views}
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="absolute bottom-1.5 left-1.5 right-1.5">
+                        <p class="text-white text-[11px] font-bold leading-tight drop-shadow truncate text-center">${name}</p>
+                    </div>
+                </div>
+            `;
+        });
+
+        container.innerHTML = html;
+    }
+
+    // --- STORY VIEWER (VIEW COUNT +1 UPDATE) ---
+    let currentStoryIndex = 0;
+    let storyTimer = null;
+    let storyProgressInterval = null;
+    const STORY_DURATION = 5000;
+
+    function openStory(index) {
+        currentStoryIndex = index;
+        const modal = document.getElementById('story-modal');
+        if (modal) modal.classList.remove('hidden');
+
+        // 1. स्क्रीन पर तुरंत +1 व्यू बढ़ाएँ
+        let currentCount = parseInt(statusStories[index].views) || 0;
+        statusStories[index].views = currentCount + 1;
+        renderStatusThumbnails(statusStories);
+
+        // 2. गूगल शीट में बैकग्राउंड में +1 सेव करें
+        fetch(GOOGLE_SHEET_API_URL + "?action=updateView&index=" + index, { method: "GET", mode: "no-cors" });
+
+        showStory(currentStoryIndex);
+    }
+
+    function showStory(index) {
+        clearInterval(storyProgressInterval);
+        clearTimeout(storyTimer);
+
+        if (!statusStories || index < 0 || index >= statusStories.length) {
+            closeStory();
+            return;
         }
-        return "";
+
+        currentStoryIndex = index;
+        const story = statusStories[currentStoryIndex];
+
+        document.getElementById('story-full-img').src = story.image;
+        document.getElementById('story-author-img').src = story.image;
+        document.getElementById('story-author-title').innerText = story.name;
+        document.getElementById('story-caption').innerText = story.caption || story.name;
+        document.getElementById('story-views-count-text').innerText = story.views || "100+";
+
+        const progressContainer = document.getElementById('story-progress-container');
+        progressContainer.innerHTML = '';
+        statusStories.forEach((_, i) => {
+            const bar = document.createElement('div');
+            bar.className = 'flex-1 h-1 bg-white/30 rounded-full overflow-hidden';
+            bar.innerHTML = `<div id="story-bar-${i}" class="h-full bg-white transition-none ${i < currentStoryIndex ? 'w-full' : 'w-0'}"></div>`;
+            progressContainer.appendChild(bar);
+        });
+
+        const activeBar = document.getElementById(`story-bar-${currentStoryIndex}`);
+        let startTime = Date.now();
+
+        storyProgressInterval = setInterval(() => {
+            const elapsed = Date.now() - startTime;
+            const progress = Math.min((elapsed / STORY_DURATION) * 100, 100);
+            if (activeBar) activeBar.style.width = `${progress}%`;
+
+            if (elapsed >= STORY_DURATION) {
+                clearInterval(storyProgressInterval);
+                nextStory();
+            }
+        }, 50);
     }
 
-    function parseAmount(val) {
-        if (!val) return 0;
-        const cleaned = String(val).replace(/[^0-9.-]+/g, "");
-        const num = parseFloat(cleaned);
-        return isNaN(num) ? 0 : num;
+    function nextStory() {
+        if (currentStoryIndex + 1 < statusStories.length) {
+            showStory(currentStoryIndex + 1);
+        } else {
+            closeStory();
+        }
     }
 
-    // --- FETCH DATA FROM GOOGLE SHEETS ---
+    function prevStory() {
+        if (currentStoryIndex - 1 >= 0) {
+            showStory(currentStoryIndex - 1);
+        } else {
+            showStory(0);
+        }
+    }
+
+    function closeStory() {
+        clearInterval(storyProgressInterval);
+        clearTimeout(storyTimer);
+        const modal = document.getElementById('story-modal');
+        if (modal) modal.classList.add('hidden');
+    }
+
+    // --- FETCH DATA FROM SHEET ---
     async function fetchSheetData() {
         const refreshIcon = document.getElementById('refresh-icon');
         if (refreshIcon) refreshIcon.classList.add('fa-spin');
 
         try {
-            const response = await fetch(GOOGLE_SHEET_API_URL, { redirect: "follow" });
+            const cacheBusterUrl = GOOGLE_SHEET_API_URL + (GOOGLE_SHEET_API_URL.includes('?') ? '&' : '?') + 't=' + Date.now();
+            const response = await fetch(cacheBusterUrl, { redirect: "follow" });
             const data = await response.json();
 
-            // 1. Sync Summary Data
+            // 1. Stories Data (Google Sheet से ऑटो-डिटेक्ट)
+            if (data && data.stories && Array.isArray(data.stories) && data.stories.length > 0) {
+                let parsedList = [];
+                data.stories.forEach((item, idx) => {
+                    let name = item["नाम"] || item["name"] || item["title"] || "";
+                    let img = "";
+
+                    // किसी भी कुंजी में से http लिंक को ढूँढना
+                    for (let k in item) {
+                        let val = String(item[k] || "").trim();
+                        if (val.indexOf("http") !== -1) {
+                            img = val;
+                            break;
+                        }
+                    }
+
+                    if (img) {
+                        if (!name) name = `झलक ${idx + 1}`;
+                        let views = item["Views"] || item["views"] || item["व्यू"] || (150 + (idx * 40));
+                        parsedList.push({ name: name, image: img, caption: name, views: views });
+                    }
+                });
+
+                if (parsedList.length > 0) {
+                    statusStories = parsedList;
+                } else {
+                    statusStories = BACKUP_STORIES;
+                }
+            } else {
+                statusStories = BACKUP_STORIES;
+            }
+            renderStatusThumbnails(statusStories);
+
+            // 2. Summary
             if (data.summary) {
                 globalSummary = data.summary;
                 const chandaEl = document.getElementById('total-chanda');
@@ -623,32 +682,36 @@
                 if (balanceEl) balanceEl.innerText = `₹ ${Number(data.summary.balance || 0).toLocaleString('en-IN')}`;
             }
 
-            // 2. Cache Donators Data & Render Top 21
+            // 3. Donators
             if (data.donators && Array.isArray(data.donators)) {
                 allDonators = data.donators;
                 renderTop21Donators();
             }
 
-            // 3. Sync Volunteers (Tab B)
-            if (data.volunteers && Array.isArray(data.volunteers)) {
-                allVolunteers = data.volunteers;
+            // 4. Volunteers
+            const rawVolunteers = data.volunteers || data.volunteer;
+            if (rawVolunteers && Array.isArray(rawVolunteers)) {
+                allVolunteers = rawVolunteers;
                 renderVolunteersList(allVolunteers);
             }
 
-            // 4. Sync Kalash Yatra
-            if (data.kalash && Array.isArray(data.kalash)) {
-                allKalashData = data.kalash;
+            // 5. Kalash Yatra
+            const rawKalash = data.kalash || data.kalash_yatra;
+            if (rawKalash && Array.isArray(rawKalash)) {
+                allKalashData = rawKalash;
                 renderKalashList(allKalashData);
             }
 
         } catch (err) {
-            console.error("Error loading Sheet data:", err);
+            console.error("Fetch Error:", err);
+            statusStories = BACKUP_STORIES;
+            renderStatusThumbnails(statusStories);
         } finally {
             if (refreshIcon) refreshIcon.classList.remove('fa-spin');
         }
     }
 
-    // --- TEMPLATE 1: DONOR CARD HTML ---
+    // --- TEMPLATES ---
     function generateDonorCardHTML(d, rankBadgeText = "") {
         const name = getVal(d, "चंदा दाता का नाम") || getVal(d, "नाम") || "गुमनाम";
         const receipt = getVal(d, "रसीद नं:") || getVal(d, "रसीद नं") || getVal(d, "receipt") || "-";
@@ -662,7 +725,6 @@
                 <div class="absolute top-0 right-0 bg-indigo-600 text-white text-[11px] font-bold px-3 py-1 rounded-bl-xl shadow-xs">
                     रसीद संख्या: #${receipt}
                 </div>
-
                 <div class="flex items-center gap-2.5 mb-2.5 pr-24">
                     <div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
                         <i class="fa-solid fa-check text-xs font-bold"></i>
@@ -675,12 +737,10 @@
                         <h3 class="font-extrabold text-gray-900 text-base leading-tight mt-0.5">${name}</h3>
                     </div>
                 </div>
-
                 <div class="bg-[#eefbf4] border border-[#d2f3e2] rounded-xl px-3.5 py-2.5 flex items-center justify-between my-2.5">
                     <span class="text-xs font-semibold text-[#0f5132]">प्राप्त सहयोग राशि:</span>
                     <span class="text-xl font-black text-[#0f5132]">₹ ${amountFormatted}</span>
                 </div>
-
                 <div class="flex items-center justify-between text-xs text-gray-500 pt-1 border-t border-gray-100/80">
                     <div class="flex items-center gap-1.5 text-gray-500">
                         <i class="fa-regular fa-calendar text-[11px]"></i>
@@ -692,21 +752,22 @@
         `;
     }
 
-    // --- TEMPLATE 2: VOLUNTEER CARD HTML (गोल फोटो, डायरेक्ट कॉल/व्हाट्सएप बटन, नो मोडल) ---
     function generateVolunteerCardHTML(v) {
         const name = getVal(v, "नाम") || "अज्ञात";
         const role = getVal(v, "रोल") || "सदस्य";
         const phone = getVal(v, "संपर्क") || "";
-        const photo = getVal(v, "फोटो");
+        let photo = "";
+        for (let k in v) {
+            let val = String(v[k] || "").trim();
+            if (val.indexOf("http") !== -1) { photo = val; break; }
+        }
 
         const initials = name.split(" ").filter(Boolean).map(n => n[0]).join("").substring(0, 2).toUpperCase() || "SV";
 
-        // 1. गोल शेप प्रोफाइल फोटो (Circle Shape)
         const avatarHtml = photo 
             ? `<img src="${photo}" alt="${name}" class="w-20 h-20 rounded-full object-cover border-2 border-indigo-200 shadow-sm shrink-0">`
             : `<div class="w-20 h-20 rounded-full bg-indigo-50 border-2 border-indigo-100 text-indigo-600 flex items-center justify-center font-bold text-2xl shrink-0 shadow-inner">${initials}</div>`;
 
-        // 3. फोन नंबर क्लीन करना एवं कॉल/व्हाट्सएप बटन बनाना
         const cleanPhone = phone.replace(/[^0-9]/g, '');
         const waPhone = cleanPhone.length === 10 ? '91' + cleanPhone : cleanPhone;
 
@@ -727,15 +788,11 @@
 
         return `
             <div class="relative bg-white rounded-2xl border-2 border-indigo-100 p-4 shadow-sm overflow-hidden">
-                <!-- Top Right Ribbon (Role/पद) -->
                 <div class="absolute top-0 right-0 bg-indigo-600 text-white text-[11px] font-bold px-3 py-1 rounded-bl-xl shadow-xs">
                     #${role}
                 </div>
-
                 <div class="flex items-center gap-3.5 pr-16">
-                    <!-- Round Profile Image -->
                     ${avatarHtml}
-                    
                     <div class="flex-1 min-w-0">
                         <div class="flex items-center gap-1.5 mb-1">
                             <span class="w-4 h-4 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-[9px] font-bold">
@@ -747,14 +804,11 @@
                         <p class="text-xs text-indigo-600 font-bold mt-1">पद: ${role}</p>
                     </div>
                 </div>
-
-                <!-- Call & WhatsApp Front Buttons -->
                 ${actionButtons}
             </div>
         `;
     }
 
-    // --- TEMPLATE 3: KALASH CARD HTML ---
     function generateKalashCardHTML(k) {
         const name = getVal(k, "नाम") || "अज्ञात";
         const village = getVal(k, "गाव / शहर") || getVal(k, "गाँव / शहर") || getVal(k, "गाव") || getVal(k, "गांव") || getVal(k, "शहर") || "-";
@@ -767,7 +821,6 @@
                 <div class="absolute top-0 right-0 bg-indigo-600 text-white text-[11px] font-bold px-3 py-1 rounded-bl-xl shadow-xs">
                     टोकन संख्या: #${token}
                 </div>
-
                 <div class="flex items-center gap-2.5 mb-2.5 pr-24">
                     <div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
                         <i class="fa-solid fa-check text-xs font-bold"></i>
@@ -777,12 +830,10 @@
                         <h3 class="font-extrabold text-gray-900 text-base leading-tight mt-0.5">${name}</h3>
                     </div>
                 </div>
-
                 <div class="bg-[#eefbf4] border border-[#d2f3e2] rounded-xl px-3.5 py-2.5 flex items-center justify-between my-2.5">
                     <span class="text-xs font-semibold text-[#0f5132]">प्राप्त सहयोग राशि:</span>
                     <span class="text-xl font-black text-[#0f5132]">₹ ${amountFormatted}</span>
                 </div>
-
                 <div class="flex items-center justify-between text-xs text-gray-500 pt-1 border-t border-gray-100/80">
                     <div class="flex items-center gap-1.5 text-gray-500">
                         <i class="fa-solid fa-location-dot text-[11px] text-rose-500"></i>
@@ -794,15 +845,13 @@
         `;
     }
 
-    // --- RENDER TOP 21 DONATORS ---
+    // --- RENDER FUNCTIONS ---
     function renderTop21Donators() {
         const container = document.getElementById('donators-list');
         const heading = document.getElementById('donators-heading');
         if (!container) return;
 
-        if (heading) {
-            heading.innerHTML = `<i class="fa-solid fa-trophy text-amber-500 text-[10px]"></i> टॉप 21 सर्वोच्च चंदा दाता`;
-        }
+        if (heading) heading.innerHTML = `<i class="fa-solid fa-trophy text-amber-500 text-[10px]"></i> टॉप 21 सर्वोच्च चंदा दाता`;
 
         if (!allDonators || allDonators.length === 0) {
             container.innerHTML = `<p class="text-xs text-gray-400 text-center py-6">कोई चंदा दाता डेटा उपलब्ध नहीं है।</p>`;
@@ -822,15 +871,12 @@
 
         const top21 = sortedDonators.slice(0, 21);
         let html = '';
-
         top21.forEach((d, idx) => {
             html += generateDonorCardHTML(d, `रैंक #${idx + 1}`);
         });
-
         container.innerHTML = html;
     }
 
-    // --- RECEIPT SEARCH LOGIC ---
     function handleReceiptSearch() {
         const input = document.getElementById('receipt-search-input');
         const clearBtn = document.getElementById('clear-search-btn');
@@ -847,9 +893,7 @@
         }
 
         if (clearBtn) clearBtn.classList.remove('hidden');
-        if (heading) {
-            heading.innerHTML = `<i class="fa-solid fa-magnifying-glass text-[10px]"></i> खोज परिणाम`;
-        }
+        if (heading) heading.innerHTML = `<i class="fa-solid fa-magnifying-glass text-[10px]"></i> खोज परिणाम`;
 
         if (!allDonators || allDonators.length === 0) {
             container.innerHTML = `<p class="text-xs text-gray-400 text-center py-6">डेटा लोड हो रहा है, कृपया प्रतीक्षा करें...</p>`;
@@ -877,7 +921,6 @@
         matches.forEach(d => {
             html += generateDonorCardHTML(d);
         });
-
         container.innerHTML = html;
     }
 
@@ -890,7 +933,6 @@
         }
     }
 
-    // --- RENDER VOLUNTEERS LIST ---
     function renderVolunteersList(list) {
         const container = document.getElementById('volunteers-list');
         const totalBadge = document.getElementById('volunteers-total');
@@ -908,23 +950,12 @@
         list.forEach(v => {
             const name = getVal(v, "नाम");
             if (!name) return;
-
             validVolunteers++;
             html += generateVolunteerCardHTML(v);
         });
 
         if (totalBadge) totalBadge.innerText = `कुल: ${validVolunteers}`;
-
-        if (validVolunteers === 0) {
-            container.innerHTML = `
-                <div class="p-6 text-center bg-white rounded-2xl border border-dashed border-gray-300">
-                    <i class="fa-regular fa-circle-question text-amber-500 text-2xl mb-1"></i>
-                    <p class="text-xs font-bold text-gray-700">कोई स्वयंसेवक नहीं मिला</p>
-                </div>
-            `;
-        } else {
-            container.innerHTML = html;
-        }
+        container.innerHTML = validVolunteers === 0 ? `<p class="text-xs text-gray-400 text-center py-6">कोई स्वयंसेवक नहीं मिला</p>` : html;
     }
 
     function filterVolunteersList() {
@@ -933,7 +964,6 @@
         if (!input) return;
 
         const q = (input.value || "").trim().toLowerCase();
-
         if (q.length > 0) {
             if (clearBtn) clearBtn.classList.remove('hidden');
         } else {
@@ -947,7 +977,6 @@
             const role = (getVal(v, "रोल")).toLowerCase();
             return name.includes(q) || role.includes(q);
         });
-
         renderVolunteersList(filtered);
     }
 
@@ -962,37 +991,28 @@
         }
     }
 
-    // --- RENDER KALASH LIST ---
     function renderKalashList(list) {
         const kalashContainer = document.getElementById('kalash-list');
         if (!kalashContainer) return;
         kalashContainer.innerHTML = '';
         let validKalashCount = 0;
-
-        if (!list || !Array.isArray(list)) return;
-
         let html = '';
+
+        if (!list || !Array.isArray(list) || list.length === 0) {
+            kalashContainer.innerHTML = `<p class="text-xs text-gray-400 text-center py-6">कोई सहभागी उपलब्ध नहीं है।</p>`;
+            return;
+        }
+
         list.forEach(k => {
             const name = getVal(k, "नाम");
             if (!name) return;
-
             validKalashCount++;
             html += generateKalashCardHTML(k);
         });
 
         const totalBadge = document.getElementById('kalash-total');
         if (totalBadge) totalBadge.innerText = `कुल: ${validKalashCount}`;
-
-        if (validKalashCount === 0) {
-            kalashContainer.innerHTML = `
-                <div class="p-6 text-center bg-white rounded-2xl border border-dashed border-gray-300">
-                    <i class="fa-regular fa-circle-question text-amber-500 text-2xl mb-1"></i>
-                    <p class="text-xs font-bold text-gray-700">कोई सहभागी नहीं मिला</p>
-                </div>
-            `;
-        } else {
-            kalashContainer.innerHTML = html;
-        }
+        kalashContainer.innerHTML = validKalashCount === 0 ? `<p class="text-xs text-gray-400 text-center py-6">कोई सहभागी नहीं मिला</p>` : html;
     }
 
     function filterKalashList() {
@@ -1015,7 +1035,6 @@
             const token = (getVal(k, "टोकन नंबर") || getVal(k, "टोकन नं") || getVal(k, "टोकन")).toLowerCase();
             return name.includes(q) || village.includes(q) || token.includes(q);
         });
-
         renderKalashList(filtered);
     }
 
@@ -1030,15 +1049,12 @@
         }
     }
 
-    // Modal: Donate QR
     function openDonateModal() {
         const upiLink = "upi://pay?pa=sathindps09@ybl&pn=Sathi%20NDPS&cu=INR";
-
         document.getElementById('modal-title').innerText = "सहयोग राशि दान करें";
         document.getElementById('modal-body').innerHTML = `
             <div class="text-center">
                 <p class="text-[11px] text-slate-500 mb-2">QR Code पर टैप करें या स्कैन करके भुगतान करें</p>
-                
                 <a href="${upiLink}" class="inline-block relative group" title="टैप करके UPI ऐप खोलें">
                     <div class="bg-white p-3 border-2 border-indigo-200 rounded-2xl inline-block shadow-sm transition active:scale-95 hover:border-indigo-500">
                         <img src="https://api.qrserver.com/v1/create-qr-code/?size=170x170&data=${encodeURIComponent(upiLink)}" alt="UPI QR" class="w-36 h-36 mx-auto">
@@ -1047,7 +1063,6 @@
                         </span>
                     </div>
                 </a>
-
                 <div class="mt-3 grid grid-cols-2 gap-2">
                     <a href="${upiLink}" class="flex items-center justify-center gap-1.5 bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white py-2 px-3 rounded-xl text-xs font-semibold shadow-xs transition">
                         <i class="fa-solid fa-mobile-screen-button"></i> किसी भी UPI से Pay करें
@@ -1056,22 +1071,11 @@
                         <i class="fa-regular fa-copy"></i> UPI ID कॉपी करें
                     </button>
                 </div>
-
-                <div class="bg-slate-50 p-3 rounded-2xl border border-slate-100 text-left text-xs space-y-1 mt-3">
-                    <p><strong>UPI ID:</strong> <span class="text-indigo-600 font-bold select-all">sathindps09@ybl</span></p>
-                    <p><strong>नाम:</strong> SATHI NDPS</p>
-                    <p><strong>बैंक:</strong> State Bank of India</p>
-                </div>
-                
-                <p class="text-[10px] text-slate-400 mt-2">
-                    * मोबाइल पर टैप करने पर PhonePe, GPay, Paytm आदि खुलेंगे।
-                </p>
             </div>
         `;
         document.getElementById('detail-modal').classList.remove('hidden');
     }
 
-    // Modal: Estimated Expense
     function openEstimatedExpenseModal() {
         document.getElementById('modal-title').innerText = "अनुमानित खर्च (Estimated Expense)";
         let listHtml = '';
@@ -1099,7 +1103,6 @@
         document.getElementById('detail-modal').classList.remove('hidden');
     }
 
-    // Modal: Event Details
     function openEventModal(title, tithi, time, venue, manager, details) {
         document.getElementById('modal-title').innerText = title;
         document.getElementById('modal-body').innerHTML = `
@@ -1120,7 +1123,29 @@
         document.getElementById('detail-modal').classList.add('hidden');
     }
 
+    function toggleAudio() {
+        const bgMusic = document.getElementById('bg-music');
+        const audioIcon = document.getElementById('audio-icon');
+        if (!bgMusic) return;
+        if (bgMusic.paused) {
+            bgMusic.play();
+            if (audioIcon) {
+                audioIcon.classList.remove('fa-volume-xmark');
+                audioIcon.classList.add('fa-volume-high');
+            }
+        } else {
+            bgMusic.pause();
+            if (audioIcon) {
+                audioIcon.classList.remove('fa-volume-high');
+                audioIcon.classList.add('fa-volume-xmark');
+            }
+        }
+    }
+
+    // शुरुआती लोड: तुरंत स्टेटस रेंडर करेगा और फिर सर्वर से सिंक करेगा
     window.addEventListener('DOMContentLoaded', () => {
+        statusStories = BACKUP_STORIES;
+        renderStatusThumbnails(statusStories);
         fetchSheetData();
     });
 </script>
