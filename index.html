@@ -534,26 +534,28 @@
         container.innerHTML = html;
     }
 
-    // --- STORY VIEWER & LIVE +1 VIEW UPDATE ---
+    // --- STORY VIEWER & LIVE +1 VIEW UPDATE (FIXED FOR ALL INDICES) ---
     let currentStoryIndex = 0;
     let storyTimer = null;
     let storyProgressInterval = null;
     const STORY_DURATION = 5000;
 
     function openStory(index) {
+        index = Number(index);
         currentStoryIndex = index;
         const modal = document.getElementById('story-modal');
         if (modal) modal.classList.remove('hidden');
 
         // 1. स्क्रीन पर तुरंत +1 व्यू बढ़ाएँ
-        let currentCount = parseInt(statusStories[index].views) || 0;
-        statusStories[index].views = currentCount + 1;
-        renderStatusThumbnails(statusStories);
+        if (statusStories && statusStories[index]) {
+            let currentCount = parseInt(statusStories[index].views) || 0;
+            statusStories[index].views = currentCount + 1;
+            renderStatusThumbnails(statusStories);
+        }
 
-        // 2. Google Sheet के Column D में लाइव +1 सेव करें
+        // 2. Google Sheet के Column D (Row index + 2) में लाइव +1 सेव करें
         const updateUrl = GOOGLE_SHEET_API_URL + "?action=updateView&index=" + index + "&t=" + Date.now();
-        const ping = new Image();
-        ping.src = updateUrl;
+        fetch(updateUrl, { method: "GET", mode: "no-cors" }).catch(err => console.log("View count ping sent"));
 
         showStory(currentStoryIndex);
     }
@@ -623,7 +625,7 @@
         if (modal) modal.classList.add('hidden');
     }
 
-    // --- FETCH DATA FROM SHEET ---
+    // --- FETCH DATA FROM SHEET (ROBUST & UNSTUCK) ---
     async function fetchSheetData() {
         const refreshIcon = document.getElementById('refresh-icon');
         if (refreshIcon) refreshIcon.classList.add('fa-spin');
@@ -633,7 +635,7 @@
             const response = await fetch(cacheBusterUrl, { redirect: "follow" });
             const data = await response.json();
 
-            // 1. Stories Data (सीधे आपके JSON से पार्स)
+            // 1. Stories Data
             if (data && data.stories && Array.isArray(data.stories) && data.stories.length > 0) {
                 statusStories = data.stories.map((item, idx) => {
                     const name = item["नाम"] || item["name"] || `झलक ${idx + 1}`;
@@ -650,6 +652,8 @@
                 }).filter(s => s.image && s.image.indexOf("http") !== -1);
 
                 renderStatusThumbnails(statusStories);
+            } else {
+                document.getElementById('status-container').innerHTML = '<p class="text-xs text-gray-400 py-6 px-2">कोई स्टेटस उपलब्ध नहीं है।</p>';
             }
 
             // 2. Summary
@@ -686,6 +690,7 @@
 
         } catch (err) {
             console.error("Fetch Error:", err);
+            document.getElementById('status-container').innerHTML = '<p class="text-xs text-rose-500 py-6 px-2">डेटा लोड करने में समस्या हुई। कृपया रिफ्रेश करें।</p>';
         } finally {
             if (refreshIcon) refreshIcon.classList.remove('fa-spin');
         }
