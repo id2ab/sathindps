@@ -79,90 +79,78 @@
         </div>
     </header>
 
-    <!-- 2. COMMON TICKER & WHATSAPP STATUS BAR -->
-    <div class="shrink-0 bg-white px-4 pt-2 pb-2.5 border-b border-gray-100 shadow-sm z-10">
-        <div class="ticker-container relative w-full overflow-hidden bg-gradient-to-r from-amber-50 via-amber-100 to-amber-50 border border-amber-200 rounded-xl mb-2.5 flex items-center py-1.5 px-2 shadow-xs">
-            <span class="shrink-0 bg-amber-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-md flex items-center gap-1 z-10 shadow-xs">
-                <i class="fa-solid fa-bullhorn text-[9px] animate-pulse"></i> अपडेट
-            </span>
-            <div class="overflow-hidden w-full relative ml-2">
-                <div id="marquee-text" class="ticker-track text-xs font-semibold text-amber-950">
-                    🚩 श्री श्री 108 नवदुर्गा पूजा महोत्सव 2026 में आप सभी का हार्दिक स्वागत है! • कलश यात्रा 11 अक्टूबर सुबह 07:00 बजे से • कलश यात्रा टोकन नंबर व विवरण चेक करें • स्टेटस फोटो देखने हेतु टैप करें।
-                </div>
-            </div>
-        </div>
-
-        <div class="flex items-center justify-between mb-1.5 px-0.5">
-            <span class="text-[11px] font-bold text-gray-700 flex items-center gap-1">
-                <i class="fa-brands fa-whatsapp text-emerald-500 text-xs"></i> ताज़ा झलकियाँ (Status)
-            </span>
-            <span class="text-[9px] text-gray-400">दाएँ-बाएँ सरकाएँ • टैप करें</span>
-        </div>
-
-        <!-- स्टेटस कार्ड्स कंटेनर (गूगल शीट से लाइव लोड) -->
-        <div id="status-container" class="flex gap-2.5 overflow-x-auto no-scrollbar py-1 min-h-[148px]">
-            <p class="text-xs text-gray-400 py-6 px-2">स्टेटस लोड हो रहा है...</p>
-        </div>
-    </div>
-
-    <!-- 3. MAIN CONTENT TABS AREA -->
+    <!-- 2. MAIN CONTENT TABS AREA -->
     <main class="flex-1 overflow-hidden relative">
 
-        <!-- ================= TAB 1: HOME & CHANDA ================= -->
-        <section id="tab-home" class="tab-content h-full flex flex-col">
-            <div class="shrink-0 bg-white px-4 pt-2 pb-2 border-b border-gray-100">
-                <div class="grid grid-cols-2 gap-2 mb-2">
-                    <button onclick="openEstimatedExpenseModal()" class="bg-amber-500 hover:bg-amber-600 text-white p-2 rounded-xl text-xs font-bold flex items-center justify-center gap-2 shadow-xs transition">
-                        <i class="fa-solid fa-calculator text-sm"></i> अनुमानित खर्च
-                    </button>
-                    <button onclick="openDonateModal()" class="bg-emerald-600 hover:bg-emerald-700 text-white p-2 rounded-xl text-xs font-bold flex items-center justify-center gap-2 shadow-xs transition">
-                        <i class="fa-solid fa-qrcode text-sm"></i> सहयोग करें (Donate)
-                    </button>
+        <!-- ================= TAB 1: HOME (गृह) ================= -->
+        <section id="tab-home" class="tab-content h-full flex flex-col overflow-y-auto pb-24">
+            
+            <!-- 1. TICKER UPDATE -->
+            <div class="px-4 pt-3 pb-1">
+                <div class="ticker-container relative w-full overflow-hidden bg-gradient-to-r from-amber-50 via-amber-100 to-amber-50 border border-amber-200 rounded-xl flex items-center py-1.5 px-2 shadow-xs">
+                    <span class="shrink-0 bg-amber-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-md flex items-center gap-1 z-10 shadow-xs">
+                        <i class="fa-solid fa-bullhorn text-[9px] animate-pulse"></i> अपडेट
+                    </span>
+                    <div class="overflow-hidden w-full relative ml-2">
+                        <div id="marquee-text" class="ticker-track text-xs font-semibold text-amber-950">
+                            🚩 श्री श्री 108 नवदुर्गा पूजा महोत्सव 2026 में आप सभी का हार्दिक स्वागत है! • कलश यात्रा 11 अक्टूबर सुबह 07:00 बजे से • सभी विवरण चेक करें • ताज़ा स्टेटस फोटो देखने हेतु टैप करें।
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. ताज़ा झलकियाँ (STATUS) - STATUS SIRF HOME TAB PAR -->
+            <div class="bg-white px-4 pt-2 pb-3 border-y border-gray-100 my-1">
+                <div class="flex items-center justify-between mb-2 px-0.5">
+                    <span class="text-xs font-bold text-gray-800 flex items-center gap-1.5">
+                        <i class="fa-brands fa-whatsapp text-emerald-500 text-sm"></i> ताज़ा झलकियाँ (Status)
+                    </span>
+                    <span class="text-[10px] text-gray-400">दाएँ-बाएँ सरकाएँ • टैप करें</span>
                 </div>
 
-                <div class="grid grid-cols-2 gap-2 mb-2">
-                    <div class="bg-emerald-50 p-2 rounded-xl border border-emerald-100">
-                        <p class="text-[11px] text-emerald-600 font-semibold">कुल चंदा कलेक्शन</p>
-                        <p id="total-chanda" class="text-base font-bold text-emerald-700 mt-0.5">₹ 0</p>
-                    </div>
-                    <div class="bg-rose-50 p-2 rounded-xl border border-rose-100">
-                        <p class="text-[11px] text-rose-600 font-semibold">कुल वास्तविक खर्च</p>
-                        <p id="total-expense" class="text-base font-bold text-rose-700 mt-0.5">₹ 0</p>
-                    </div>
+                <!-- स्टेटस कार्ड्स कंटेनर -->
+                <div id="status-container" class="flex gap-2.5 overflow-x-auto no-scrollbar py-1 min-h-[148px]">
+                    <p class="text-xs text-gray-400 py-6 px-2">स्टेटस लोड हो रहा है...</p>
                 </div>
-                
-                <div class="bg-indigo-50 p-2 rounded-xl border border-indigo-100 mb-2 flex justify-between items-center">
-                    <span class="text-xs font-semibold text-indigo-800">शेष राशि (Balance):</span>
-                    <span id="total-balance" class="text-base font-bold text-indigo-900">₹ 0</span>
-                </div>
+            </div>
 
-                <div>
-                    <div class="flex items-center justify-between mb-1">
-                        <label class="block text-xs font-bold text-gray-700 flex items-center">
-                            <i class="fa-solid fa-receipt text-indigo-600 mr-1"></i> रसीद खोजें (Find Receipt)
-                        </label>
-                        <span id="donators-heading" class="text-[10px] text-indigo-700 font-bold bg-indigo-50 border border-indigo-200 px-2 py-0.5 rounded-full flex items-center gap-1">
-                            <i class="fa-solid fa-trophy text-amber-500 text-[10px]"></i> टॉप 21 सर्वोच्च चंदा दाता
-                        </span>
-                    </div>
-                    <div class="relative flex items-center">
-                        <i class="fa-solid fa-magnifying-glass absolute left-3 text-gray-400 text-xs"></i>
-                        <input type="text" id="receipt-search-input" oninput="handleReceiptSearch()" placeholder="रसीद संख्या या नाम दर्ज करें..." class="w-full pl-8 pr-8 py-2 bg-gray-50 border border-gray-200 rounded-xl text-xs text-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition shadow-inner">
-                        <button onclick="clearSearch()" id="clear-search-btn" class="hidden absolute right-2.5 text-gray-400 hover:text-gray-600 text-sm">
-                            <i class="fa-solid fa-circle-xmark"></i>
+            <!-- 3. अनुमानित खर्च & सहयोग करें बटन - BADE SIZE MEIN STATUS KE NICHE -->
+            <div class="px-4 py-2.5">
+                <div class="grid grid-cols-2 gap-3">
+                    <button onclick="openEstimatedExpenseModal()" class="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 active:scale-95 text-white p-3.5 rounded-2xl font-bold flex flex-col items-center justify-center gap-1.5 shadow-md transition border border-amber-400/40">
+                        <i class="fa-solid fa-calculator text-2xl"></i>
+                        <span class="text-sm">अनुमानित खर्च</span>
+                        <span class="text-[10px] text-amber-100 font-normal">बजट विवरण देखें</span>
+                    </button>
+                    <button onclick="openDonateModal()" class="bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 active:scale-95 text-white p-3.5 rounded-2xl font-bold flex flex-col items-center justify-center gap-1.5 shadow-md transition border border-emerald-500/40">
+                        <i class="fa-solid fa-qrcode text-2xl"></i>
+                        <span class="text-sm">सहयोग करें (Donate)</span>
+                        <span class="text-[10px] text-emerald-100 font-normal">QR / UPI द्वारा दान</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 4. समिति परिचय कार्ड -->
+            <div class="px-4 py-3">
+                <div class="bg-indigo-50 border border-indigo-100 rounded-2xl p-4 text-center">
+                    <h3 class="font-extrabold text-indigo-900 text-sm mb-1">साथी नवदुर्गा पूजा समिति</h3>
+                    <p class="text-xs text-indigo-700 leading-relaxed">
+                        नरसंडा चौक (पुल से उत्तर), मुजफ्फरपुर। माता रानी के पावन उत्सव में सेवा एवं भक्ति भाव से सम्मिलित हों।
+                    </p>
+                    <div class="mt-3 flex justify-center gap-2">
+                        <button onclick="switchTab('chanda')" class="text-[11px] bg-indigo-600 text-white font-bold px-3 py-1.5 rounded-xl shadow-xs">
+                            <i class="fa-solid fa-receipt mr-1"></i> चंदा रसीद विवरण
+                        </button>
+                        <button onclick="switchTab('events')" class="text-[11px] bg-white text-indigo-700 font-bold border border-indigo-200 px-3 py-1.5 rounded-xl shadow-xs">
+                            <i class="fa-solid fa-calendar-days mr-1"></i> कार्यक्रम देखें
                         </button>
                     </div>
                 </div>
             </div>
 
-            <div class="flex-1 overflow-y-auto px-4 py-3 pb-24 bg-gray-50/50">
-                <div id="donators-list" class="space-y-3">
-                    <p class="text-xs text-gray-400 text-center py-6">डेटा लोड हो रहा है...</p>
-                </div>
-            </div>
         </section>
 
-        <!-- ================= TAB 2: VOLUNTEERS ================= -->
+        <!-- ================= TAB 2: VOLUNTEERS (स्वयंसेवक) ================= -->
         <section id="tab-volunteers" class="tab-content hidden h-full flex flex-col">
             <div class="shrink-0 bg-white px-4 pt-2.5 pb-2 border-b border-gray-100 shadow-xs z-10">
                 <div class="flex justify-between items-center mb-2">
@@ -189,7 +177,7 @@
             </div>
         </section>
 
-        <!-- ================= TAB 3: EVENTS ================= -->
+        <!-- ================= TAB 3: EVENTS (कार्यक्रम) ================= -->
         <section id="tab-events" class="tab-content hidden h-full overflow-y-auto p-4 pb-24 bg-gray-50/50">
             <div class="flex justify-between items-center mb-3">
                 <div>
@@ -348,28 +336,48 @@
             </div>
         </section>
 
-        <!-- ================= TAB 4: KALASH YATRA ================= -->
-        <section id="tab-kalash" class="tab-content hidden h-full flex flex-col">
-            <div class="shrink-0 bg-white px-4 pt-2.5 pb-2 border-b border-gray-100 shadow-xs z-10">
-                <div class="flex justify-between items-center mb-2">
-                    <div>
-                        <h2 class="font-bold text-gray-800 text-sm">कलश यात्रा सहभागी</h2>
-                        <p class="text-[10px] text-gray-400">पंजीकृत माताएं एवं बहनें</p>
+        <!-- ================= TAB 4: CHANDA & RECEIPTS (SHIFTED TAB) ================= -->
+        <section id="tab-chanda" class="tab-content hidden h-full flex flex-col">
+            <div class="shrink-0 bg-white px-4 pt-3 pb-2 border-b border-gray-100 shadow-xs z-10">
+                <!-- कुल चंदा कलेक्शन & कुल वास्तविक खर्च (Balance completely removed) -->
+                <div class="grid grid-cols-2 gap-2.5 mb-3">
+                    <div class="bg-emerald-50 p-2.5 rounded-2xl border border-emerald-100">
+                        <p class="text-[11px] text-emerald-600 font-semibold flex items-center gap-1">
+                            <i class="fa-solid fa-hand-holding-dollar text-xs"></i> कुल चंदा कलेक्शन
+                        </p>
+                        <p id="total-chanda" class="text-lg font-bold text-emerald-700 mt-1">₹ 0</p>
                     </div>
-                    <span id="kalash-total" class="text-xs bg-indigo-50 border border-indigo-200 text-indigo-700 px-3 py-0.5 rounded-full font-bold">कुल: 0</span>
+                    <div class="bg-rose-50 p-2.5 rounded-2xl border border-rose-100">
+                        <p class="text-[11px] text-rose-600 font-semibold flex items-center gap-1">
+                            <i class="fa-solid fa-money-bill-wave text-xs"></i> कुल वास्तविक खर्च
+                        </p>
+                        <p id="total-expense" class="text-lg font-bold text-rose-700 mt-1">₹ 0</p>
+                    </div>
                 </div>
 
-                <div class="relative">
-                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-gray-400 text-xs"></i>
-                    <input type="text" id="kalash-search-input" oninput="filterKalashList()" placeholder="टोकन नं, नाम या गांव से खोजें..." class="w-full pl-8 pr-8 py-2 bg-gray-50 border border-gray-200 rounded-xl text-xs text-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition shadow-inner">
-                    <button onclick="clearKalashSearch()" id="clear-kalash-btn" class="hidden absolute right-2.5 top-2 text-gray-400 hover:text-gray-600 text-sm">
-                        <i class="fa-solid fa-circle-xmark"></i>
-                    </button>
+                <!-- रसीद खोजें और टॉप 21 हेडर -->
+                <div>
+                    <div class="flex items-center justify-between mb-1.5">
+                        <label class="block text-xs font-bold text-gray-700 flex items-center">
+                            <i class="fa-solid fa-receipt text-indigo-600 mr-1"></i> रसीद खोजें (Find Receipt)
+                        </label>
+                        <span id="donators-heading" class="text-[10px] text-indigo-700 font-bold bg-indigo-50 border border-indigo-200 px-2 py-0.5 rounded-full flex items-center gap-1">
+                            <i class="fa-solid fa-trophy text-amber-500 text-[10px]"></i> टॉप 21 सर्वोच्च चंदा दाता
+                        </span>
+                    </div>
+                    <div class="relative flex items-center">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3 text-gray-400 text-xs"></i>
+                        <input type="text" id="receipt-search-input" oninput="handleReceiptSearch()" placeholder="रसीद संख्या या नाम दर्ज करें..." class="w-full pl-8 pr-8 py-2 bg-gray-50 border border-gray-200 rounded-xl text-xs text-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition shadow-inner">
+                        <button onclick="clearSearch()" id="clear-search-btn" class="hidden absolute right-2.5 text-gray-400 hover:text-gray-600 text-sm">
+                            <i class="fa-solid fa-circle-xmark"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
 
+            <!-- चंदा दाताओं की सूची -->
             <div class="flex-1 overflow-y-auto px-4 py-3 pb-24 bg-gray-50/50">
-                <div id="kalash-list" class="space-y-3">
+                <div id="donators-list" class="space-y-3">
                     <p class="text-xs text-gray-400 text-center py-6">डेटा लोड हो रहा है...</p>
                 </div>
             </div>
@@ -377,7 +385,7 @@
 
     </main>
 
-    <!-- 4. BOTTOM NAVIGATION BAR -->
+    <!-- 3. BOTTOM NAVIGATION BAR -->
     <nav class="shrink-0 bg-white border-t border-gray-200 flex justify-around py-2 z-20 shadow-md">
         <button onclick="switchTab('home')" id="nav-home" class="nav-btn text-indigo-600 flex flex-col items-center text-xs font-semibold">
             <i class="fa-solid fa-house text-lg mb-1"></i> गृह
@@ -388,12 +396,12 @@
         <button onclick="switchTab('events')" id="nav-events" class="nav-btn text-gray-400 flex flex-col items-center text-xs font-semibold">
             <i class="fa-solid fa-calendar-days text-lg mb-1"></i> कार्यक्रम
         </button>
-        <button onclick="switchTab('kalash')" id="nav-kalash" class="nav-btn text-gray-400 flex flex-col items-center text-xs font-semibold">
-            <i class="fa-solid fa-hands-praying text-lg mb-1"></i> कलश यात्रा
+        <button onclick="switchTab('chanda')" id="nav-chanda" class="nav-btn text-gray-400 flex flex-col items-center text-xs font-semibold">
+            <i class="fa-solid fa-receipt text-lg mb-1"></i> चंदा / रसीद
         </button>
     </nav>
 
-    <!-- 5. WHATSAPP FULL SCREEN STORY VIEWER MODAL -->
+    <!-- 4. WHATSAPP FULL SCREEN STORY VIEWER MODAL -->
     <div id="story-modal" class="fixed inset-0 bg-black z-50 hidden flex flex-col justify-between select-none">
         <div class="p-3 z-20">
             <div id="story-progress-container" class="flex gap-1.5 w-full mb-3"></div>
@@ -425,7 +433,7 @@
         </div>
     </div>
 
-    <!-- 6. DETAIL POPUP MODAL -->
+    <!-- 5. DETAIL POPUP MODAL -->
     <div id="detail-modal" class="fixed inset-0 bg-black/60 z-30 hidden flex items-end justify-center">
         <div class="bg-white w-full max-w-[450px] rounded-t-2xl p-5 border-t border-gray-200">
             <div class="flex justify-between items-center border-b pb-3 mb-3">
@@ -439,20 +447,19 @@
 
 </div>
 
-<!-- JAVASCRIPT LOGIC (CORS-SAFE JSONP SYNC) -->
+<!-- JAVASCRIPT LOGIC (EXACT WORKING URL + JSONP AUTO-SYNC) -->
 <script>
+    // AAPKI WORKING FILE KA SAHI GOOGLE APPS SCRIPT URL
     const GOOGLE_SHEET_API_URL = "https://script.google.com/macros/s/AKfycbzjb1t4v1cj34YmD7ov7fK0viOR9Y1wMLRSh7cGqu2LJUkvSab4HHou3_DkesAjjIz2yw/exec";
 
     let globalSummary = {
         totalChanda: 0,
         totalExpense: 0,
-        balance: 0,
         totalEstimated: 0,
         estimatedList: []
     };
     let allDonators = [];
     let allVolunteers = [];
-    let allKalashData = [];
     let statusStories = [];
 
     function getVal(obj, keyName) {
@@ -493,7 +500,7 @@
         }
     }
 
-    // --- RENDER STORIES (100% LIVE SHEET DATA) ---
+    // --- RENDER STORIES (SIRF HOME PAR) ---
     function renderStatusThumbnails(storiesList) {
         const container = document.getElementById('status-container');
         if (!container) return;
@@ -517,7 +524,7 @@
                     <div class="absolute top-1.5 left-1.5 flex items-center">
                         <div class="relative w-8 h-8 rounded-full p-0.5 border-2 border-emerald-400 bg-black/40 flex items-center justify-center shadow-md">
                             <img src="${img}" alt="${name}" class="w-full h-full rounded-full object-cover">
-                            <span class="absolute -bottom-1 -right-1 bg-emerald-500 text-white text-[8px] font-black px-1 py-0.2 rounded-full border border-white flex items-center gap-0.5 shadow">
+                            <span class="absolute -bottom-1 -right-1 bg-emerald-500 text-white text-[8px] font-black px-1 py-0.5 rounded-full border border-white flex items-center gap-0.5 shadow">
                                 <i class="fa-solid fa-eye text-[7px]"></i>${views}
                             </span>
                         </div>
@@ -541,26 +548,26 @@
 
     function openStory(index) {
         index = Number(index);
+        if (!statusStories || index < 0 || index >= statusStories.length) return;
+
         currentStoryIndex = index;
         const modal = document.getElementById('story-modal');
         if (modal) modal.classList.remove('hidden');
 
-        // 1. स्क्रीन पर तुरंत +1 बढ़ाएँ
-        if (statusStories && statusStories[index]) {
-            statusStories[index].views += 1;
-            renderStatusThumbnails(statusStories);
-        }
+        // 1. Screen par turant +1 count karein
+        statusStories[index].views = (parseInt(statusStories[index].views, 10) || 0) + 1;
+        renderStatusThumbnails(statusStories);
 
-        // 2. Google Sheet में Row (index + 2) के Column D में +1 सेव करें
+        // 2. Google Sheet me Row (index + 2) Column D me +1 ping bhejein
         try {
             const updateUrl = GOOGLE_SHEET_API_URL + "?action=updateView&index=" + index + "&t=" + Date.now();
-            const scriptTag = document.createElement("script");
-            scriptTag.src = updateUrl;
-            scriptTag.onload = () => scriptTag.remove();
-            scriptTag.onerror = () => scriptTag.remove();
-            document.body.appendChild(scriptTag);
+            const s = document.createElement("script");
+            s.src = updateUrl;
+            s.onload = () => s.remove();
+            s.onerror = () => s.remove();
+            document.body.appendChild(s);
         } catch (e) {
-            console.error("View update error:", e);
+            console.error("View update ping error:", e);
         }
 
         showStory(currentStoryIndex);
@@ -610,7 +617,7 @@
 
     function nextStory() {
         if (currentStoryIndex + 1 < statusStories.length) {
-            showStory(currentStoryIndex + 1);
+            openStory(currentStoryIndex + 1);
         } else {
             closeStory();
         }
@@ -618,9 +625,9 @@
 
     function prevStory() {
         if (currentStoryIndex - 1 >= 0) {
-            showStory(currentStoryIndex - 1);
+            openStory(currentStoryIndex - 1);
         } else {
-            showStory(0);
+            openStory(0);
         }
     }
 
@@ -631,7 +638,7 @@
         if (modal) modal.classList.add('hidden');
     }
 
-    // --- GLOBAL JSONP CALLBACK (CORS बायपास करके 100% डेटा लोड करता है) ---
+    // --- WORKING GLOBAL JSONP CALLBACK (APPS SCRIPT SE 100% CONNECTED) ---
     window.handleSheetDataResponse = function(data) {
         const refreshIcon = document.getElementById('refresh-icon');
         if (refreshIcon) refreshIcon.classList.remove('fa-spin');
@@ -641,7 +648,7 @@
             return;
         }
 
-        // 1. Stories Data (केवल शीट में मौजूद लाइव पंक्तियाँ)
+        // 1. Stories Data
         if (data.stories && Array.isArray(data.stories) && data.stories.length > 0) {
             statusStories = data.stories.map(item => ({
                 name: item.name || "झलक",
@@ -658,9 +665,10 @@
         // 2. Summary
         if (data.summary) {
             globalSummary = data.summary;
-            document.getElementById('total-chanda').innerText = `₹ ${Number(data.summary.totalChanda || 0).toLocaleString('en-IN')}`;
-            document.getElementById('total-expense').innerText = `₹ ${Number(data.summary.totalExpense || 0).toLocaleString('en-IN')}`;
-            document.getElementById('total-balance').innerText = `₹ ${Number(data.summary.balance || 0).toLocaleString('en-IN')}`;
+            const chandaEl = document.getElementById('total-chanda');
+            const expenseEl = document.getElementById('total-expense');
+            if (chandaEl) chandaEl.innerText = `₹ ${Number(data.summary.totalChanda || 0).toLocaleString('en-IN')}`;
+            if (expenseEl) expenseEl.innerText = `₹ ${Number(data.summary.totalExpense || 0).toLocaleString('en-IN')}`;
         }
 
         // 3. Donators
@@ -674,15 +682,9 @@
             allVolunteers = data.volunteers;
             renderVolunteersList(allVolunteers);
         }
-
-        // 5. Kalash Yatra
-        if (data.kalash && Array.isArray(data.kalash)) {
-            allKalashData = data.kalash;
-            renderKalashList(allKalashData);
-        }
     };
 
-    // --- FETCH DATA VIA SCRIPT TAG (JSONP) ---
+    // --- FETCH DATA VIA WORKING JSONP TAG ---
     function fetchSheetData() {
         const refreshIcon = document.getElementById('refresh-icon');
         if (refreshIcon) refreshIcon.classList.add('fa-spin');
@@ -799,42 +801,7 @@
         `;
     }
 
-    function generateKalashCardHTML(k) {
-        const name = getVal(k, "नाम") || "अज्ञात";
-        const village = getVal(k, "गाव / शहर") || getVal(k, "गाँव / शहर") || getVal(k, "गाव") || getVal(k, "गांव") || getVal(k, "शहर") || "-";
-        const token = getVal(k, "टोकन नंबर") || getVal(k, "टोकन नं") || getVal(k, "टोकन") || "-";
-        const amountNum = parseAmount(getVal(k, "सहयोग राशि") || getVal(k, "राशि"));
-        const amountFormatted = amountNum.toLocaleString('en-IN');
-
-        return `
-            <div class="relative bg-white rounded-2xl border-2 border-indigo-100 p-4 shadow-sm overflow-hidden">
-                <div class="absolute top-0 right-0 bg-indigo-600 text-white text-[11px] font-bold px-3 py-1 rounded-bl-xl shadow-xs">
-                    टोकन संख्या: #${token}
-                </div>
-                <div class="flex items-center gap-2.5 mb-2.5 pr-24">
-                    <div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
-                        <i class="fa-solid fa-check text-xs font-bold"></i>
-                    </div>
-                    <div>
-                        <span class="text-[11px] text-gray-400 font-medium">पंजीकृत कलश यात्री</span>
-                        <h3 class="font-extrabold text-gray-900 text-base leading-tight mt-0.5">${name}</h3>
-                    </div>
-                </div>
-                <div class="bg-[#eefbf4] border border-[#d2f3e2] rounded-xl px-3.5 py-2.5 flex items-center justify-between my-2.5">
-                    <span class="text-xs font-semibold text-[#0f5132]">प्राप्त सहयोग राशि:</span>
-                    <span class="text-xl font-black text-[#0f5132]">₹ ${amountFormatted}</span>
-                </div>
-                <div class="flex items-center justify-between text-xs text-gray-500 pt-1 border-t border-gray-100/80">
-                    <div class="flex items-center gap-1.5 text-gray-500">
-                        <i class="fa-solid fa-location-dot text-[11px] text-rose-500"></i>
-                        <span>गाव / शहर:</span>
-                    </div>
-                    <span class="font-semibold text-gray-700">${village}</span>
-                </div>
-            </div>
-        `;
-    }
-
+    // --- RENDER FUNCTIONS ---
     function renderTop21Donators() {
         const container = document.getElementById('donators-list');
         const heading = document.getElementById('donators-heading');
@@ -980,64 +947,6 @@
         }
     }
 
-    function renderKalashList(list) {
-        const kalashContainer = document.getElementById('kalash-list');
-        if (!kalashContainer) return;
-        kalashContainer.innerHTML = '';
-        let validKalashCount = 0;
-        let html = '';
-
-        if (!list || !Array.isArray(list) || list.length === 0) {
-            kalashContainer.innerHTML = `<p class="text-xs text-gray-400 text-center py-6">कोई सहभागी उपलब्ध नहीं है।</p>`;
-            return;
-        }
-
-        list.forEach(k => {
-            const name = getVal(k, "नाम");
-            if (!name) return;
-            validKalashCount++;
-            html += generateKalashCardHTML(k);
-        });
-
-        const totalBadge = document.getElementById('kalash-total');
-        if (totalBadge) totalBadge.innerText = `कुल: ${validKalashCount}`;
-        kalashContainer.innerHTML = validKalashCount === 0 ? `<p class="text-xs text-gray-400 text-center py-6">कोई सहभागी नहीं मिला</p>` : html;
-    }
-
-    function filterKalashList() {
-        const input = document.getElementById('kalash-search-input');
-        const clearBtn = document.getElementById('clear-kalash-btn');
-        if (!input) return;
-        const q = (input.value || "").trim().toLowerCase();
-        
-        if (q.length > 0) {
-            if (clearBtn) clearBtn.classList.remove('hidden');
-        } else {
-            if (clearBtn) clearBtn.classList.add('hidden');
-            renderKalashList(allKalashData);
-            return;
-        }
-
-        const filtered = allKalashData.filter(k => {
-            const name = (getVal(k, "नाम")).toLowerCase();
-            const village = (getVal(k, "गाव / शहर") || getVal(k, "गाँव / शहर") || getVal(k, "गाव") || getVal(k, "गांव")).toLowerCase();
-            const token = (getVal(k, "टोकन नंबर") || getVal(k, "टोकन नं") || getVal(k, "टोकन")).toLowerCase();
-            return name.includes(q) || village.includes(q) || token.includes(q);
-        });
-        renderKalashList(filtered);
-    }
-
-    function clearKalashSearch() {
-        const input = document.getElementById('kalash-search-input');
-        const clearBtn = document.getElementById('clear-kalash-btn');
-        if (input) {
-            input.value = '';
-            if (clearBtn) clearBtn.classList.add('hidden');
-            renderKalashList(allKalashData);
-            input.focus();
-        }
-    }
-
     function openDonateModal() {
         const upiLink = "upi://pay?pa=sathindps09@ybl&pn=Sathi%20NDPS&cu=INR";
         document.getElementById('modal-title').innerText = "सहयोग राशि दान करें";
@@ -1053,7 +962,7 @@
                     </div>
                 </a>
                 <div class="mt-3 grid grid-cols-2 gap-2">
-                    <a href="${upiLink}" class="flex items-center justify-center gap-1.5 bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white py-2 px-3 rounded-xl text-xs font-semibold shadow-xs transition">
+                    <a href="${upiLink}" class="flex items-center justify-center gap-1.5 bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white py-2.5 px-3 rounded-xl text-xs font-semibold shadow-xs transition">
                         <i class="fa-solid fa-mobile-screen-button"></i> किसी भी UPI से Pay करें
                     </a>
                     <button onclick="navigator.clipboard.writeText('sathindps09@ybl'); alert('UPI ID कॉपी हो गई!');" class="flex items-center justify-center gap-1.5 bg-slate-100 hover:bg-slate-200 active:scale-95 text-slate-700 py-2 px-3 rounded-xl text-xs font-semibold border border-slate-200 transition">
@@ -1135,6 +1044,5 @@
         fetchSheetData();
     });
 </script>
-
 </body>
 </html>
