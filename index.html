@@ -439,8 +439,7 @@
 
 </div>
 
-<!-- JAVASCRIPT LOGIC -->
-<!-- JAVASCRIPT LOGIC -->
+<!-- JAVASCRIPT LOGIC (CORS-SAFE JSONP SYNC) -->
 <script>
     const GOOGLE_SHEET_API_URL = "https://script.google.com/macros/s/AKfycbx_n4x0ju6IwQxxUKXWUZR36Hhq2A83EpCGV6xdkRur5JJG11gFCxCWv2-LttVN9PH8AA/exec";
 
@@ -454,7 +453,7 @@
     let allDonators = [];
     let allVolunteers = [];
     let allKalashData = [];
-    let statusStories = []; // कोई हार्डकोडेड बैकअप नहीं, केवल शीट से आएगा
+    let statusStories = [];
 
     function getVal(obj, keyName) {
         if (!obj || typeof obj !== 'object') return "";
@@ -494,12 +493,11 @@
         }
     }
 
-    // --- WHATSAPP STATUS RENDER ---
+    // --- RENDER STORIES (100% LIVE SHEET DATA) ---
     function renderStatusThumbnails(storiesList) {
         const container = document.getElementById('status-container');
         if (!container) return;
 
-        // अगर शीट खाली है या डेटा हटा दिया गया है, तो खाली संदेश दिखाएं
         if (!storiesList || storiesList.length === 0) {
             container.innerHTML = `<p class="text-xs text-gray-400 py-6 px-2">कोई स्टेटस उपलब्ध नहीं है।</p>`;
             return;
@@ -549,12 +547,11 @@
 
         // 1. स्क्रीन पर तुरंत +1 बढ़ाएँ
         if (statusStories && statusStories[index]) {
-            let currentCount = parseInt(statusStories[index].views, 10) || 0;
-            statusStories[index].views = currentCount + 1;
+            statusStories[index].views += 1;
             renderStatusThumbnails(statusStories);
         }
 
-        // 2. Google Sheet में सुरक्षित रूप से +1 पिंग भेजें
+        // 2. Google Sheet में Row (index + 2) के Column D में +1 सेव करें
         try {
             const updateUrl = GOOGLE_SHEET_API_URL + "?action=updateView&index=" + index + "&t=" + Date.now();
             const scriptTag = document.createElement("script");
@@ -563,7 +560,7 @@
             scriptTag.onerror = () => scriptTag.remove();
             document.body.appendChild(scriptTag);
         } catch (e) {
-            console.error("View update ping error:", e);
+            console.error("View update error:", e);
         }
 
         showStory(currentStoryIndex);
@@ -634,7 +631,75 @@
         if (modal) modal.classList.add('hidden');
     }
 
-    /fetchSheetData
+    // --- GLOBAL JSONP CALLBACK (CORS बायपास करके 100% डेटा लोड करता है) ---
+    window.handleSheetDataResponse = function(data) {
+        const refreshIcon = document.getElementById('refresh-icon');
+        if (refreshIcon) refreshIcon.classList.remove('fa-spin');
+
+        if (!data || data.status === "error") {
+            document.getElementById('status-container').innerHTML = '<p class="text-xs text-rose-500 py-6 px-2">डेटा लोड नहीं हो सका।</p>';
+            return;
+        }
+
+        // 1. Stories Data (केवल शीट में मौजूद लाइव पंक्तियाँ)
+        if (data.stories && Array.isArray(data.stories) && data.stories.length > 0) {
+            statusStories = data.stories.map(item => ({
+                name: item.name || "झलक",
+                image: item.image,
+                caption: item.caption || item.name,
+                views: parseInt(item.views, 10) || 0
+            }));
+            renderStatusThumbnails(statusStories);
+        } else {
+            statusStories = [];
+            renderStatusThumbnails([]);
+        }
+
+        // 2. Summary
+        if (data.summary) {
+            globalSummary = data.summary;
+            document.getElementById('total-chanda').innerText = `₹ ${Number(data.summary.totalChanda || 0).toLocaleString('en-IN')}`;
+            document.getElementById('total-expense').innerText = `₹ ${Number(data.summary.totalExpense || 0).toLocaleString('en-IN')}`;
+            document.getElementById('total-balance').innerText = `₹ ${Number(data.summary.balance || 0).toLocaleString('en-IN')}`;
+        }
+
+        // 3. Donators
+        if (data.donators && Array.isArray(data.donators)) {
+            allDonators = data.donators;
+            renderTop21Donators();
+        }
+
+        // 4. Volunteers
+        if (data.volunteers && Array.isArray(data.volunteers)) {
+            allVolunteers = data.volunteers;
+            renderVolunteersList(allVolunteers);
+        }
+
+        // 5. Kalash Yatra
+        if (data.kalash && Array.isArray(data.kalash)) {
+            allKalashData = data.kalash;
+            renderKalashList(allKalashData);
+        }
+    };
+
+    // --- FETCH DATA VIA SCRIPT TAG (JSONP) ---
+    function fetchSheetData() {
+        const refreshIcon = document.getElementById('refresh-icon');
+        if (refreshIcon) refreshIcon.classList.add('fa-spin');
+
+        const oldScript = document.getElementById('jsonp-script');
+        if (oldScript) oldScript.remove();
+
+        const jsonpUrl = GOOGLE_SHEET_API_URL + "?callback=handleSheetDataResponse&t=" + Date.now();
+        const script = document.createElement("script");
+        script.id = "jsonp-script";
+        script.src = jsonpUrl;
+        script.onerror = function() {
+            if (refreshIcon) refreshIcon.classList.remove('fa-spin');
+            document.getElementById('status-container').innerHTML = '<p class="text-xs text-rose-500 py-6 px-2">नेटवर्क त्रुटि। पुनः प्रयास करें।</p>';
+        };
+        document.body.appendChild(script);
+    }
 
     // --- TEMPLATES ---
     function generateDonorCardHTML(d, rankBadgeText = "") {
@@ -770,7 +835,6 @@
         `;
     }
 
-    // --- RENDER FUNCTIONS ---
     function renderTop21Donators() {
         const container = document.getElementById('donators-list');
         const heading = document.getElementById('donators-heading');
@@ -1067,10 +1131,10 @@
         }
     }
 
-    // पेज लोड होने पर सीधे Google Sheet से लाइव डेटा लाएगा
     window.addEventListener('DOMContentLoaded', () => {
         fetchSheetData();
     });
 </script>
+
 </body>
 </html>
