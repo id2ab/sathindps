@@ -440,6 +440,7 @@
 </div>
 
 <!-- JAVASCRIPT LOGIC -->
+<!-- JAVASCRIPT LOGIC -->
 <script>
     const GOOGLE_SHEET_API_URL = "https://script.google.com/macros/s/AKfycbx_n4x0ju6IwQxxUKXWUZR36Hhq2A83EpCGV6xdkRur5JJG11gFCxCWv2-LttVN9PH8AA/exec";
 
@@ -453,19 +454,7 @@
     let allDonators = [];
     let allVolunteers = [];
     let allKalashData = [];
-    let statusStories = [];
-
-    // आपकी Google Sheet का सीधा बैकअप (ताकि स्क्रीन 1 सेकंड भी खाली न रहे)
-    const INITIAL_STORIES = [
-        { name: "भव्य कलश यात्रा", image: "https://lh3.googleusercontent.com/pw/AP1GczPPqhJw-GxqjvlO08mrOtlXovrOoK7oo_iKFwiu_9vUomzjssKdYrYd7HwYyuVfdOFf7kv10pQccqA4j8Q1Voke-ew_QuaL9V-haeOiRVB4R7ATuo3qAeWrB1klwfpg8Y8VYC6VmYydbmYwQwhUh3s0=w1440-h808-s-no-gm?authuser=0", views: 10 },
-        { name: "कलश स्थापना", image: "https://lh3.googleusercontent.com/pw/AP1GczPn2o58R5YiAWkEvHqJJxhwIbhkeUUVGj90CezN8MHvq-cKU0CALjLBUX5dVRvDFodkL-R2nmbQQQjvhhoVDH1f-_TietoDViDuEn1FhFy8oPwqo_zT4kZ3VlQDRQ5uUJWRrcFullo_Bd8uhgccr84-=w1280-h720-s-no-gm?authuser=0", views: 9 },
-        { name: "दीपों प्रज्वलन", image: "https://lh3.googleusercontent.com/pw/AP1GczN_8KdXfid3WjU2pvQJUXdeFbyJYXgJWK5q2Dro1oQcOBtvDY2b80q1aRFliNQKPLmxoakOi6IdhRwGsDSxEtZowa1wN-XV6Az4jU4jmxzdibFYhGGPcM73ji9Aw1rQ4r78BNDiGTsVxVFcY4FizzNO=w1680-h945-s-no-gm?authuser=0", views: 1 },
-        { name: "विल्वा निमंत्रण", image: "https://lh3.googleusercontent.com/pw/AP1GczMU3S93SHeHsjcxMM-Fgu4CiMwNQGrzElqYbgalFmNZPWwN7Wu6FJMSx2Petw4IjSxhklt5Iv-KFpFkLHpOpOaTj-6dCbOMTbHjrql4JQGnnOYXphEn3foklvQ6erYYAX4Cd7iyQEMbJEeJj9bivWqO=w1199-h686-s-no-gm?authuser=0", views: 1 },
-        { name: "प्राण प्रतिष्ठा", image: "https://lh3.googleusercontent.com/pw/AP1GczMkdzS5YMQFJrVm7n6uNnrOsRMOdoAuOAUo1sJimvt67LckAFok6BB1nKuRj_j6MoCm7skmmgiSVG7o7qlIOvw9HgZYFglDoOA024MHdxa8NKodZX6VKMr-87GXB_y3VfHnhsPZF_ZVxHWlg8J-Ykuu=w1440-h808-s-no-gm?authuser=0", views: 1 },
-        { name: "Ma", image: "https://lh3.googleusercontent.com/pw/AP1GczMAljN3apxgOF_Hx7cVJIrrHp0gz8Cm44yloKKBrZ4_U1iZgLORMZIaJYumwLuGJpomtHhrwB7II4D2YI2IK9l_xBtLPQiMVz7rzhPuOfoptUZOz_psP7lUrMJ2ETNhvdNOFp4MyWoQPpbuEyp72lsn=w1216-h658-s-no-gm?authuser=0", views: 1 },
-        { name: "devi", image: "https://lh3.googleusercontent.com/pw/AP1GczMAljN3apxgOF_Hx7cVJIrrHp0gz8Cm44yloKKBrZ4_U1iZgLORMZIaJYumwLuGJpomtHhrwB7II4D2YI2IK9l_xBtLPQiMVz7rzhPuOfoptUZOz_psP7lUrMJ2ETNhvdNOFp4MyWoQPpbuEyp72lsn=w1216-h658-s-no-gm?authuser=0", views: 1 },
-        { name: "devi durga", image: "https://lh3.googleusercontent.com/pw/AP1GczPPqhJw-GxqjvlO08mrOtlXovrOoK7oo_iKFwiu_9vUomzjssKdYrYd7HwYyuVfdOFf7kv10pQccqA4j8Q1Voke-ew_QuaL9V-haeOiRVB4R7ATuo3qAeWrB1klwfpg8Y8VYC6VmYydbmYwQwhUh3s0=w1440-h808-s-no-gm?authuser=0", views: 1 }
-    ];
+    let statusStories = []; // कोई हार्डकोडेड बैकअप नहीं, केवल शीट से आएगा
 
     function getVal(obj, keyName) {
         if (!obj || typeof obj !== 'object') return "";
@@ -505,15 +494,19 @@
         }
     }
 
-    // --- WHATSAPP STATUS RENDER (FAIL-SAFE) ---
+    // --- WHATSAPP STATUS RENDER ---
     function renderStatusThumbnails(storiesList) {
         const container = document.getElementById('status-container');
         if (!container) return;
 
-        const listToRender = (storiesList && storiesList.length > 0) ? storiesList : INITIAL_STORIES;
+        // अगर शीट खाली है या डेटा हटा दिया गया है, तो खाली संदेश दिखाएं
+        if (!storiesList || storiesList.length === 0) {
+            container.innerHTML = `<p class="text-xs text-gray-400 py-6 px-2">कोई स्टेटस उपलब्ध नहीं है।</p>`;
+            return;
+        }
 
         let html = '';
-        listToRender.forEach((item, index) => {
+        storiesList.forEach((item, index) => {
             const name = item.name || `झलक ${index + 1}`;
             const img = item.image;
             const views = item.views || 0;
@@ -554,28 +547,20 @@
         const modal = document.getElementById('story-modal');
         if (modal) modal.classList.remove('hidden');
 
-        // 1. स्क्रीन पर तुरंत व्यूज (+1) बढ़ाएँ
+        // 1. स्क्रीन पर तुरंत +1 बढ़ाएँ
         if (statusStories && statusStories[index]) {
             let currentCount = parseInt(statusStories[index].views, 10) || 0;
             statusStories[index].views = currentCount + 1;
             renderStatusThumbnails(statusStories);
         }
 
-        // 2. Google Sheet में 100% पक्का अपडेट (CORS-Safe Dynamic Script Ping)
+        // 2. Google Sheet में सुरक्षित रूप से +1 पिंग भेजें
         try {
             const updateUrl = GOOGLE_SHEET_API_URL + "?action=updateView&index=" + index + "&t=" + Date.now();
             const scriptTag = document.createElement("script");
             scriptTag.src = updateUrl;
-            scriptTag.onload = function() {
-                if (document.body.contains(scriptTag)) {
-                    document.body.removeChild(scriptTag);
-                }
-            };
-            scriptTag.onerror = function() {
-                if (document.body.contains(scriptTag)) {
-                    document.body.removeChild(scriptTag);
-                }
-            };
+            scriptTag.onload = () => scriptTag.remove();
+            scriptTag.onerror = () => scriptTag.remove();
             document.body.appendChild(scriptTag);
         } catch (e) {
             console.error("View update ping error:", e);
@@ -649,18 +634,18 @@
         if (modal) modal.classList.add('hidden');
     }
 
-    // --- FETCH DATA FROM SHEET ---
+    // --- FETCH DATA FROM SHEET (PURE SHEET SYNC) ---
     async function fetchSheetData() {
         const refreshIcon = document.getElementById('refresh-icon');
         if (refreshIcon) refreshIcon.classList.add('fa-spin');
 
         try {
-            // रैंडम पैरामीटर जोड़कर ब्राउज़र कैश को हमेशा बायपास करें
-            const cacheUrl = GOOGLE_SHEET_API_URL + "?t=" + Date.now() + Math.random();
-            const response = await fetch(cacheUrl, { redirect: "follow" });
+            // हमेशा फ्रेश डेटा के लिए टाइमस्टैम्प
+            const cacheBusterUrl = GOOGLE_SHEET_API_URL + "?t=" + Date.now();
+            const response = await fetch(cacheBusterUrl, { redirect: "follow" });
             const data = await response.json();
 
-            // 1. Stories को मैप करें
+            // 1. Stories: केवल वही दिखाएगा जो अभी शीट में मौजूद है
             if (data && data.stories && Array.isArray(data.stories) && data.stories.length > 0) {
                 statusStories = data.stories.map((item, idx) => {
                     const name = item["नाम"] || item["name"] || `झलक ${idx + 1}`;
@@ -672,14 +657,15 @@
                         }
                     }
                     const caption = item["Caption"] || item["caption"] || name;
-                    const views = parseInt(item["Views"] || item["views"] || 0) || 0;
+                    const views = parseInt(item["Views"] || item["views"] || 0, 10) || 0;
                     return { name, image: img, caption, views };
                 }).filter(s => s.image && s.image.indexOf("http") !== -1);
 
                 renderStatusThumbnails(statusStories);
             } else {
-                statusStories = INITIAL_STORIES;
-                renderStatusThumbnails(statusStories);
+                // अगर शीट से स्टेटस हटा दिया गया है, तो तुरंत खाली कर दे
+                statusStories = [];
+                renderStatusThumbnails([]);
             }
 
             // 2. Summary
@@ -716,8 +702,8 @@
 
         } catch (err) {
             console.error("Fetch Error:", err);
-            statusStories = INITIAL_STORIES;
-            renderStatusThumbnails(statusStories);
+            statusStories = [];
+            renderStatusThumbnails([]);
         } finally {
             if (refreshIcon) refreshIcon.classList.remove('fa-spin');
         }
@@ -1154,10 +1140,8 @@
         }
     }
 
-    // पेज खुलते ही तुरंत डिफ़ॉल्ट स्टेटस रेंडर होंगे और फिर API से लाइव व्यूज सिंक होंगे
+    // पेज लोड होने पर सीधे Google Sheet से लाइव डेटा लाएगा
     window.addEventListener('DOMContentLoaded', () => {
-        statusStories = INITIAL_STORIES;
-        renderStatusThumbnails(statusStories);
         fetchSheetData();
     });
 </script>
