@@ -107,7 +107,7 @@
                 </div>
             </div>
 
-            <!-- 2. ताज़ा झलकियाँ (STATUS) - अब ऊपर -->
+            <!-- 2. ताज़ा झलकियाँ (STATUS) -->
             <div class="bg-white px-4 pt-2 pb-3 border-y border-gray-100 my-1">
                 <div class="flex items-center justify-between mb-2 px-0.5">
                     <span class="text-xs font-bold text-gray-800 flex items-center gap-1.5">
@@ -122,7 +122,7 @@
                 </div>
             </div>
 
-            <!-- 3. अनुमानित खर्च & सहयोग करें बटन - अब स्टेटस के ठीक नीचे -->
+            <!-- 3. अनुमानित खर्च & सहयोग करें बटन -->
             <div class="px-4 py-2.5">
                 <div class="grid grid-cols-2 gap-3">
                     <button onclick="openEstimatedExpenseModal()" class="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 active:scale-95 text-white p-3.5 rounded-2xl font-bold flex flex-col items-center justify-center gap-1.5 shadow-md transition border border-amber-400/40">
@@ -344,10 +344,10 @@
             </div>
         </section>
 
-        <!-- ================= TAB 4: CHANDA & RECEIPTS (स्थानांतरित टैब) ================= -->
+        <!-- ================= TAB 4: CHANDA & RECEIPTS ================= -->
         <section id="tab-chanda" class="tab-content hidden h-full flex flex-col">
             <div class="shrink-0 bg-white px-4 pt-3 pb-2 border-b border-gray-100 shadow-xs z-10">
-                <!-- कुल चंदा कलेक्शन & कुल वास्तविक खर्च (बिना शेष राशि के) -->
+                <!-- कुल चंदा कलेक्शन & कुल वास्तविक खर्च -->
                 <div class="grid grid-cols-2 gap-2.5 mb-3">
                     <div class="bg-emerald-50 p-2.5 rounded-2xl border border-emerald-100">
                         <p class="text-[11px] text-emerald-600 font-semibold flex items-center gap-1">
@@ -532,7 +532,7 @@
                     <div class="absolute top-1.5 left-1.5 flex items-center">
                         <div class="relative w-8 h-8 rounded-full p-0.5 border-2 border-emerald-400 bg-black/40 flex items-center justify-center shadow-md">
                             <img src="${img}" alt="${name}" class="w-full h-full rounded-full object-cover">
-                            <span class="absolute -bottom-1 -right-1 bg-emerald-500 text-white text-[8px] font-black px-1 py-0.2 rounded-full border border-white flex items-center gap-0.5 shadow">
+                            <span class="absolute -bottom-1 -right-1 bg-emerald-500 text-white text-[8px] font-black px-1 py-0.5 rounded-full border border-white flex items-center gap-0.5 shadow">
                                 <i class="fa-solid fa-eye text-[7px]"></i>${views}
                             </span>
                         </div>
@@ -556,19 +556,27 @@
 
     function openStory(index) {
         index = Number(index);
+        if (!statusStories || index < 0 || index >= statusStories.length) return;
+
         currentStoryIndex = index;
         const modal = document.getElementById('story-modal');
         if (modal) modal.classList.remove('hidden');
 
         // 1. स्क्रीन पर तुरंत +1 बढ़ाएँ
-        if (statusStories && statusStories[index]) {
-            statusStories[index].views += 1;
-            renderStatusThumbnails(statusStories);
-        }
+        statusStories[index].views = (parseInt(statusStories[index].views, 10) || 0) + 1;
+        renderStatusThumbnails(statusStories);
 
-        // 2. Google Sheet में Row (index + 2) के Column D में +1 सेव करना
-        const updateUrl = GOOGLE_SHEET_API_URL + "?action=updateView&index=" + index + "&t=" + Date.now();
-        fetch(updateUrl, { method: "GET", mode: "no-cors" }).catch(() => {});
+        // 2. Google Sheet में Row (index + 2) के Column D में +1 सेव करना (CORS-Safe Dynamic Script Ping)
+        try {
+            const updateUrl = GOOGLE_SHEET_API_URL + "?action=updateView&index=" + index + "&t=" + Date.now();
+            const s = document.createElement("script");
+            s.src = updateUrl;
+            s.onload = () => s.remove();
+            s.onerror = () => s.remove();
+            document.body.appendChild(s);
+        } catch (e) {
+            console.error("View update ping error:", e);
+        }
 
         showStory(currentStoryIndex);
     }
@@ -617,7 +625,7 @@
 
     function nextStory() {
         if (currentStoryIndex + 1 < statusStories.length) {
-            showStory(currentStoryIndex + 1);
+            openStory(currentStoryIndex + 1);
         } else {
             closeStory();
         }
@@ -625,9 +633,9 @@
 
     function prevStory() {
         if (currentStoryIndex - 1 >= 0) {
-            showStory(currentStoryIndex - 1);
+            openStory(currentStoryIndex - 1);
         } else {
-            showStory(0);
+            openStory(0);
         }
     }
 
@@ -638,31 +646,44 @@
         if (modal) modal.classList.add('hidden');
     }
 
-    // --- असली और सीधा डेटा फ़ेच (DIRECT FETCH) ---
+    // --- डायरेक्ट और सुरक्षित डेटा फ़ेच ---
     async function fetchSheetData() {
         const refreshIcon = document.getElementById('refresh-icon');
         if (refreshIcon) refreshIcon.classList.add('fa-spin');
 
         try {
-            const cacheUrl = GOOGLE_SHEET_API_URL + "?t=" + Date.now();
+            const cacheUrl = GOOGLE_SHEET_API_URL + (GOOGLE_SHEET_API_URL.includes('?') ? '&' : '?') + 't=' + Date.now();
             const response = await fetch(cacheUrl, { redirect: "follow" });
             const data = await response.json();
 
-            // 1. Stories Data (सीधे गूगल शीट से)
+            // 1. Stories Data (सीधे शीट की पंक्तियों से)
             if (data && data.stories && Array.isArray(data.stories) && data.stories.length > 0) {
-                statusStories = data.stories.map(item => ({
-                    name: item.name || "झलक",
-                    image: item.image,
-                    caption: item.caption || item.name,
-                    views: parseInt(item.views, 10) || 0
-                }));
+                statusStories = [];
+                data.stories.forEach((item, idx) => {
+                    let name = item.name || item["नाम"] || `झलक ${idx + 1}`;
+                    let img = item.image || item["फोटो"] || "";
+                    let caption = item.caption || item["Caption"] || name;
+                    let views = parseInt(item.views || item["Views"] || 0, 10) || 0;
+
+                    if (!img) {
+                        for (let k in item) {
+                            let val = String(item[k] || "").trim();
+                            if (val.toLowerCase().startsWith("http")) { img = val; break; }
+                        }
+                    }
+
+                    if (img && img.toLowerCase().includes("http")) {
+                        statusStories.push({ name, image: img, caption, views });
+                    }
+                });
+
                 renderStatusThumbnails(statusStories);
             } else {
                 statusStories = [];
                 renderStatusThumbnails([]);
             }
 
-            // 2. Summary (कुल चंदा & कुल वास्तविक खर्च)
+            // 2. Summary (कुल चंदा और कुल खर्च)
             if (data && data.summary) {
                 globalSummary = data.summary;
                 const chandaEl = document.getElementById('total-chanda');
@@ -741,7 +762,7 @@
         let photo = "";
         for (let k in v) {
             let val = String(v[k] || "").trim();
-            if (val.indexOf("http") !== -1) { photo = val; break; }
+            if (val.toLowerCase().indexOf("http") !== -1) { photo = val; break; }
         }
 
         const initials = name.split(" ").filter(Boolean).map(n => n[0]).join("").substring(0, 2).toUpperCase() || "SV";
@@ -952,7 +973,7 @@
                     </div>
                 </a>
                 <div class="mt-3 grid grid-cols-2 gap-2">
-                    <a href="${upiLink}" class="flex items-center justify-center gap-1.5 bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white py-2 px-3 rounded-xl text-xs font-semibold shadow-xs transition">
+                    <a href="${upiLink}" class="flex items-center justify-center gap-1.5 bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white py-2.5 px-3 rounded-xl text-xs font-semibold shadow-xs transition">
                         <i class="fa-solid fa-mobile-screen-button"></i> किसी भी UPI से Pay करें
                     </a>
                     <button onclick="navigator.clipboard.writeText('sathindps09@ybl'); alert('UPI ID कॉपी हो गई!');" class="flex items-center justify-center gap-1.5 bg-slate-100 hover:bg-slate-200 active:scale-95 text-slate-700 py-2 px-3 rounded-xl text-xs font-semibold border border-slate-200 transition">
