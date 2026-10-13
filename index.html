@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sathi NDPS App</title>
+    <title>Sathi NDPS - Clean Portrait Stack</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
@@ -24,17 +24,9 @@
             flex-direction: column;
             overflow: hidden;
         }
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-
-        .hidden {
-            display: none !important;
-        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .hidden { display: none !important; }
 
         @keyframes marqueeScroll {
             0% { transform: translateX(100%); }
@@ -45,8 +37,15 @@
             white-space: nowrap;
             animation: marqueeScroll 22s linear infinite;
         }
-        .ticker-container:hover .ticker-track {
-            animation-play-state: paused;
+
+        /* Reference Image Jaisa Realistic Stack Effect */
+        .stack-card-back-2 {
+            transform: rotate(-3.5deg) translate(-2px, -3px);
+            transform-origin: bottom center;
+        }
+        .stack-card-back-1 {
+            transform: rotate(3deg) translate(2px, -2px);
+            transform-origin: bottom center;
         }
     </style>
 </head>
@@ -54,7 +53,7 @@
 
 <div class="app-container">
 
-    <!-- BACKGROUND AUDIO ELEMENT -->
+    <!-- BACKGROUND AUDIO -->
     <audio id="bg-music" loop>
         <source src="https://id2ab.github.io/sathindps/silence-your-thoughts-peaceful-sitar-music-for-deep-relaxation-inner-peace_eQLcpOWb.mp3" type="audio/mp3">
     </audio>
@@ -73,7 +72,7 @@
             <button onclick="toggleAudio()" title="Sound On/Off" class="text-white text-lg bg-indigo-700 w-8 h-8 rounded-full flex items-center justify-center border border-indigo-400">
                 <i id="audio-icon" class="fa-solid fa-volume-xmark text-sm"></i>
             </button>
-            <button onclick="fetchSheetData()" title="रिफ्रेश डेटा" class="text-white text-lg pr-1">
+            <button onclick="fetchAllData()" title="रिफ्रेश डेटा" class="text-white text-lg pr-1">
                 <i id="refresh-icon" class="fa-solid fa-rotate-right"></i>
             </button>
         </div>
@@ -85,7 +84,7 @@
         <!-- ================= TAB 1: HOME (गृह) ================= -->
         <section id="tab-home" class="tab-content h-full flex flex-col overflow-y-auto pb-24">
             
-            <!-- 1. TICKER UPDATE -->
+            <!-- TICKER UPDATE -->
             <div class="px-4 pt-3 pb-1">
                 <div class="ticker-container relative w-full overflow-hidden bg-gradient-to-r from-amber-50 via-amber-100 to-amber-50 border border-amber-200 rounded-xl flex items-center py-1.5 px-2 shadow-xs">
                     <span class="shrink-0 bg-amber-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-md flex items-center gap-1 z-10 shadow-xs">
@@ -93,28 +92,28 @@
                     </span>
                     <div class="overflow-hidden w-full relative ml-2">
                         <div id="marquee-text" class="ticker-track text-xs font-semibold text-amber-950">
-                            🚩 श्री श्री 108 नवदुर्गा पूजा महोत्सव 2026 में आप सभी का हार्दिक स्वागत है! • दीपों प्रज्वलन-समय: 15 अक्टूबर 2026 शाम 06:00 बजे सभी कलश यात्री एवं श्रद्धालुओं द्वारा दीप प्रज्वलन कर भगवती की आराधना  • सभी विवरण चेक करें • ताज़ा स्टेटस फोटो देखने हेतु टैप करें।
+                            🚩 श्री श्री 108 नवदुर्गा पूजा महोत्सव 2026 में आप सभी का हार्दिक स्वागत है! • कलश यात्रा 11 अक्टूबर सुबह 07:00 बजे से • ताज़ा स्टेटस फोटो देखने हेतु टैप करें।
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- 2. ताज़ा झलकियाँ (STATUS) - STATUS SIRF HOME TAB PAR -->
-            <div class="bg-white px-4 pt-2 pb-3 border-y border-gray-100 my-1">
-                <div class="flex items-center justify-between mb-2 px-0.5">
+            <!-- ताज़ा झलकियाँ (PORTRAIT STACK STATUS) -->
+            <div class="bg-white px-4 pt-2 pb-4 border-y border-gray-100 my-1">
+                <div class="flex items-center justify-between mb-2.5 px-0.5">
                     <span class="text-xs font-bold text-gray-800 flex items-center gap-1.5">
                         <i class="fa-brands fa-whatsapp text-emerald-500 text-sm"></i> ताज़ा झलकियाँ (Status)
                     </span>
                     <span class="text-[10px] text-gray-400">दाएँ-बाएँ सरकाएँ • टैप करें</span>
                 </div>
 
-                <!-- स्टेटस कार्ड्स कंटेनर -->
-                <div id="status-container" class="flex gap-2.5 overflow-x-auto no-scrollbar py-1 min-h-[148px]">
+                <!-- Status Cards Container -->
+                <div id="status-container" class="flex gap-4 overflow-x-auto no-scrollbar py-3 px-2 min-h-[190px] items-center">
                     <p class="text-xs text-gray-400 py-6 px-2">स्टेटस लोड हो रहा है...</p>
                 </div>
             </div>
 
-            <!-- 3. अनुमानित खर्च & सहयोग करें बटन - BADE SIZE MEIN STATUS KE NICHE -->
+            <!-- BUTTONS (अनुमानित खर्च & सहयोग करें) -->
             <div class="px-4 py-2.5">
                 <div class="grid grid-cols-2 gap-3">
                     <button onclick="openEstimatedExpenseModal()" class="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 active:scale-95 text-white p-3.5 rounded-2xl font-bold flex flex-col items-center justify-center gap-1.5 shadow-md transition border border-amber-400/40">
@@ -130,7 +129,7 @@
                 </div>
             </div>
 
-            <!-- 4. समिति परिचय कार्ड -->
+            <!-- समिति संक्षिप्त परिचय -->
             <div class="px-4 py-3">
                 <div class="bg-indigo-50 border border-indigo-100 rounded-2xl p-4 text-center">
                     <h3 class="font-extrabold text-indigo-900 text-sm mb-1">साथी नवदुर्गा पूजा समिति</h3>
@@ -336,10 +335,9 @@
             </div>
         </section>
 
-        <!-- ================= TAB 4: CHANDA & RECEIPTS (SHIFTED TAB) ================= -->
+        <!-- ================= TAB 4: CHANDA & RECEIPTS ================= -->
         <section id="tab-chanda" class="tab-content hidden h-full flex flex-col">
             <div class="shrink-0 bg-white px-4 pt-3 pb-2 border-b border-gray-100 shadow-xs z-10">
-                <!-- कुल चंदा कलेक्शन & कुल वास्तविक खर्च (Balance completely removed) -->
                 <div class="grid grid-cols-2 gap-2.5 mb-3">
                     <div class="bg-emerald-50 p-2.5 rounded-2xl border border-emerald-100">
                         <p class="text-[11px] text-emerald-600 font-semibold flex items-center gap-1">
@@ -355,7 +353,6 @@
                     </div>
                 </div>
 
-                <!-- रसीद खोजें और टॉप 21 हेडर -->
                 <div>
                     <div class="flex items-center justify-between mb-1.5">
                         <label class="block text-xs font-bold text-gray-700 flex items-center">
@@ -375,7 +372,6 @@
                 </div>
             </div>
 
-            <!-- चंदा दाताओं की सूची -->
             <div class="flex-1 overflow-y-auto px-4 py-3 pb-24 bg-gray-50/50">
                 <div id="donators-list" class="space-y-3">
                     <p class="text-xs text-gray-400 text-center py-6">डेटा लोड हो रहा है...</p>
@@ -401,8 +397,10 @@
         </button>
     </nav>
 
-    <!-- 4. WHATSAPP FULL SCREEN STORY VIEWER MODAL -->
+    <!-- 4. UPGRADED STORY VIEWER (FULL SCREEN) -->
     <div id="story-modal" class="fixed inset-0 bg-black z-50 hidden flex flex-col justify-between select-none">
+        
+        <!-- TOP CONTROLS & BARS -->
         <div class="p-3 z-20">
             <div id="story-progress-container" class="flex gap-1.5 w-full mb-3"></div>
             <div class="flex justify-between items-center text-white px-1">
@@ -410,21 +408,36 @@
                     <img id="story-author-img" src="" alt="Thumbnail" class="w-9 h-9 rounded-full object-cover border-2 border-emerald-400 shadow">
                     <div>
                         <h4 id="story-author-title" class="font-bold text-xs leading-tight">Sathi NDPS</h4>
-                        <p id="story-time-badge" class="text-[10px] text-gray-300">लाइव स्टेटस</p>
+                        <p id="story-group-sub" class="text-[10px] text-gray-300">झलक 1/1</p>
                     </div>
                 </div>
-                <button onclick="closeStory()" class="text-white hover:text-gray-300 text-xl font-bold p-1">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
+                
+                <div class="flex items-center gap-3">
+                    <button onclick="shareStoryWhatsApp()" title="शेयर करें" class="text-white hover:text-emerald-400 text-lg">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </button>
+                    <button onclick="closeStory()" class="text-white hover:text-gray-300 text-xl font-bold p-1">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
             </div>
         </div>
 
-        <div class="flex-1 relative flex items-center justify-center overflow-hidden">
-            <img id="story-full-img" src="" alt="Story View" class="w-full h-full object-contain">
-            <div onclick="prevStory()" class="absolute left-0 top-0 w-1/3 h-full cursor-pointer z-10"></div>
-            <div onclick="nextStory()" class="absolute right-0 top-0 w-2/3 h-full cursor-pointer z-10"></div>
+        <!-- MAIN MEDIA AREA (IMAGE & VIDEO AUTO-SWITCH) -->
+        <div id="story-touch-area" 
+             onmousedown="pauseStory()" onmouseup="resumeStory()" 
+             ontouchstart="pauseStory()" ontouchend="resumeStory()"
+             class="flex-1 relative flex items-center justify-center overflow-hidden">
+            
+            <img id="story-full-img" src="" alt="Story View" class="w-full h-full object-contain pointer-events-none">
+            <video id="story-full-video" playsinline class="w-full h-full object-contain pointer-events-none hidden"></video>
+
+            <!-- Navigation Touch zones -->
+            <div onclick="prevStory(event)" class="absolute left-0 top-0 w-1/3 h-full cursor-pointer z-10"></div>
+            <div onclick="nextStory(event)" class="absolute right-0 top-0 w-2/3 h-full cursor-pointer z-10"></div>
         </div>
 
+        <!-- BOTTOM CAPTION & VIEWS -->
         <div class="p-4 text-center z-20 bg-gradient-to-t from-black/80 to-transparent">
             <p id="story-caption" class="text-white text-xs font-semibold drop-shadow mb-1"></p>
             <span id="story-views-bottom" class="inline-flex items-center gap-1 bg-black/40 text-emerald-300 text-[10px] px-2.5 py-0.5 rounded-full border border-emerald-500/30">
@@ -447,10 +460,13 @@
 
 </div>
 
-<!-- JAVASCRIPT LOGIC (EXACT WORKING URL + JSONP AUTO-SYNC) -->
+<!-- JAVASCRIPT LOGIC -->
 <script>
-    // AAPKI WORKING FILE KA SAHI GOOGLE APPS SCRIPT URL
-    const GOOGLE_SHEET_API_URL = "https://script.google.com/macros/s/AKfycbzjb1t4v1cj34YmD7ov7fK0viOR9Y1wMLRSh7cGqu2LJUkvSab4HHou3_DkesAjjIz2yw/exec";
+    // 1. SHEET 1 URL: Sirf Status / Stories Test ke liye
+    const URL_STATUS_SHEET = "https://script.google.com/macros/s/AKfycbxozgMEPDp0u9H83hL0o7mImBFXhROXRmQjg0p6tv-e6wgg6ZRCapmKgm-xYMB8ASte/exec";
+
+    // 2. SHEET 2 URL: Chanda, Expenses, Donators, Volunteers ke liye
+    const URL_MAIN_SHEET = "https://script.google.com/macros/s/AKfycbzjb1t4v1cj34YmD7ov7fK0viOR9Y1wMLRSh7cGqu2LJUkvSab4HHou3_DkesAjjIz2yw/exec";
 
     let globalSummary = {
         totalChanda: 0,
@@ -460,7 +476,24 @@
     };
     let allDonators = [];
     let allVolunteers = [];
-    let statusStories = [];
+    let statusGroups = [];
+
+    function getViewedStories() {
+        try {
+            return JSON.parse(localStorage.getItem('ndps_viewed_stories') || '[]');
+        } catch(e) {
+            return [];
+        }
+    }
+
+    function markStoryAsViewed(groupId) {
+        if (!groupId) return;
+        let viewed = getViewedStories();
+        if (!viewed.includes(groupId)) {
+            viewed.push(groupId);
+            localStorage.setItem('ndps_viewed_stories', JSON.stringify(viewed));
+        }
+    }
 
     function getVal(obj, keyName) {
         if (!obj || typeof obj !== 'object') return "";
@@ -500,38 +533,62 @@
         }
     }
 
-    // --- RENDER STORIES (SIRF HOME PAR) ---
-    function renderStatusThumbnails(storiesList) {
+    // --- RENDER STATUS WITH REALISTIC PORTRAIT DECK STACK ---
+    function renderStatusThumbnails(groupsList) {
         const container = document.getElementById('status-container');
         if (!container) return;
 
-        if (!storiesList || storiesList.length === 0) {
+        if (!groupsList || groupsList.length === 0) {
             container.innerHTML = `<p class="text-xs text-gray-400 py-6 px-2">कोई स्टेटस उपलब्ध नहीं है।</p>`;
             return;
         }
 
+        const viewedList = getViewedStories();
         let html = '';
-        storiesList.forEach((item, index) => {
-            const name = item.name || `झलक ${index + 1}`;
-            const img = item.image;
-            const views = item.views || 0;
+
+        groupsList.forEach((group, index) => {
+            const name = group.name || `झलक ${index + 1}`;
+            const img = group.thumbnail;
+            const itemCount = group.items ? group.items.length : 1;
+            const isViewed = viewedList.includes(group.groupId);
+            const totalViews = group.items ? group.items.reduce((acc, curr) => acc + (curr.views || 0), 0) : 0;
+
+            const ringColor = isViewed ? 'border-gray-400 opacity-80' : 'border-emerald-400';
+            const badgeBg = isViewed ? 'bg-gray-500' : 'bg-emerald-500';
+
+            // Reference Image Jaisa Deck Effect (Jab 1 se zyada photos hon)
+            let stackCardsHtml = '';
+            if (itemCount > 1) {
+                stackCardsHtml = `
+                    <!-- Back Card 2 (Bottom layer with subtle tilt) -->
+                    <div class="absolute inset-0 w-28 h-44 bg-slate-300/80 rounded-2xl border border-white/60 shadow-sm stack-card-back-2 pointer-events-none z-0"></div>
+                    <!-- Back Card 1 (Middle layer with reverse tilt) -->
+                    <div class="absolute inset-0 w-28 h-44 bg-slate-400/85 rounded-2xl border border-white/80 shadow-sm stack-card-back-1 pointer-events-none z-0"></div>
+                `;
+            }
 
             html += `
-                <div onclick="openStory(${index})" class="shrink-0 w-24 h-36 rounded-2xl relative overflow-hidden cursor-pointer shadow-sm active:scale-95 transition bg-slate-900 border border-gray-200">
-                    <img src="${img}" alt="${name}" class="w-full h-full object-cover opacity-85">
-                    <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/80"></div>
-                    
-                    <div class="absolute top-1.5 left-1.5 flex items-center">
-                        <div class="relative w-8 h-8 rounded-full p-0.5 border-2 border-emerald-400 bg-black/40 flex items-center justify-center shadow-md">
-                            <img src="${img}" alt="${name}" class="w-full h-full rounded-full object-cover">
-                            <span class="absolute -bottom-1 -right-1 bg-emerald-500 text-white text-[8px] font-black px-1 py-0.5 rounded-full border border-white flex items-center gap-0.5 shadow">
-                                <i class="fa-solid fa-eye text-[7px]"></i>${views}
-                            </span>
+                <div class="relative shrink-0 my-1">
+                    ${stackCardsHtml}
+                    <!-- Main Front Portrait Card -->
+                    <div onclick="openGroupStory(${index})" class="relative z-10 w-28 h-44 rounded-2xl overflow-hidden cursor-pointer shadow-md active:scale-95 transition bg-slate-900 border-2 border-white">
+                        <img src="${img}" alt="${name}" class="w-full h-full object-cover opacity-90">
+                        <div class="absolute inset-0 bg-gradient-to-b from-black/55 via-transparent to-black/85"></div>
+                        
+                        <!-- Top-Left Avatar Ring + Views Count -->
+                        <div class="absolute top-2 left-2 flex items-center">
+                            <div class="relative w-8 h-8 rounded-full p-0.5 border-2 ${ringColor} bg-black/40 flex items-center justify-center shadow-md">
+                                <img src="${img}" alt="${name}" class="w-full h-full rounded-full object-cover">
+                                <span class="absolute -bottom-1 -right-1 ${badgeBg} text-white text-[8px] font-black px-1 py-0.5 rounded-full border border-white flex items-center gap-0.5 shadow">
+                                    <i class="fa-solid fa-eye text-[7px]"></i>${totalViews}
+                                </span>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="absolute bottom-1.5 left-1.5 right-1.5">
-                        <p class="text-white text-[11px] font-bold leading-tight drop-shadow truncate text-center">${name}</p>
+
+                        <!-- Card Bottom Label -->
+                        <div class="absolute bottom-2 left-2 right-2">
+                            <p class="text-white text-xs font-bold leading-tight drop-shadow truncate text-center">${name}</p>
+                        </div>
                     </div>
                 </div>
             `;
@@ -540,71 +597,100 @@
         container.innerHTML = html;
     }
 
-    // --- STORY VIEWER & LIVE +1 VIEW UPDATE ---
-    let currentStoryIndex = 0;
-    let storyTimer = null;
+    // --- STORY PLAYER LOGIC ---
+    let currentGroupIndex = 0;
+    let currentItemIndex = 0;
     let storyProgressInterval = null;
     const STORY_DURATION = 5000;
+    let storyStartTime = 0;
+    let storyPausedTime = 0;
+    let isPaused = false;
 
-    function openStory(index) {
-        index = Number(index);
-        if (!statusStories || index < 0 || index >= statusStories.length) return;
+    function openGroupStory(groupIndex, itemIndex = 0) {
+        groupIndex = Number(groupIndex);
+        if (!statusGroups || groupIndex < 0 || groupIndex >= statusGroups.length) return;
 
-        currentStoryIndex = index;
+        currentGroupIndex = groupIndex;
+        currentItemIndex = itemIndex;
+
         const modal = document.getElementById('story-modal');
         if (modal) modal.classList.remove('hidden');
 
-        // 1. Screen par turant +1 count karein
-        statusStories[index].views = (parseInt(statusStories[index].views, 10) || 0) + 1;
-        renderStatusThumbnails(statusStories);
+        const group = statusGroups[currentGroupIndex];
+        markStoryAsViewed(group.groupId);
 
-        // 2. Google Sheet me Row (index + 2) Column D me +1 ping bhejein
-        try {
-            const updateUrl = GOOGLE_SHEET_API_URL + "?action=updateView&index=" + index + "&t=" + Date.now();
-            const s = document.createElement("script");
-            s.src = updateUrl;
-            s.onload = () => s.remove();
-            s.onerror = () => s.remove();
-            document.body.appendChild(s);
-        } catch (e) {
-            console.error("View update ping error:", e);
-        }
-
-        showStory(currentStoryIndex);
+        showItem(currentGroupIndex, currentItemIndex);
     }
 
-    function showStory(index) {
+    function showItem(gIndex, iIndex) {
         clearInterval(storyProgressInterval);
-        clearTimeout(storyTimer);
+        isPaused = false;
 
-        if (!statusStories || index < 0 || index >= statusStories.length) {
+        const group = statusGroups[gIndex];
+        if (!group || !group.items || !group.items[iIndex]) {
             closeStory();
             return;
         }
 
-        currentStoryIndex = index;
-        const story = statusStories[currentStoryIndex];
+        const item = group.items[iIndex];
 
-        document.getElementById('story-full-img').src = story.image;
-        document.getElementById('story-author-img').src = story.image;
-        document.getElementById('story-author-title').innerText = story.name;
-        document.getElementById('story-caption').innerText = story.caption || story.name;
-        document.getElementById('story-views-count-text').innerText = story.views || "1";
+        // 1. Screen views +1 update
+        item.views = (parseInt(item.views, 10) || 0) + 1;
+        renderStatusThumbnails(statusGroups);
+
+        // 2. Status test sheet Column F ping update
+        if (item.rowNumber) {
+            try {
+                const updateUrl = URL_STATUS_SHEET + "?action=updateView&row=" + item.rowNumber + "&t=" + Date.now();
+                const s = document.createElement("script");
+                s.src = updateUrl;
+                s.onload = () => s.remove();
+                s.onerror = () => s.remove();
+                document.body.appendChild(s);
+            } catch (e) {
+                console.error("View ping error:", e);
+            }
+        }
+
+        const imgEl = document.getElementById('story-full-img');
+        const vidEl = document.getElementById('story-full-video');
+
+        if (item.type === "video") {
+            imgEl.classList.add('hidden');
+            vidEl.classList.remove('hidden');
+            vidEl.src = item.mediaUrl;
+            vidEl.currentTime = 0;
+            vidEl.play().catch(() => {});
+        } else {
+            vidEl.pause();
+            vidEl.classList.add('hidden');
+            imgEl.classList.remove('hidden');
+            imgEl.src = item.mediaUrl;
+        }
+
+        document.getElementById('story-author-img').src = group.thumbnail;
+        document.getElementById('story-author-title').innerText = group.name;
+        document.getElementById('story-group-sub').innerText = `झलक ${iIndex + 1}/${group.items.length}`;
+        document.getElementById('story-caption').innerText = item.caption || group.name;
+        document.getElementById('story-views-count-text').innerText = item.views || "1";
 
         const progressContainer = document.getElementById('story-progress-container');
         progressContainer.innerHTML = '';
-        statusStories.forEach((_, i) => {
+        group.items.forEach((_, i) => {
             const bar = document.createElement('div');
             bar.className = 'flex-1 h-1 bg-white/30 rounded-full overflow-hidden';
-            bar.innerHTML = `<div id="story-bar-${i}" class="h-full bg-white transition-none ${i < currentStoryIndex ? 'w-full' : 'w-0'}"></div>`;
+            bar.innerHTML = `<div id="story-bar-${i}" class="h-full bg-white transition-none ${i < currentItemIndex ? 'w-full' : 'w-0'}"></div>`;
             progressContainer.appendChild(bar);
         });
 
-        const activeBar = document.getElementById(`story-bar-${currentStoryIndex}`);
-        let startTime = Date.now();
+        const activeBar = document.getElementById(`story-bar-${currentItemIndex}`);
+        storyStartTime = Date.now();
+        storyPausedTime = 0;
 
         storyProgressInterval = setInterval(() => {
-            const elapsed = Date.now() - startTime;
+            if (isPaused) return;
+
+            const elapsed = (Date.now() - storyStartTime) - storyPausedTime;
             const progress = Math.min((elapsed / STORY_DURATION) * 100, 100);
             if (activeBar) activeBar.style.width = `${progress}%`;
 
@@ -615,54 +701,84 @@
         }, 50);
     }
 
-    function nextStory() {
-        if (currentStoryIndex + 1 < statusStories.length) {
-            openStory(currentStoryIndex + 1);
+    let pauseStart = 0;
+    function pauseStory() {
+        if (isPaused) return;
+        isPaused = true;
+        pauseStart = Date.now();
+        const vidEl = document.getElementById('story-full-video');
+        if (vidEl && !vidEl.classList.contains('hidden')) vidEl.pause();
+    }
+
+    function resumeStory() {
+        if (!isPaused) return;
+        isPaused = false;
+        storyPausedTime += (Date.now() - pauseStart);
+        const vidEl = document.getElementById('story-full-video');
+        if (vidEl && !vidEl.classList.contains('hidden')) vidEl.play().catch(() => {});
+    }
+
+    function nextStory(e) {
+        if (e) e.stopPropagation();
+        const group = statusGroups[currentGroupIndex];
+        if (currentItemIndex + 1 < group.items.length) {
+            currentItemIndex++;
+            showItem(currentGroupIndex, currentItemIndex);
+        } else if (currentGroupIndex + 1 < statusGroups.length) {
+            currentGroupIndex++;
+            currentItemIndex = 0;
+            showItem(currentGroupIndex, currentItemIndex);
         } else {
             closeStory();
         }
     }
 
-    function prevStory() {
-        if (currentStoryIndex - 1 >= 0) {
-            openStory(currentStoryIndex - 1);
+    function prevStory(e) {
+        if (e) e.stopPropagation();
+        if (currentItemIndex - 1 >= 0) {
+            currentItemIndex--;
+            showItem(currentGroupIndex, currentItemIndex);
+        } else if (currentGroupIndex - 1 >= 0) {
+            currentGroupIndex--;
+            const prevGroup = statusGroups[currentGroupIndex];
+            currentItemIndex = prevGroup.items.length - 1;
+            showItem(currentGroupIndex, currentItemIndex);
         } else {
-            openStory(0);
+            showItem(currentGroupIndex, 0);
         }
     }
 
     function closeStory() {
         clearInterval(storyProgressInterval);
-        clearTimeout(storyTimer);
+        const vidEl = document.getElementById('story-full-video');
+        if (vidEl) vidEl.pause();
         const modal = document.getElementById('story-modal');
         if (modal) modal.classList.add('hidden');
+        renderStatusThumbnails(statusGroups);
     }
 
-    // --- WORKING GLOBAL JSONP CALLBACK (APPS SCRIPT SE 100% CONNECTED) ---
-    window.handleSheetDataResponse = function(data) {
-        const refreshIcon = document.getElementById('refresh-icon');
-        if (refreshIcon) refreshIcon.classList.remove('fa-spin');
+    function shareStoryWhatsApp() {
+        if (!statusGroups || !statusGroups[currentGroupIndex]) return;
+        const group = statusGroups[currentGroupIndex];
+        const item = group.items[currentItemIndex];
+        const text = `🚩 श्री श्री 108 नवदुर्गा पूजा महोत्सव 2026 🚩\n\nझलक: *${group.name}*\n${item.caption ? 'विवरण: ' + item.caption + '\n' : ''}\nदेखें: ${item.mediaUrl}`;
+        window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
+    }
 
-        if (!data || data.status === "error") {
-            document.getElementById('status-container').innerHTML = '<p class="text-xs text-rose-500 py-6 px-2">डेटा लोड नहीं हो सका।</p>';
-            return;
-        }
-
-        // 1. Stories Data
-        if (data.stories && Array.isArray(data.stories) && data.stories.length > 0) {
-            statusStories = data.stories.map(item => ({
-                name: item.name || "झलक",
-                image: item.image,
-                caption: item.caption || item.name,
-                views: parseInt(item.views, 10) || 0
-            }));
-            renderStatusThumbnails(statusStories);
+    // --- DUAL FETCH: FRONTEND SE 2 ALAG-ALAG SHEETS FETCH ---
+    window.handleStatusSheetResponse = function(data) {
+        if (data && data.groups && Array.isArray(data.groups) && data.groups.length > 0) {
+            statusGroups = data.groups;
+            renderStatusThumbnails(statusGroups);
         } else {
-            statusStories = [];
+            statusGroups = [];
             renderStatusThumbnails([]);
         }
+    };
 
-        // 2. Summary
+    window.handleMainSheetResponse = function(data) {
+        if (!data || data.status === "error") return;
+
         if (data.summary) {
             globalSummary = data.summary;
             const chandaEl = document.getElementById('total-chanda');
@@ -671,36 +787,43 @@
             if (expenseEl) expenseEl.innerText = `₹ ${Number(data.summary.totalExpense || 0).toLocaleString('en-IN')}`;
         }
 
-        // 3. Donators
         if (data.donators && Array.isArray(data.donators)) {
             allDonators = data.donators;
             renderTop21Donators();
         }
 
-        // 4. Volunteers
         if (data.volunteers && Array.isArray(data.volunteers)) {
             allVolunteers = data.volunteers;
             renderVolunteersList(allVolunteers);
         }
     };
 
-    // --- FETCH DATA VIA WORKING JSONP TAG ---
-    function fetchSheetData() {
+    function fetchAllData() {
         const refreshIcon = document.getElementById('refresh-icon');
         if (refreshIcon) refreshIcon.classList.add('fa-spin');
 
-        const oldScript = document.getElementById('jsonp-script');
-        if (oldScript) oldScript.remove();
-
-        const jsonpUrl = GOOGLE_SHEET_API_URL + "?callback=handleSheetDataResponse&t=" + Date.now();
-        const script = document.createElement("script");
-        script.id = "jsonp-script";
-        script.src = jsonpUrl;
-        script.onerror = function() {
-            if (refreshIcon) refreshIcon.classList.remove('fa-spin');
-            document.getElementById('status-container').innerHTML = '<p class="text-xs text-rose-500 py-6 px-2">नेटवर्क त्रुटि। पुनः प्रयास करें।</p>';
+        // 1. Fetch Sheet 1 (Status Test Sheet)
+        const s1 = document.createElement("script");
+        s1.src = URL_STATUS_SHEET + "?callback=handleStatusSheetResponse&t=" + Date.now();
+        s1.onload = () => s1.remove();
+        s1.onerror = () => {
+            s1.remove();
+            document.getElementById('status-container').innerHTML = '<p class="text-xs text-rose-500 py-6 px-2">स्टेटस लोड नहीं हुआ।</p>';
         };
-        document.body.appendChild(script);
+        document.body.appendChild(s1);
+
+        // 2. Fetch Sheet 2 (Main Sheet)
+        const s2 = document.createElement("script");
+        s2.src = URL_MAIN_SHEET + "?callback=handleMainSheetResponse&t=" + Date.now();
+        s2.onload = () => {
+            s2.remove();
+            if (refreshIcon) refreshIcon.classList.remove('fa-spin');
+        };
+        s2.onerror = () => {
+            s2.remove();
+            if (refreshIcon) refreshIcon.classList.remove('fa-spin');
+        };
+        document.body.appendChild(s2);
     }
 
     // --- TEMPLATES ---
@@ -751,7 +874,7 @@
         let photo = "";
         for (let k in v) {
             let val = String(v[k] || "").trim();
-            if (val.indexOf("http") !== -1) { photo = val; break; }
+            if (val.toLowerCase().indexOf("http") !== -1) { photo = val; break; }
         }
 
         const initials = name.split(" ").filter(Boolean).map(n => n[0]).join("").substring(0, 2).toUpperCase() || "SV";
@@ -801,7 +924,6 @@
         `;
     }
 
-    // --- RENDER FUNCTIONS ---
     function renderTop21Donators() {
         const container = document.getElementById('donators-list');
         const heading = document.getElementById('donators-heading');
@@ -1041,7 +1163,7 @@
     }
 
     window.addEventListener('DOMContentLoaded', () => {
-        fetchSheetData();
+        fetchAllData();
     });
 </script>
 </body>
